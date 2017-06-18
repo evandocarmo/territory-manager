@@ -19,9 +19,16 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../node_modules/materialize-css/dist/css/materialize.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/hammerjs/hammer.js",
+        "../node_modules/materialize-css/dist/js/materialize.js",
+        "../node_modules/html2canvas",
+        "../node_modules/FileSaver"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -52,6 +59,7 @@
   },
   "defaults": {
     "styleExt": "css",
-    "component": {}
+    "component": {
+    }
   }
 }

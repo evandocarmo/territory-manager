@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+.material-icons {
+text-rendering: optimizeLegibility;
+}
+.navbar-fixed {
+ z-index: 9999 !important;
+}

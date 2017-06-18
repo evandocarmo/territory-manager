@@ -1,0 +1,13 @@
+<form (ngSubmit)="login($event, username, password)">
+    <fieldset class="login-fieldset">
+        <div class="form-group">
+            <input autofocus class="form-control input-field" name="username" placeholder="Username" type="text"[(ngModel)] = "username"/>
+        </div>
+        <div class="form-group">
+            <input class="form-control input-field" name="password" placeholder="Password" type="password" [(ngModel)] = "password"/>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default deep-purple darken-1">Log In</button>
+        </div>
+    </fieldset>
+</form>

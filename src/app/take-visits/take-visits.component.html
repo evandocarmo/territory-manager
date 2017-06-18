@@ -1,0 +1,46 @@
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">
+  There has been a problem. Please, <a routerLink="/take-search"> try Again</a>
+</div>
+<form class="form" (ngSubmit)="onSubmit()" #takeSearchForm = "ngForm">
+  <div class="input-field" id="take-user-select">
+    <legend>Select a Publisher</legend>
+    <select class="browser-default" name="user" [(ngModel)]="selectedUser">
+      <option *ngFor="let user of users" value="{{user.id}}">{{user.name}} ({{user.visiting}} households)</option>
+    </select>
+  </div>
+  <div class="input-field" id="take-neighborhood-select">
+    <legend>Select a Neighborhood</legend>
+    <select class="browser-default" name="neighborhood" [(ngModel)]="selectedNeighborhood" (change)="quantity = 0">
+      <option *ngFor="let neighborhood of neighborhoods" value="{{neighborhood.area_name}}">{{neighborhood.area_name}}</option>
+    </select>
+  </div>
+  <div class="input-field" id="take-neighborhood-select">
+    <legend>Select how many households will be visited</legend>
+    <input type="number" name="quantity" [(ngModel)]="quantity" min="1" max="30" (change)="populate()">
+  </div>
+  <table id="table" class="table bordered striped my-territory-table" *ngIf="households">
+      <thead>
+          <tr>
+              <td>Quadra</td>
+              <td>Address</td>
+              <td>Language</td>
+              <td>Last Visit</td>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="row" *ngFor="let house of households">
+              <td>{{house.COD_CARD}}</td>
+              <td class="data address">{{house.ADDRESS}}</td>
+              <td class="data">{{house.LANGUAGE}}</td>
+              <td class="data">{{house.LAST_UPDATE}}</td>
+          </tr>
+      </tbody>
+  </table>
+  <nav id="take-toolbar">
+    <ul class="nav-mobile">
+      <li class="waves-effect waves-light">
+        <button type="submit" class="deep-purple darken-1">Checkout</button>
+      </li>
+    </ul>
+  </nav>
+</form>

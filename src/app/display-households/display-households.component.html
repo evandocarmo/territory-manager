@@ -1,0 +1,21 @@
+<table id="table" class="table bordered striped my-territory-table">
+    <thead>
+        <tr>
+            <td>Quadra</td>
+            <td>Address</td>
+            <td>Language</td>
+            <td>Comments</td>
+            <td>Last Visit</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let house of households">
+            <td class="data">{{house.COD_CARD}}</td>
+            <td class="data address">{{house.ADDRESS}}</td>
+            <td class="data">{{house.LANGUAGE}}</td>
+            <td class="data">{{house.COMMENTS}}</td>
+            <td class="data">{{house.LAST_UPDATE}}</td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary export" (click)="exportTable($event)"><i class="small material-icons">file_download</i> picture</button>

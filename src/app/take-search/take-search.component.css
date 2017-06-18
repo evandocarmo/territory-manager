@@ -1,0 +1,42 @@
+body{
+  margin-bottom:20%!important;
+}
+.card-collection{
+  padding:5%;
+}
+.neighborhood{
+  margin-bottom:10%;
+}
+.card-option{
+  padding:5%;
+  margin:5%;
+  border-radius:25px;
+}
+#take-user-select{
+      vertical-align:top;
+      margin:5px;
+      color:#666;
+   }
+
+   #take-toolbar{
+    position:fixed;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    transition: transform 0.2s cubic-bezier(0.55, 0.085, 0.68, 0.53) 0s, background-color 0s linear 0.2s;
+    overflow: hidden;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    background-color: rgb(94, 53, 177);
+    padding: 0;
+    height: 56px;
+    margin-top:10px;
+   }
+   .form{
+     margin-bottom:100px;
+   }
+   .anchors{
+     margin-top:10px;
+     text-align:center;
+   }

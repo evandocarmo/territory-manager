@@ -1,0 +1,25 @@
+<ul class="collapsible popout" data-collapsible="accordion" materialize="collapsible">
+    <li *ngFor="let cod_card of codCardNames" class="card-panel">
+      <legend class="collapsible-header territory-legend sub-legend">{{cod_card}}
+        <i class="small material-icons">arrow_drop_down</i>
+      </legend>
+      <table id="table{{cod_card}}" class="table bordered striped my-territory-table collapsible-body">
+          <thead>
+              <tr>
+                  <td>Address</td>
+                  <td>Language</td>
+                  <td>Comments</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="row" *ngFor="let house of householdsByCard[cod_card].households">
+                  <td *ngIf="house.message">{{house.message}}</td>
+                  <td class="data address">{{house.ADDRESS}}</td>
+                  <td class="data">{{house.LANGUAGE}}</td>
+                  <td class="data">{{house.COMMENTS}}</td>
+              </tr>
+          </tbody>
+      </table>
+      <button class="btn btn-primary export" (click)="exportTable($event)"><i class="small material-icons">file_download</i> picture</button>
+  </li>
+</ul>

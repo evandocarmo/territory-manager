@@ -1,0 +1,37 @@
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/take-search"> try Again</a></div>
+<div class="anchors">
+  <a *ngFor="let name of neighborhoodNames" pageScroll href="#{{name}}" class="chip">{{name}}</a>
+</div>
+<form class="form" (ngSubmit)="onSubmit()" #takeSearchForm = "ngForm">
+  <ul class="collapsible popout neighborhoods" data-collapsible="accordion" materialize="collapsible">
+    <li *ngFor="let name of neighborhoodNames" id="{{name}}">
+        <div  class="collapsible-header">
+          <legend class="sublegend">{{name}}</legend>
+          <legend class="macroarea">{{neighborhoods[name].macroarea}}</legend>
+        </div>
+      <ul class="card-collection collapsible-body">
+        <li *ngFor="let card of neighborhoods[name].codcards" class="card-option grey lighten-2">
+          <input type="checkbox"
+                 name="cards"
+                 id="{{card.cod}}"
+                 (change)="pushIntoSelected(card)"
+                 value="{{card.cod}}"
+                 class="filled-in"  />
+          <label for="{{card.cod}}"><span class="purple-text">{{card.COD_CARD}}</span> Last search: {{card.LAST_UPDATE}}</label>
+        </li>
+      </ul>
+  </li>
+  </ul>
+  <nav id="take-toolbar">
+    <ul class="nav-mobile">
+      <li>
+        <div class="input-field" id="take-user-select">
+          <select class="browser-default" name="user" [(ngModel)]="selectedUser">
+            <option *ngFor="let user of users" value="{{user.id}}">{{user.name}} ({{user.holding}} territories)</option>
+          </select>
+        </div>
+      </li>
+      <li class="waves-effect waves-light right"><button type="submit" class="deep-purple darken-1">Checkout</button></li>
+    </ul>
+  </nav>
+</form>
