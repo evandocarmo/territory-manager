@@ -24,7 +24,7 @@ export class DisplayHouseholdsComponent implements OnInit {
       private route: ActivatedRoute,
       private router: Router,
       private householdService:HouseholdService) { }
-
+  exportTable(){}
   ngOnInit() {
     this.sub = this.route
       .queryParams
