@@ -30,10 +30,12 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {Ng2PageScrollModule} from 'ng2-page-scroll';
 import { DisplayHouseholdsInCardsComponent } from './display-households-in-cards/display-households-in-cards.component';
 import { DisplayHouseholdsComponent } from './display-households/display-households.component';
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
+    KeysPipe,
     LoginComponent,
     HomeComponent,
     TakeSearchComponent,
