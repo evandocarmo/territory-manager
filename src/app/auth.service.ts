@@ -22,7 +22,7 @@ export class AuthService {
   	}
   }
 
-  public authenticate(username: string, password: string){
+  public authenticate(username: string, password: string):any{
    if(!this.redirectUrl)
        this.redirectUrl = "home";
    if(this.loggedIn())
@@ -40,7 +40,7 @@ export class AuthService {
             console.log(user);
             localStorage.setItem('user',user);
             console.log("redirect url is " + this.redirectUrl);
-            this.router.navigate(["/"]);
+            this.router.navigate(['/home']);
           }else{
           	return false;
           }
