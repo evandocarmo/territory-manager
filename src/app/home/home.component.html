@@ -3,19 +3,19 @@
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header grey-text">Checkout</h4>
-        <a class="white-text btn-large deep-purple darkened-2 s3 "[routerLink]="['take-search']"><i class="material-icons left medium">location_on</i> Search</a>
-        <a class="white-text btn-large s3 deep-purple darkened-2 "[routerLink]='["take-visits"]'><i class="material-icons left medium">assignment</i> Visits</a>
+        <a class="white-text btn-large deep-purple darken-2 s3 "[routerLink]="['/take-search']"><i class="material-icons left medium">location_on</i> Search</a>
+        <a class="white-text btn-large s3 deep-purple darken-2 "[routerLink]='["/take-visits"]'><i class="material-icons left medium">assignment</i> Visits</a>
       </div>
     </div>
   </div>
 </div>
 <div class="col s6">
-  <div class="card horizontal deep-purple darkened-2">
+  <div class="card horizontal deep-purple darken-2">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header white-text">Update</h4>
-        <a class="deep-purple-text btn-large flat-btn-large white darkened-2 s3 "[routerLink]="['/update-search']"><i class="material-icons left medium">edit_location</i> Search </a>
-        <a class="deep-purple-text btn-large s3 flat-btn-large white darkened-2 "[routerLink]="['update-visits']"><i class="material-icons left medium">assignment_turned_in</i> Visits</a>
+        <a class="deep-purple-text btn-large flat-btn-large white darken-2 s3 "[routerLink]="['/update-search']"><i class="material-icons left medium">edit_location</i> Search </a>
+        <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="['/update-visits']"><i class="material-icons left medium">assignment_turned_in</i> Visits</a>
       </div>
     </div>
   </div>
@@ -25,21 +25,21 @@
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header grey-text">Visualize</h4>
-        <a class="white-text btn-large deep-purple darkened-2 s3 "[routerLink]="['my-search']"><i class="material-icons left medium">person_pin</i> My Search</a>
-        <a class="white-text btn-large s3 deep-purple darkened-2 "[routerLink]="['my-visits']"><i class="material-icons left medium">assignment_ind</i> My Visits</a>
+        <a class="white-text btn-large deep-purple darken-2 s3 "[routerLink]="['/my-search']"><i class="material-icons left medium">person_pin</i> My Search</a>
+        <a class="white-text btn-large s3 deep-purple darken-2 "[routerLink]="['/my-visits']"><i class="material-icons left medium">assignment_ind</i> My Visits</a>
       </div>
     </div>
   </div>
 </div>
-<div class="col s6">
-  <div class="card horizontal deep-purple darkened-2">
+<div class="col s6" [hidden]="!(user.privilege === 'ELDER')">
+  <div class="card horizontal deep-purple darken-2">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header white-text">Admin</h4>
-        <a class="deep-purple-text btn-large flat-btn-large white darkened-2 s3 "[routerLink]="[]"><i class="material-icons left medium">people</i> Users</a>
-        <a class="deep-purple-text btn-large s3 flat-btn-large white darkened-2 "[routerLink]="[]"><i class="material-icons left medium">edit_location</i> Search Territory</a>
-        <a class="deep-purple-text btn-large s3 flat-btn-large white darkened-2 "[routerLink]="[]"><i class="material-icons left medium">work</i> Households</a>
-        <a class="deep-purple-text btn-large s3 flat-btn-large white darkened-2 "[routerLink]="[]"><i class="material-icons left medium">list</i> Statistics</a>
+        <a class="deep-purple-text btn-large flat-btn-large white darken-2 s3 "[routerLink]="[]"><i class="material-icons left medium">people</i> Users</a>
+        <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">edit_location</i> Search Territory</a>
+        <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">work</i> Households</a>
+        <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">list</i> Statistics</a>
       </div>
     </div>
   </div>

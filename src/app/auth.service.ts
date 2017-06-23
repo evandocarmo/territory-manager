@@ -40,7 +40,7 @@ export class AuthService {
             console.log(user);
             localStorage.setItem('user',user);
             console.log("redirect url is " + this.redirectUrl);
-            this.router.navigate(["home"]);
+            this.router.navigate(["/"]);
           }else{
           	return false;
           }
