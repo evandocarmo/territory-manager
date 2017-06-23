@@ -31,6 +31,7 @@ import {Ng2PageScrollModule} from 'ng2-page-scroll';
 import { DisplayHouseholdsInCardsComponent } from './display-households-in-cards/display-households-in-cards.component';
 import { DisplayHouseholdsComponent } from './display-households/display-households.component';
 import { KeysPipe } from './keys.pipe';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { KeysPipe } from './keys.pipe';
     UpdateSearchComponent,
     NavbarComponent,
     DisplayHouseholdsInCardsComponent,
-    DisplayHouseholdsComponent
+    DisplayHouseholdsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
