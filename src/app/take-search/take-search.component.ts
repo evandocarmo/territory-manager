@@ -26,6 +26,7 @@ export class TakeSearchComponent implements OnInit {
   selectedCards = Array();
   problem :boolean = false;
   selectedCardNames = Array();
+  currentUser = JSON.parse(localStorage.getItem('user'));
 
   constructor(private territoryService : TerritoryService, private userService : UserService,private router : Router) { }
 

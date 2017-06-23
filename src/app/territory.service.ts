@@ -117,6 +117,11 @@ export class TerritoryService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  public returnCard(cod,user):Observable<any>{
+    return this.http.put(API_URL + "cod_cards/return",JSON.stringify({cod,user}),options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
 
   private extractData(res: Response) {
     let body = res.json();
@@ -125,7 +130,6 @@ export class TerritoryService {
     return body || { };
   }
   private handleError (error: Response | any) {
-    // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
       const body = error.json() || '';

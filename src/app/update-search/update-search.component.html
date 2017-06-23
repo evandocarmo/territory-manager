@@ -1,10 +1,13 @@
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/take-search"> try Again</a></div>
 <form>
-  <ul class="collapsible popout" data-collapsible="accordion" materialize="collapsible">
+  <ul class="collapsible" data-collapsible="accordion" materialize="collapsible">
       <li *ngFor="let cod_card of codCardNames" class="card-panel">
         <div class="collapsible-header">
-            <i class="deep-purple-text darken-2 right small material-icons" (click)="returnCard(codsByCard[cod_card].cod)">send</i>
+            <span
+              class="deep-purple white-text btn-flat right"
+              (click)="returnCard(codsByCard[cod_card],cod_card)">RETURN</span>
           <legend class="territory-legend sub-legend">{{cod_card}}
-            <i class="large material-icons">arrow_drop_down</i>
+            <i class="large material-icons">touch_app</i>
           </legend>
         </div>
                 <ul class="collapsible-body z-depth-4 center-align update-card" *ngFor="let house of householdsByCard[cod_card].households; let i = index">
@@ -18,13 +21,13 @@
                       <input name="{{householdsByCard[cod_card].households[i].COD}}LANGUAGE" type="text" [(ngModel)]="householdsByCard[cod_card].households[i]['LANGUAGE']">
                     </li>
                     <li class="data">
-                      <legend class="deep-purple-text darken-2">Comments</legend>
+                      <legend class="deep-purple-text darken-2">Comments (country, publications left...)</legend>
                       <input name="{{householdsByCard[cod_card].households[i].COD}}COMMENTS" type="text" [(ngModel)]="householdsByCard[cod_card].households[i]['COMMENTS']">
                     </li>
                     <a class="btn-floating green white-text" (click)="saveChanges(house)">
                       <i class="tiny material-icons">save</i>
                     </a>
-                    <a class="btn-floating red white-text" (click)="deleteHousehold(house)">
+                    <a class="btn-floating red white-text" (click)="deleteHousehold(house,cod_card)">
                       <i class="tiny material-icons">delete</i>
                     </a>
                 </ul>

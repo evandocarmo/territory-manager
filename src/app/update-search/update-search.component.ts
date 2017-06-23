@@ -40,22 +40,46 @@ export class UpdateSearchComponent implements OnInit {
     private userService:UserService
   ) { }
   saveChanges(element){
-    console.log("Change",element);
+    Materialize.toast('please, wait...',1000,'rounded');
+    this.householdService.updateHousehold(element).subscribe(
+      response => Materialize.toast("Saved! Thank you for your help.",4000,"rounded green white-text"),
+      error => this.problem = true
+    )
   }
-  deleteHousehold(element){
-    console.log("Delete",element);
+  deleteHousehold(element,cod_card){
+    if(confirm("Are you sure you want to delete this?")){
+      Materialize.toast("Please, wait...",1000,'rounded');
+      this.householdService.deleteHousehold(element.COD).subscribe(
+        response=>{
+          Materialize.toast("Household deleted! Thanks for your help.",4000,"rounded green white-text");
+          let index = this.householdsByCard[cod_card].households.indexOf(element);
+          this.householdsByCard[cod_card].households.splice(index,1);
+        },
+        error => this.problem = true
+      )
+    }
   }
-  returnCard(card){
-    console.log("Return",card);
+  returnCard(card,name){
+    if(confirm("Are you sure you want to return this card?")){
+      Materialize.toast("Please, wait...",1000,'rounded')
+      this.territoryService.returnCard(card.cod,this.user.id).subscribe(
+        response=>{
+          Materialize.toast("Card returned! Thanks for your help",4000,'rounded green white-text');
+          let index = this.codCardNames.indexOf(name);
+          this.codCardNames.splice(index,1);
+          console.log(this.codCardNames);
+        }
+      )
+    }
   }
   ngOnInit() {
-    this.userService.getUserInfo().subscribe(
-      response => {
-        this.user = response;
+        this.user = JSON.parse(localStorage.getItem('user'));
         this.territoryService.getCardsByUser(this.user.id).subscribe(
           response => {
             console.log(response);
             let temp = response;
+            if(!temp[0])
+              return;
             for(let card of temp){
               this.householdsByCard[card['COD_CARD']] = {households:[]};
               this.codsByCard[card['COD_CARD']] = {cod:card['cod']};
@@ -76,9 +100,6 @@ export class UpdateSearchComponent implements OnInit {
             this.problem = true;
           }
         )
-      },
-      error => this.problem = true
-    )
     console.log(this);
   }
 }

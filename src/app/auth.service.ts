@@ -36,7 +36,9 @@ export class AuthService {
           console.log(response);
           if(response.json().token){
             localStorage.setItem('token', response.json().token);
-            console.log(response.json());
+            let user = JSON.stringify(response.json().user);
+            console.log(user);
+            localStorage.setItem('user',user);
             console.log("redirect url is " + this.redirectUrl);
             this.router.navigate(["home"]);
           }else{

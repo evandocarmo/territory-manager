@@ -67,6 +67,27 @@ export class HouseholdService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  public returnedHouseholds(cod,user):Observable<any>{
+    let putOptions = new RequestOptions( {method: 'PUT', headers: contentHeaders });
+    return this.http.put(API_URL + "households/return",JSON.stringify({cod,user}),putOptions)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  public updateHousehold(household):Observable<any>{
+    let putOptions = new RequestOptions( {method:'PUT', headers:contentHeaders});
+    return this.http.put(API_URL+"households",JSON.stringify(household),putOptions)
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
+  public deleteHousehold(cod):Observable<any>{
+    let deleteOptions = new RequestOptions( {method:'DELETE',headers:contentHeaders} );
+    let params:URLSearchParams = new URLSearchParams();
+    params.set("cod",cod);
+    deleteOptions.params = params;
+    return this.http.delete(API_URL + "households",deleteOptions)
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
 
   private extractData(res: Response) {
     let body = res.json();

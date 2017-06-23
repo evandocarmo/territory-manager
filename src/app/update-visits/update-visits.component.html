@@ -1,3 +1,43 @@
-<p>
-  update-visits works!
-</p>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/take-search"> try Again</a></div>
+<p class="deep-purple-text center-align">Delete, return or make changes to households</p>
+<form>
+  <ul
+    class="collapsible"
+    data-collapsible="accordion"
+    materialize="collapsible"
+  >
+    <li *ngFor="let house of households; let i = index" class="card-panel">
+      <div class="collapsible-header">
+        <span
+          class="deep-purple white-text btn-flat left"
+          (click)="returnHouse(house)">
+          RETURN
+        </span>
+        <legend class="territory-legend sub-legend truncate right"><h6>{{house['COD_CARD']}}, {{house.ADDRESS}}</h6>
+          <i class="large material-icons right">arrow_drop_down</i>
+        </legend>
+      </div>
+      <ul class="collapsible-body">
+        <legend class="grey-text center center-align">Edit or Delete this Household</legend>
+        <li class="data address">
+          <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>
+          <input name="{{house.COD}}ADDRESS" placeholder="Conjunto,bloco,casa,apt" type="text" [(ngModel)]="house['ADDRESS']">
+        </li>
+        <li class="data">
+          <legend class="deep-purple-text darken-2">Language</legend>
+          <input name="{{house.COD}}LANGUAGE" type="text" [(ngModel)]="house['LANGUAGE']">
+        </li>
+        <li class="data">
+          <legend class="deep-purple-text darken-2">Comments (country, publications left...)</legend>
+          <input name="{{house.COD}}COMMENTS" type="text" [(ngModel)]="house['COMMENTS']">
+        </li>
+        <a class="btn-floating green white-text" (click)="saveHouse(house)">
+          <i class="tiny material-icons">save</i>
+        </a>
+        <a class="btn-floating red white-text" (click)="deleteHouse(house)">
+          <i class="tiny material-icons">delete</i>
+        </a>
+      </ul>
+    </li>
+  </ul>
+</form>

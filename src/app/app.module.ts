@@ -104,6 +104,11 @@ import { KeysPipe } from './keys.pipe';
           path:'update-search',
           component:UpdateSearchComponent,
           canActivate:[GuardService]
+        },
+        {
+          path:'update-visits',
+          component:UpdateVisitsComponent,
+          canActivate:[GuardService]
         }
       ])
   ],
