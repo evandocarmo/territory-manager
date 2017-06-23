@@ -24,7 +24,7 @@
         <a class="dropdown-button right" [hidden]="user.privilege === 'PUBLISHER'" data-activates="checkout">Checkout</a>
         <a class="dropdown-button right" data-activates="update">Update</a>
         <a class="dropdown-button right" data-activates="visualize">Visualize</a>
-        <a class="dropdown-button right" [hidden]="!user.privilege === 'ELDER'" data-activates="admin">Admin</a>
+        <a class="dropdown-button right" [hidden]="!(user.privilege === 'ELDER')" data-activates="admin">Admin</a>
       </ul>
     </div>
   </nav>
