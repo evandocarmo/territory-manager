@@ -1,11 +1,10 @@
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/take-search"> try Again</a></div>
-<table id="table" class="table bordered striped my-territory-table">
+<table id="table" class="table bordered striped my-territory-table card-panel">
     <thead>
         <tr>
             <td>Quadra</td>
             <td>Address</td>
             <td>Language</td>
-            <td>Comments</td>
             <td>Last Visit</td>
         </tr>
     </thead>
@@ -14,7 +13,6 @@
             <td class="data">{{house.COD_CARD}}</td>
             <td class="data address">{{house.ADDRESS}}</td>
             <td class="data">{{house.LANGUAGE}}</td>
-            <td class="data">{{house.COMMENTS}}</td>
             <td class="data">{{house.LAST_UPDATE}}</td>
         </tr>
     </tbody>

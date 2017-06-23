@@ -109,6 +109,11 @@ import { KeysPipe } from './keys.pipe';
           path:'update-visits',
           component:UpdateVisitsComponent,
           canActivate:[GuardService]
+        },
+        {
+          path:'my-visits',
+          component:MyVisitsComponent,
+          canActivate:[GuardService]
         }
       ])
   ],

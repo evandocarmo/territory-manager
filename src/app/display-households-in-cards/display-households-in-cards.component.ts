@@ -64,7 +64,10 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
     this.sub = this.route
       .queryParams
       .subscribe(params=>{
-        this.cardCods.push(params.cod_card_cod);
+        for(let cod of params.cod_card_cod){
+          this.cardCods.push(cod);
+        }
+        console.log(this.cardCods);
         if(params.cod_card.constructor === Array)
           this.codCardNames = params.cod_card;
         else

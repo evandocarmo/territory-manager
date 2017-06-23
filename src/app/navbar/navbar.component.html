@@ -1,34 +1,31 @@
-<div *ngIf="!isLoggedIn()" class="navbar-fixed">
+<div class="navbar-fixed">
   <nav>
-    <div class="nav-wrapper deep-purple darken-1">
-      <a href="./" class="brand-logo small center">BSB ENGLISH</a>
-      <a href="./" class="brand-logo left"> <i class="large material-icons">home</i></a>
-    </div>
-  </nav>
-</div>
-
-<div *ngIf="isLoggedIn()" class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper deep-purple darken-1">
-      <a href="./" class="brand-logo small center">BSB ENGLISH</a>
-        <a href="./" class="brand-logo left"> <i class="large material-icons">home</i></a>
-        <a href="#" data-activates="mobile-demo" class="button-collapse right"><i (click)="detectPrivilege()" class="material-icons">menu</i></a>
-        <ul [hidden]="!user" class="right hide-on-med-and-down">
-            <li [hidden]="user.privilege === 'PUBLISHER'"><a href="">Take</a></li>
-            <li><a href="update_territory.php">Update</a></li>
-            <li><a href="myterritory.php">My Territory</a></li>
-            <li [hidden]="user.privilege !== 'ELDER'"><a href="register.php">New Publisher</a></li>
-            <li [hidden]="user.privilege !== 'ELDER'"><a href="monitor_territory.php">Monitor</a></li>
-            <li [hidden]="user.privilege !== 'ELDER'"><a href="worked_territories.php">Last 30 Days</a></li>
-        </ul>
-        <ul [hidden]="!user" class="side-nav" id="mobile-demo">
-          <li [hidden]="user.privilege === 'PUBLISHER'"><a href="take_territory.php">Take</a></li>
-          <li><a href="update_territory.php">Update</a></li>
-          <li><a href="myterritory.php">My Territory</a></li>
-            <li [hidden]="user.privilege !== 'ELDER'"><a href="register.php">New Publisher</a></li>
-            <li [hidden]="user.privilege !== 'ELDER'"><a href="monitor_territory.php">Monitor</a></li>
-            <li [hidden]="user.privilege !== 'ELDER'"><a href="worked_territories.php">Last 30 Days</a></li>
-        </ul>
+    <div class="nav-wrapper deep-purple darken-1 z-depth-4">
+      <a [routerLink]="['home']" class="brand-logo left"> <i class="large material-icons">home</i></a>
+      <ul id="checkout" class="dropdown-content deep-purple darken-2">
+        <li><a class="white-text" [routerLink]="['take-search']">Search</a></li>
+        <li><a [routerLink]="['take-visits']"class="white-text">Visits</a></li>
+      </ul>
+      <ul id="update" class="dropdown-content deep-purple darken-2 white-text">
+        <li><a [routerLink]="['update-search']" class="white-text">Search</a></li>
+        <li><a [routerLink]="['update-visits']" class="white-text">Visits</a></li>
+      </ul>
+      <ul id="visualize" class="dropdown-content deep-purple darken-2 white-text">
+        <li><a [routerLink]="['my-search']" class="white-text">My Search</a></li>
+        <li><a [routerLink]="['my-visits']" class="white-text">My Visits</a></li>
+      </ul>
+      <ul id="admin" class="dropdown-content deep-purple darken-2 white-text">
+        <li><a [routerLink]="['']" class="white-text">Users</a></li>
+        <li><a [routerLink]="['']" class="white-text">Search Territory</a></li>
+        <li><a [routerLink]="['']" class="white-text">Households</a></li>
+        <li><a [routerLink]="['']" class="white-text">Statistics</a></li>
+      </ul>
+      <ul>
+        <a class="dropdown-button right" [hidden]="user.privilege === 'PUBLISHER'" data-activates="checkout">Checkout</a>
+        <a class="dropdown-button right" data-activates="update">Update</a>
+        <a class="dropdown-button right" data-activates="visualize">Visualize</a>
+        <a class="dropdown-button right" [hidden]="!user.privilege === 'ELDER'" data-activates="admin">Admin</a>
+      </ul>
     </div>
   </nav>
 </div>
