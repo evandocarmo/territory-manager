@@ -11,7 +11,7 @@
         </div>
       <ul class="card-collection collapsible-body">
         <li *ngFor="let card of neighborhoods[name].codcards" class="card-option grey lighten-2">
-          <input required 
+          <input required
                 type="checkbox"
                  name="cards"
                  id="{{card.cod}}"
@@ -37,11 +37,12 @@
         </div>
       </li>
       <li class="waves-effect waves-light right">
-        <button style="margin-right:10px"[disabled]="!takeSearchForm.form.valid" type="submit" class="green darken-1 white-text btn-flat">
-          Checkout
-          <i class="materialize-icons tiny">done</i>
-        </button>
       </li>
     </ul>
   </nav>
+  <div class="fixed-action-btn">
+    <button style="margin-right:10px"[disabled]="!takeSearchForm.form.valid" type="submit" class="waves-effect waves-light z-depth-4 btn-floating btn-large green darken-1 white-text btn-flat">
+      <i class="material-icons">assignment_returned</i>
+    </button>
+  </div>
 </form>
