@@ -1,4 +1,5 @@
-<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/take-search"> try Again</a></div>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<p class="deep-purple-text center-align">Select what areas you want to do search in</p>
 <div class="anchors">
   <a *ngFor="let name of neighborhoodNames" pageScroll href="#{{name}}" class="chip">{{name}}</a>
 </div>

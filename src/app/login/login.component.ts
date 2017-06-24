@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   login(event, username,password) {
     console.log("called login");
-    this.authService.authenticate(username,password)
+    this.authService.authenticate(username,password);
   }
 
 }

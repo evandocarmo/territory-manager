@@ -1,4 +1,4 @@
-<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/take-search"> try Again</a></div>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <p class="deep-purple-text center-align">Delete, return or make changes to households</p>
 <form>
   <ul
@@ -9,11 +9,11 @@
     <li *ngFor="let house of households; let i = index" class="card-panel">
       <div class="collapsible-header">
         <span
-          class="deep-purple white-text btn-flat left"
+          class="deep-purple darken-2 white-text btn-flat left"
           (click)="returnHouse(house)">
           RETURN
         </span>
-        <legend class="territory-legend sub-legend truncate right"><h6>{{house['COD_CARD']}}, {{house.ADDRESS}}</h6>
+        <legend class="territory-legend sub-legend truncate right"><h6>{{house['COD_CARD']}}</h6>
           <i class="large material-icons right">arrow_drop_down</i>
         </legend>
       </div>

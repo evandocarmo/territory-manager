@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ChangeDetectorRef } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   user = JSON.parse(localStorage.getItem('user'));
-  constructor() { }
+
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit() {
   }

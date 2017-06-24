@@ -1,3 +1,30 @@
-<p>
-  my-search works!
-</p>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<ul class="collapsible popout" data-collapsible="accordion" materialize="collapsible">
+    <li *ngFor="let cod_card of codCardNames" class="card-panel">
+      <div class="collapsible-header">
+          <span
+            class="deep-purple darken-2 white-text btn-flat right"
+            >Picture</span>
+        <legend class="territory-legend sub-legend">{{cod_card}}
+          <i class="large material-icons">arrow_drop_down</i>
+        </legend>
+      </div>
+      <table id="table{{cod_card}}" class="table bordered striped my-territory-table collapsible-body">
+          <thead>
+              <tr>
+                  <td>Address</td>
+                  <td>Language</td>
+                  <td>Comments</td>
+              </tr>
+          </thead>
+          <tbody>
+              <tr class="row" *ngFor="let house of householdsByCard[cod_card].households">
+                  <td *ngIf="house.message">{{house.message}}</td>
+                  <td class="data address">{{house.ADDRESS}}</td>
+                  <td class="data">{{house.LANGUAGE}}</td>
+                  <td class="data">{{house.COMMENTS}}</td>
+              </tr>
+          </tbody>
+      </table>
+  </li>
+</ul>

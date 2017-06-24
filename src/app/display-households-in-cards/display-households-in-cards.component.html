@@ -1,8 +1,14 @@
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <ul class="collapsible popout" data-collapsible="accordion" materialize="collapsible">
     <li *ngFor="let cod_card of codCardNames" class="card-panel">
-      <legend class="collapsible-header territory-legend sub-legend">{{cod_card}}
-        <i class="small material-icons">arrow_drop_down</i>
-      </legend>
+      <div class="collapsible-header">
+          <span
+            class="deep-purple darken-2 white-text btn-flat right"
+            >Picture</span>
+        <legend class="territory-legend sub-legend">{{cod_card}}
+          <i class="large material-icons">arrow_drop_down</i>
+        </legend>
+      </div>
       <table id="table{{cod_card}}" class="table bordered striped my-territory-table collapsible-body">
           <thead>
               <tr>
