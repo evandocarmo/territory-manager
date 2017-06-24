@@ -40,7 +40,7 @@ export class AuthService {
             console.log(user);
             localStorage.setItem('user',user);
             console.log("redirect url is " + this.redirectUrl);
-                window.location.href = "/home";
+                window.location.reload(true);
           }else{
           	return false;
           }
