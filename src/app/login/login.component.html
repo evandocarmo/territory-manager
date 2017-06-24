@@ -1,4 +1,4 @@
-<form (ngSubmit)="login($event, username, password)" class="card-panel">
+<form class="card-panel">
     <fieldset class="login-fieldset">
         <div class="form-group">
             <input autofocus class="form-control input-field" name="username" placeholder="Username" type="text"[(ngModel)] = "username"/>
@@ -7,7 +7,7 @@
             <input class="form-control input-field" name="password" placeholder="Password" type="password" [(ngModel)] = "password"/>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-default deep-purple darken-1">Log In</button>
+            <button (click)="login($event, username, password)" class="waves-effect waves-light btn btn-default deep-purple darken-1">Log In</button>
         </div>
     </fieldset>
 </form>

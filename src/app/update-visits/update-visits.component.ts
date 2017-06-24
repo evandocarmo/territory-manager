@@ -33,11 +33,11 @@ export class UpdateVisitsComponent implements OnInit {
   returnHouse(house){
     if(!confirm("Are you sure you want to RETURN this?"))
       return;
-    Materialize.toast("Please, wait...",1000,'rounded');
+    Materialize.toast("Please, wait...",1000,'');
     this.householdService.returnedHouseholds(house.COD,this.user.id).subscribe(
       response=>{
         console.log(response);
-        Materialize.toast("Household returned! Thank you for your help",4000,"rounded green white-text");
+        Materialize.toast("Household returned! Thank you for your help",4000," green white-text");
         let index = this.households.indexOf(house);
         this.households.splice(index,1);
       },
@@ -48,10 +48,10 @@ export class UpdateVisitsComponent implements OnInit {
     )
   }
   saveHouse(house){
-    Materialize.toast('Please, wait...',1000,'rounded');
+    Materialize.toast('Please, wait...',1000,'');
     this.householdService.updateHousehold(house).subscribe(
       response=>{
-        Materialize.toast("Saved! Thank you for your help.",4000,"rounded green white-text");
+        Materialize.toast("Saved! Thank you for your help.",4000," green white-text");
         console.log(response);
       },
       error=>{
@@ -63,11 +63,11 @@ export class UpdateVisitsComponent implements OnInit {
   deleteHouse(house){
     if(!confirm("Are you sure you want to DELETE this?"))
       return;
-    Materialize.toast('Please, wait...',1000,'rounded');
+    Materialize.toast('Please, wait...',1000,'');
     this.householdService.deleteHousehold(house.COD).subscribe(
       response=>{
         console.log(response);
-        Materialize.toast("Household deleted! Thanks for your help.",4000,"rounded green white-text");
+        Materialize.toast("Household deleted! Thanks for your help.",4000," green white-text");
         let index = this.households.indexOf(house);
         this.households.splice(index,1);
       },

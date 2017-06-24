@@ -3,6 +3,11 @@ import { tokenNotExpired } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { Headers, Http, Response, RequestOptions  } from '@angular/http';
 import { Observable } from 'rxjs';
+import {MaterializeModule} from "angular2-materialize";
+import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
+
+declare var $ : any;
+declare var Materialize :any;
 
 const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
@@ -40,13 +45,14 @@ export class AuthService {
             console.log(user);
             localStorage.setItem('user',user);
             console.log("redirect url is " + this.redirectUrl);
-                window.location.reload(true);
+            window.location.reload(true);
+            return;
           }else{
+            Materialize.toast("Sorry! Your credentials are incorrect. Try again.",4000,"red white-text");
           	return false;
           }
         },
         error => {
-          alert(error.text());
           console.log(error.text());
           return false;
         }

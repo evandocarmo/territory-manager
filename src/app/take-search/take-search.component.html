@@ -7,8 +7,10 @@
   <ul class="collapsible popout neighborhoods" data-collapsible="accordion" materialize="collapsible">
     <li *ngFor="let name of neighborhoodNames" id="{{name}}">
         <div  class="collapsible-header">
-          <legend class="sublegend">{{name}}</legend>
-          <legend class="macroarea">{{neighborhoods[name].macroarea}}</legend>
+          <legend class="sublegend">{{name}}
+            <span class="macroarea grey-text"> - {{neighborhoods[name].macroarea}}</span>
+            <i class="material-icons tiny">arrow_drop_down</i>
+          </legend>
         </div>
       <ul class="card-collection collapsible-body">
         <li *ngFor="let card of neighborhoods[name].codcards" class="card-option grey lighten-2">
