@@ -37,7 +37,10 @@
       </tbody>
   </table>
       <div class="fixed-action-btn">
-        <button id="takeBtn" style="margin-right:10px"[disabled]="!takeVisitsForm.form.valid" type="submit" class="waves-effect waves-light z-depth-4 btn-floating btn-large green darken-1 white-text btn-flat">
+        <button id="takeBtn"
+        style="margin-right:10px"
+        [disabled]="!takeVisitsForm.form.valid || quantity < 1" 
+        type="submit" class="waves-effect waves-light z-depth-4 btn-floating btn-large green darken-1 white-text btn-flat">
           <i class="material-icons">assignment_returned</i>
         </button>
       </div>
