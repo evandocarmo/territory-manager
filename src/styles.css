@@ -4,3 +4,13 @@ text-rendering: optimizeLegibility;
 .navbar-fixed {
  z-index: 9999 !important;
 }
+.loading-page{
+  background:rgba(105, 104, 104, 0.5);
+  width:100%;
+  z-index:999999!important;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  position:fixed;
+  height:100%;
+}

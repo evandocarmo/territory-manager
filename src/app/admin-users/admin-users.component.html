@@ -1,0 +1,102 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">
+  There has been a problem. Please, <a routerLink="/"> try Again</a>
+</div>
+<ul class="collapsible" materialize="collapsible">
+  <li class="card-panel">
+    <div class="collapsible-header">
+        <h5 class="deep-purple-text darken-2 center-align">
+          Manage Users
+          <i class="material-icons large right black-text">arrow_drop_down</i>
+        </h5>
+    </div>
+    <div class="collapsible-body">
+        <table>
+          <thead>
+            <td>Name</td>
+            <td>Privilege</td>
+            <td>Save</td>
+            <td>Delete</td>
+          </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <td><input name="{{user.name}}NAME" placeholder="Name" type="text" [(ngModel)]="user.name"></td>
+                <td>
+                  <select required class="browser-default" name="{{user.privilege}}PRIVILEGE" [(ngModel)]="user.privilege">
+                    <option disabled selected>{{user.privilege}}</option>
+                    <option value="ELDER">ELDER</option>
+                    <option value="SERVANT">SERVANT</option>
+                    <option value="PUBLISHER">PUBLISHER</option>
+                  </select>
+                </td>
+                <td>
+                  <a class="btn-floating green white-text" (click)="saveUser(user)">
+                    <i class="tiny material-icons">save</i>
+                  </a>
+                </td>
+                <td>
+                  <a class="btn-floating red white-text" (click)="deleteUser(user)">
+                    <i class="tiny material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+
+        </table>
+      </div>
+    </li>
+  <li class="card-panel">
+    <div class="collapsible-header">
+        <h5 class="deep-purple-text darken-2 center-align">Change passwords
+          <i class="material-icons large right black-text">arrow_drop_down</i>
+        </h5>
+    </div>
+    <div class="collapsible-body">
+      <p class="deep-purple-text darken-2">Select a user to have his password changed</p>
+      <select required class="browser-default" name="changePasswordUser" [(ngModel)] = "changePasswordUser.id">
+        <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
+      </select>
+      <p class="deep-purple-text darken-2">New password</p>
+      <input
+        class="form-control input-field"
+        name="password"
+        placeholder="Password"
+        type="password"
+        [(ngModel)] = "changePasswordUser.password"/>
+      <a class="btn deep-purple darken-2 white-text" (click)="changePassword(changePasswordUser)">Change</a>
+    </div>
+  </li>
+  <li class="card-panel">
+    <div class="collapsible-header">
+      <h5 class="deep-purple-text darken-2 center-align">
+        Add User
+        <i class="material-icons large right black-text">arrow_drop_down</i>
+      </h5>
+    </div>
+    <div class="collapsible-body">
+      <p class="deep-purple-text darken-2">New User's Name</p>
+      <input
+        class="form-control input-field"
+        name="newName"
+        type="text"
+        placeholder="name"
+        [(ngModel)]="newUser.name"
+      />
+      <p class="deep-purple-text darken-2">New User's Password</p>
+      <input
+        class="form-control input-field"
+        name="newPassword"
+        type="password"
+        placeholder="password"
+        [(ngModel)]="newUser.password"
+      />
+      <p class="deep-purple-text darken-2">New User's Privilege</p>
+      <select required class="browser-default" name="newPrivilege" [(ngModel)]="newUser.privilege">
+        <option value="ELDER">ELDER</option>
+        <option value="SERVANT">SERVANT</option>
+        <option value="PUBLISHER">PUBLISHER</option>
+      </select>
+      <a class="btn deep-purple darken-2 white-text" (click)="AddNewUser(newUser)">Add</a>
+    </div>
+  </li>
+</ul>

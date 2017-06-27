@@ -29,6 +29,7 @@ export class TakeVisitsComponent implements OnInit {
   selectedHouseholdCards;
   problem :boolean = false;
   cods = Array();
+  loading = false;
 
   constructor(
     private territoryService : TerritoryService,
@@ -38,6 +39,7 @@ export class TakeVisitsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.territoryService.getNeighborhoods().subscribe(
       response => {
         this.neighborhoods = response;
@@ -49,7 +51,10 @@ export class TakeVisitsComponent implements OnInit {
       }
     );
     this.userService.getMaxedVisitingUsers(false).subscribe(
-      response => this.users = response,
+      response => {
+        this.users = response;
+        this.loading = false;
+      },
       error => {
         this.errorMessage = error;
         this.problem = true;
@@ -58,11 +63,13 @@ export class TakeVisitsComponent implements OnInit {
     console.log(this);
   }
   populate(){
+    this.loading = true;
     if(!this.selectedUser && !this.quantity && !this.selectedNeighborhood)
       return;
     this.householdService.getHouseholdsByQuantity(this.quantity,this.selectedNeighborhood).subscribe(
       response => {
         this.households = response;
+        this.loading = false;
       },
       error => {
         this.errorMessage = error;

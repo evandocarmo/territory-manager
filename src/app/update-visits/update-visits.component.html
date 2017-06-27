@@ -8,12 +8,13 @@
   >
     <li *ngFor="let house of households; let i = index" class="card-panel">
       <div class="collapsible-header">
-        <span
-          class="deep-purple darken-2 white-text btn-flat left"
-          (click)="returnHouse(house)">
-          RETURN
-        </span>
-        <legend class="territory-legend sub-legend truncate right"><h6>{{house['COD_CARD']}}</h6>
+        <legend class="territory-legend sub-legend truncate">
+          <h6><span class="grey-text">{{house['COD_CARD']}}, {{house["ADDRESS"]}}</span> - {{house['LANGUAGE']}}</h6>
+          <span
+            class="deep-purple darken-2 white-text btn-flat left"
+            (click)="returnHouse(house)">
+            RETURN
+          </span>
           <i class="large material-icons right">arrow_drop_down</i>
         </legend>
       </div>

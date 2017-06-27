@@ -32,6 +32,8 @@ import { DisplayHouseholdsInCardsComponent } from './display-households-in-cards
 import { DisplayHouseholdsComponent } from './display-households/display-households.component';
 import { KeysPipe } from './keys.pipe';
 import { FooterComponent } from './footer/footer.component';
+import { AdminUsersComponent } from './admin-users/admin-users.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     DisplayHouseholdsInCardsComponent,
     DisplayHouseholdsComponent,
-    FooterComponent
+    FooterComponent,
+    AdminUsersComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -115,6 +119,11 @@ import { FooterComponent } from './footer/footer.component';
         {
           path:'my-visits',
           component:MyVisitsComponent,
+          canActivate:[GuardService]
+        },
+        {
+          path:'admin-users',
+          component:AdminUsersComponent,
           canActivate:[GuardService]
         }
       ])

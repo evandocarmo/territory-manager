@@ -8,7 +8,7 @@ const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
 contentHeaders.append('x-access-token',localStorage.getItem('token'));
-let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
+//contentHeaders.append('Cache-Control','no-cache');
 const API_URL: string = "https://modern-territory-evandocarmo.c9users.io/api/";
 
 @Injectable()
@@ -17,12 +17,14 @@ export class UserService {
   constructor(private router: Router, private http: Http) { }
 
   public getAllUsers(): Observable<any>{
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     return this.http.get(API_URL + "users",options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
   public getMaxedUsers(bool:boolean): Observable<any>{
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
     params.set('maxed',bool ? "yes" : "no");
     options.params = params;
@@ -32,6 +34,7 @@ export class UserService {
   }
 
   public getMaxedVisitingUsers(bool:boolean):Observable<any>{
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
     params.set('maxedVisits',bool ? "yes" : "no");
     options.params = params;
@@ -40,7 +43,43 @@ export class UserService {
       .catch(this.handleError);
   }
 
+  public updateUser(user):Observable<any>{
+    let putOptions = new RequestOptions( {method:'PUT', headers:contentHeaders});
+    return this.http.put(API_URL+"users",JSON.stringify(user),putOptions)
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
+
+  public changePassword(user){
+    let password = user.password;
+    user = user.id;
+    console.log(user,password);
+    let putOptions = new RequestOptions( {method:'PUT', headers:contentHeaders});
+    return this.http.put(API_URL+"users/password",JSON.stringify({user:user,password:password}),putOptions)
+      .map(this.extractData)
+      .catch(this.handleError)
+
+  }
+
+  public addUser(user):Observable<any>{
+    let postOptions = new RequestOptions({method:'POST',headers:contentHeaders});
+    return this.http.post(API_URL+"users",JSON.stringify(user),postOptions)
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
+
+  public deleteUser(user):Observable<any>{
+    let deleteOptions = new RequestOptions({method:'DELETE',headers:contentHeaders});
+    let params:URLSearchParams = new URLSearchParams();
+    params.set("user",user.id);
+    deleteOptions.params = params;
+    return this.http.delete(API_URL+"users",deleteOptions)
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
+
   public getUserInfo(user?){
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let info = user ? user : "me";
     let params:URLSearchParams = new URLSearchParams();
     params.set('info',info);

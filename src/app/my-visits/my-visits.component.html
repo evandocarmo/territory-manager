@@ -1,3 +1,21 @@
-<p>
-  my-visits works!
-</p>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<p class="deep-purple-text darken-2 center-align">These are the houses you are currently supposed to visit</p>
+<table id="table" class="table bordered striped my-territory-table card-panel">
+    <thead>
+        <tr>
+            <td>Quadra</td>
+            <td>Address</td>
+            <td>Language</td>
+            <td>Last Visit</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="row" *ngFor="let house of households">
+            <td class="data">{{house.COD_CARD}}</td>
+            <td class="data address">{{house.ADDRESS}}</td>
+            <td class="data">{{house.LANGUAGE}}</td>
+            <td class="data">{{house.LAST_UPDATE}}</td>
+        </tr>
+    </tbody>
+    <a class="btn-large export deep-purple darken-2"> picture</a>
+</table>

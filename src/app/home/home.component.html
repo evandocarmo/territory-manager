@@ -1,4 +1,17 @@
-<div class="col s6" [hidden]="user.privilege === 'PUBLISHER'">
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<div class="card-panel center-align">
+  <h4>Hello, {{screenName}}! </h4>
+  <p>You have {{user.holding}} card(s) under your name</p>
+  <a class="deep-purple-text darken-2" [routerLink]="['/my-search']">Visualize</a>
+   |
+  <a class="deep-purple-text darken-2" [routerLink]="['/update-search']">Update</a>
+  <p>You are currently visiting {{user.visiting}} house(s)</p>
+  <a class="deep-purple-text darken-2" [routerLink]="['/my-visits']">Visualize</a>
+   |
+  <a class="deep-purple-text darken-2" [routerLink]="['/update-visits']">Update</a>
+</div>
+
+<div class="col s6 z-depth-3" [hidden]="user.privilege === 'PUBLISHER'">
   <div class="card horizontal">
     <div class="card-stacked">
       <div class="card-content">
@@ -9,7 +22,7 @@
     </div>
   </div>
 </div>
-<div class="col s6">
+<div class="col s6 z-depth-3">
   <div class="card horizontal deep-purple darken-2">
     <div class="card-stacked">
       <div class="card-content">
@@ -20,7 +33,7 @@
     </div>
   </div>
 </div>
-<div class="col s6">
+<div class="col s6 z-depth-3">
   <div class="card horizontal">
     <div class="card-stacked">
       <div class="card-content">
@@ -31,12 +44,12 @@
     </div>
   </div>
 </div>
-<div class="col s6" [hidden]="!(user.privilege === 'ELDER')">
+<div class="col s6 z-depth-3" [hidden]="!(user.privilege === 'ELDER')">
   <div class="card horizontal deep-purple darken-2">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header white-text">Admin</h4>
-        <a class="deep-purple-text btn-large flat-btn-large white darken-2 s3 "[routerLink]="[]"><i class="material-icons left medium">people</i> Users</a>
+        <a class="deep-purple-text btn-large flat-btn-large white darken-2 s3 "[routerLink]="['/admin-users']"><i class="material-icons left medium">people</i> Users</a>
         <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">edit_location</i> Search Territory</a>
         <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">work</i> Households</a>
         <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">list</i> Statistics</a>

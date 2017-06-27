@@ -40,18 +40,18 @@ export class UpdateSearchComponent implements OnInit {
     private userService:UserService
   ) { }
   saveChanges(element){
-    Materialize.toast('please, wait...',1000,'');
+    Materialize.toast('please, wait...',1000);
     this.householdService.updateHousehold(element).subscribe(
-      response => Materialize.toast("Saved! Thank you for your help.",4000," green white-text"),
+      response => Materialize.toast("Saved! Thank you for your help.",4000,"green white-text"),
       error => this.problem = true
     )
   }
   deleteHousehold(element,cod_card){
     if(confirm("Are you sure you want to delete this?")){
-      Materialize.toast("Please, wait...",1000,'');
-      this.householdService.deleteHousehold(element.COD).subscribe(
+      Materialize.toast("Please, wait...",1000);
+      this.householdService.deleteHousehold(element.COD,this.user.id).subscribe(
         response=>{
-          Materialize.toast("Household deleted! Thanks for your help.",4000," green white-text");
+          Materialize.toast("Household deleted! Thanks for your help.",4000,"green white-text");
           let index = this.householdsByCard[cod_card].households.indexOf(element);
           this.householdsByCard[cod_card].households.splice(index,1);
         },
@@ -61,10 +61,10 @@ export class UpdateSearchComponent implements OnInit {
   }
   returnCard(card,name){
     if(confirm("Are you sure you want to return this card?")){
-      Materialize.toast("Please, wait...",1000,'')
+      Materialize.toast("Please, wait...",1000)
       this.territoryService.returnCard(card.cod,this.user.id).subscribe(
         response=>{
-          Materialize.toast("Card returned! Thanks for your help",4000,' green white-text');
+          Materialize.toast("Card returned! Thanks for your help",4000,'green white-text');
           let index = this.codCardNames.indexOf(name);
           this.codCardNames.splice(index,1);
           console.log(this.codCardNames);

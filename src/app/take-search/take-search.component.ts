@@ -27,6 +27,7 @@ export class TakeSearchComponent implements OnInit {
   problem :boolean = false;
   selectedCardNames = Array();
   currentUser = JSON.parse(localStorage.getItem('user'));
+  loading = false;
 
   constructor(private territoryService : TerritoryService, private userService : UserService,private router : Router) { }
 
@@ -38,6 +39,7 @@ export class TakeSearchComponent implements OnInit {
   }
 
   getData(){
+    this.loading = true;
     this.territoryService.getNeighborhoods().subscribe(
       response => {
         if(response["fatal"]){
@@ -78,6 +80,7 @@ export class TakeSearchComponent implements OnInit {
             }
             this.users = response;
             console.log(this.users);
+            this.loading = false;
           },
           error => {
             this.errorMessage = <any>error;
