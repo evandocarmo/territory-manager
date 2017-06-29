@@ -81,7 +81,16 @@ export class AdminSearchComponent implements OnInit {
   excel(){
     this.territoryService.downloadExcel(this.query).subscribe(
       response=>{
-        FileSaver.saveAs(response,'territory.xlsx');
+        var isSaverSupported = !!new Blob;
+        if(isSaverSupported)
+          FileSaver.saveAs(response,'territory.xlsx');
+        else{
+          var reader = new FileReader();
+          reader.onload = function(e){
+            window.location.href = reader.result
+          }
+          reader.readAsDataURL(response);
+        }
       },
       error=>this.problem = true
     )
