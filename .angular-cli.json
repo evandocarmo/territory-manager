@@ -27,7 +27,7 @@
         "../node_modules/hammerjs/hammer.js",
         "../node_modules/materialize-css/dist/js/materialize.js",
         "../node_modules/html2canvas",
-        "../node_modules/FileSaver"
+        "../node_modules/FileSaver/FileSaver.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

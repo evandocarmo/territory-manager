@@ -28,6 +28,8 @@ export class TakeSearchComponent implements OnInit {
   selectedCardNames = Array();
   currentUser = JSON.parse(localStorage.getItem('user'));
   loading = false;
+  sortedByNumber = true;
+  sortedByDate = false;
 
   constructor(private territoryService : TerritoryService, private userService : UserService,private router : Router) { }
 
@@ -81,6 +83,9 @@ export class TakeSearchComponent implements OnInit {
             this.users = response;
             console.log(this.users);
             this.loading = false;
+            let myself = this.currentUser;
+            myself.name = "Myself";
+            this.users.unshift(myself);
           },
           error => {
             this.errorMessage = <any>error;
@@ -120,5 +125,29 @@ export class TakeSearchComponent implements OnInit {
       }
     );
   }
+
+  sortByDate(){
+    this.sortedByDate = true;
+    this.sortedByNumber = false;
+    console.log("working?");
+    for(let area in this.neighborhoods){
+      this.neighborhoods[area].codcards.sort(
+        function(a,b) {
+          return(new Date(a.LAST_UPDATE) > new Date(b.LAST_UPDATE))
+          ? 1
+          : ((new Date(b.LAST_UPDATE) > new Date(a.LAST_UPDATE)) ? -1 : 0);} );
+    }
+  }
+  sortByNumber(){
+    this.sortedByDate = false;
+    this.sortedByNumber = true;
+    for(let area in this.neighborhoods){
+      this.neighborhoods[area].codcards.sort(
+        function(a,b) {
+          return a.AREA_NUMBER - b.AREA_NUMBER;
+        });
+    }
+  }
+
+
 }
-//TODO SUBMIT LOGIC

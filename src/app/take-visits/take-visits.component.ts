@@ -30,6 +30,8 @@ export class TakeVisitsComponent implements OnInit {
   problem :boolean = false;
   cods = Array();
   loading = false;
+  currentUser = JSON.parse(localStorage.getItem('user'));
+  housesLoaded = false;
 
   constructor(
     private territoryService : TerritoryService,
@@ -54,6 +56,9 @@ export class TakeVisitsComponent implements OnInit {
       response => {
         this.users = response;
         this.loading = false;
+        let myself = this.currentUser;
+        myself.name = "Myself";
+        this.users.unshift(myself);
       },
       error => {
         this.errorMessage = error;
@@ -63,6 +68,7 @@ export class TakeVisitsComponent implements OnInit {
     console.log(this);
   }
   populate(){
+    this.housesLoaded = false;
     this.loading = true;
     if(!this.selectedUser && !this.quantity && !this.selectedNeighborhood)
       return;
@@ -70,6 +76,7 @@ export class TakeVisitsComponent implements OnInit {
       response => {
         this.households = response;
         this.loading = false;
+        this.housesLoaded = true;
       },
       error => {
         this.errorMessage = error;

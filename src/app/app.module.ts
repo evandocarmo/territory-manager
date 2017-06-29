@@ -34,6 +34,7 @@ import { KeysPipe } from './keys.pipe';
 import { FooterComponent } from './footer/footer.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { AdminSearchComponent } from './admin-search/admin-search.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     DisplayHouseholdsComponent,
     FooterComponent,
     AdminUsersComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    AdminSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +126,11 @@ import { SpinnerComponent } from './spinner/spinner.component';
         {
           path:'admin-users',
           component:AdminUsersComponent,
+          canActivate:[GuardService]
+        },
+        {
+          path:'admin-search',
+          component:AdminSearchComponent,
           canActivate:[GuardService]
         }
       ])
