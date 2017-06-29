@@ -1,7 +1,7 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
-<p class="deep-purple-text">Monitor all of the search territory. Select options to filter your search</p>
-<form>
+<form class="card-panel">
+  <p class="deep-purple-text">Monitor all of the search territory. Select options to filter your search</p>
   <select (change)="log()" placeholder="Any User" class="browser-default" name="userQuery" [(ngModel)] = "query.user">
     <option value="">Any User</option>
     <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
@@ -20,39 +20,39 @@
     <option value="no">Not Available</option>
   </select>
   <div class="row">
-    <div class="card-panel col s6">
+    <div class="card-panel z-depth-2 col s6">
       <input (change)="log()" placeholder="number of days" type="number" name="workedInTheLastNumberOfDaysQuery"
         [(ngModel)] = "query.last">
       <legend class="deep-purple-text">Cards taken in the last...days</legend>
       <br>
     </div>
-    <div class="card-panel col s6">
+    <div class="card-panel z-depth-2 col s6">
       <input (change)="log()" placeholder="number of days" type="number" name="takenMoreThanNumberOfDaysQuery"
         [(ngModel)] = "query.more_than">
       <legend class="deep-purple-text">Cards taken more than...days ago</legend>
       <br>
     </div>
   </div>
+  <a class=" deep-purple darken-2 btn left waves-effect waves-light" (click)="log()">SEARCH</a>
+  <a class=" green darken-2 btn right waves-effect waves-light" (click)="excel()">EXCEL <i class="material-icons right">file_download</i></a>
+  <table class="table bordered striped">
+      <thead>
+          <tr>
+              <td>Card</td>
+              <td>Taken</td>
+              <td>last search</td>
+              <td>Current publisher</td>
+              <td>Last publisher</td>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="row" [ngClass]="{'red lighten-4':!card.available}" *ngFor="let card of result">
+              <td>{{card.COD_CARD}}, {{card.AREA_NAME}}</td>
+              <td>{{card.TAKEN}}</td>
+              <td>{{card.LAST_UPDATE}}</td>
+              <td>{{usersHash[card.ID]}}</td>
+              <td>{{usersHash[card.LAST_ID]}}</td>
+          </tr>
+      </tbody>
+  </table>
 </form>
-<a class=" deep-purple darken-2 btn left waves-effect waves-light" (click)="log()">SEARCH</a>
-<a class=" green darken-2 btn right waves-effect waves-light" (click)="excel()">EXCEL <i class="material-icons right">file_download</i></a>
-<table class="table bordered striped">
-    <thead>
-        <tr>
-            <td>Card</td>
-            <td>Taken</td>
-            <td>last search</td>
-            <td>Current publisher</td>
-            <td>Last publisher</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="row" [ngClass]="{'red lighten-4':!card.available}" *ngFor="let card of result">
-            <td>{{card.COD_CARD}}, {{card.AREA_NAME}}</td>
-            <td>{{card.TAKEN}}</td>
-            <td>{{card.LAST_UPDATE}}</td>
-            <td>{{usersHash[card.ID]}}</td>
-            <td>{{usersHash[card.LAST_ID]}}</td>
-        </tr>
-    </tbody>
-</table>
