@@ -44,6 +44,15 @@ export class TerritoryService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  public getAreaByNeighborhood(neighborhood):Observable<any>{
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
+    let params:URLSearchParams = new URLSearchParams();
+    params.set('neighborhood',neighborhood);
+    options.params = params;
+    return this.http.get(API_URL + "areas",options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
   public getAllAvailableCards():Observable<any[]>{
     let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
@@ -132,6 +141,12 @@ export class TerritoryService {
   public returnCard(cod,user):Observable<any>{
     let options = new RequestOptions( {method: 'PUT', headers: contentHeaders });
     return this.http.put(API_URL + "cod_cards/return",JSON.stringify({cod,user}),options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  public addNewCard(card){
+    let options = new RequestOptions ({method:'POST',headers:contentHeaders})
+    return this.http.post(API_URL + "cod_cards",JSON.stringify(card),options)
       .map(this.extractData)
       .catch(this.handleError);
   }

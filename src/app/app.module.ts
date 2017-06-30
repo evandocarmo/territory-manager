@@ -18,7 +18,6 @@ import { LogoutComponent } from './logout/logout.component';
 import { TakeVisitsComponent } from './take-visits/take-visits.component';
 import { MySearchComponent } from './my-search/my-search.component';
 import { MyVisitsComponent } from './my-visits/my-visits.component';
-import { MonitorTerritoryComponent } from './monitor-territory/monitor-territory.component';
 import { MonitorUsersComponent } from './monitor-users/monitor-users.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { NewHouseholdComponent } from './new-household/new-household.component';
@@ -35,6 +34,9 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminUsersComponent } from './admin-users/admin-users.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { AdminSearchComponent } from './admin-search/admin-search.component';
+import { MonitorSearchComponent } from './monitor-search/monitor-search.component';
+import { EditSearchComponent } from './edit-search/edit-search.component';
+import { NewSearchComponent } from './new-search/new-search.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,6 @@ import { AdminSearchComponent } from './admin-search/admin-search.component';
     TakeVisitsComponent,
     MySearchComponent,
     MyVisitsComponent,
-    MonitorTerritoryComponent,
     MonitorUsersComponent,
     NewUserComponent,
     NewHouseholdComponent,
@@ -60,7 +61,10 @@ import { AdminSearchComponent } from './admin-search/admin-search.component';
     FooterComponent,
     AdminUsersComponent,
     SpinnerComponent,
-    AdminSearchComponent
+    AdminSearchComponent,
+    MonitorSearchComponent,
+    EditSearchComponent,
+    NewSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -131,7 +135,27 @@ import { AdminSearchComponent } from './admin-search/admin-search.component';
         {
           path:'admin-search',
           component:AdminSearchComponent,
-          canActivate:[GuardService]
+          canActivate:[GuardService],
+          children:[
+            {
+              path:'',redirectTo:'monitor-search',pathMatch:'full'
+            },
+            {
+              path:'monitor-search',
+              component:MonitorSearchComponent,
+              canActivate:[GuardService]
+            },
+            {
+              path:'edit-search',
+              component:EditSearchComponent,
+              canActivate:[GuardService]
+            },
+            {
+              path:'new-search',
+              component:NewSearchComponent,
+              canActivate:[GuardService]
+            }
+          ]
         }
       ])
   ],

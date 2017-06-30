@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MonitorTerritoryComponent } from './monitor-territory.component';
+import { MonitorSearchComponent } from './monitor-search.component';
 
-describe('MonitorTerritoryComponent', () => {
-  let component: MonitorTerritoryComponent;
-  let fixture: ComponentFixture<MonitorTerritoryComponent>;
+describe('MonitorSearchComponent', () => {
+  let component: MonitorSearchComponent;
+  let fixture: ComponentFixture<MonitorSearchComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MonitorTerritoryComponent ]
+      declarations: [ MonitorSearchComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MonitorTerritoryComponent);
+    fixture = TestBed.createComponent(MonitorSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
