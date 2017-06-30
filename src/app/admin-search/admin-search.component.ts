@@ -80,15 +80,24 @@ export class AdminSearchComponent implements OnInit {
   }
   excel(){
     this.territoryService.downloadExcel(this.query).subscribe(
-      response=>{
-          let a = document.createElement("a");
-          document.body.appendChild(a);
-          let url = window.URL.createObjectURL(response);
-          a.href = url;
-          a.download = 'territory.xlsx';
-          a.click();
-          window.URL.revokeObjectURL(url);
-      },
+      blob=>{
+        if (window.navigator.msSaveOrOpenBlob) { //IE 11+
+          window.navigator.msSaveOrOpenBlob(blob, "search-territory.xlsx");
+        } else if (navigator.userAgent.match('FxiOS')) { //FF iOS
+          alert("Cannot display on FF iOS");
+        }
+      else if (navigator.userAgent.match('CriOS')) { //Chrome iOS
+          var reader = new FileReader();
+          reader.onloadend = function () { window.open(reader.result);};
+          reader.readAsDataURL(blob);
+        } else if (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i)) { //Safari & Opera iOS
+          var url = window.URL.createObjectURL(blob);
+          window.location.href = url;
+      }
+      else {
+        FileSaver.saveAs(blob,'territory.xlsx');
+      }
+    },
       error=>this.problem = true
     )
   }
