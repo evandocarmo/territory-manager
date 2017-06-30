@@ -1,6 +1,6 @@
 <p class="deep-purple-text center-align">Add a new card to the database</p>
 <select *ngIf="!loading" [(ngModel)]="addedCard.area_name" class="browser-default" (change)="populateAreas()">
-  <p class="deep-purple-text center-align">Select a neighborhood</p>
+  <option selected disabled value=''>Select a neighborhood</option>
   <option *ngFor="let neighborhood of neighborhoods" value="{{neighborhood.area_name}}">{{neighborhood.area_name}}</option>
   <option value="">I want to add a new neighborhood</option>
 </select>
@@ -25,8 +25,27 @@
   </a>
 </div>
 <select [(ngModel)]="addedCard.area" *ngIf="neighborhoodIsSelected" (change)="areaSelected()" class="browser-default">
-  <p class="deep-purple-text center-align">Select a neighborhood</p>
+  <option value='' disabled>Select an area</option>
   <option *ngFor="let area of areas" value="{{area}}">{{area}}</option>
   <option value="">I want to add a new area in this neighborhood</option>
   <input type=text [(ngModel)]="addedCard.area_name" placeholder="New neighborhood" *ngIf="newArea">
 </select>
+<div *ngIf="newArea" class="newArea">
+  <p class="deep-purple-text center-align">Card's initials (SQS,QE,Qi...)</p>
+  <input [(ngModel)]="addedCard.area" placeholder='new Initials'>
+</div>
+<div *ngIf="newArea || areaIsSelected">
+  <p class="deep-purple-text center-align">Card's number (101,102...)</p>
+  <input type=number [(ngModel)]="addedCard.area_number" placeholder="New number">
+  <p>This new card will be named: {{addedCard.area}}{{addedCard.area_number}} - {{addedCard.area_name}}</p>
+  <p class="deep-purple-text center-align">Select a macroarea</p>
+  <select [(ngModel)]="addedCard.macroarea" class="browser-default">
+    <option>brasiliasul</option>
+    <option>brasilianorte</option>
+    <option>dfsul</option>
+    <option>dfnorte</option>
+  </select>
+  <a class="btn-floating green white-text" (click)="addCard()">
+    <i class="tiny material-icons">save</i>
+  </a>
+</div>

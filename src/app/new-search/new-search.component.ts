@@ -13,7 +13,9 @@ import { UserService } from '../user.service';
 export class NewSearchComponent implements OnInit {
   neighborhoodIsSelected = false;
   newNeighborhood = false;
+  areaIsSelected = false;
   newArea = false;
+  neighborhoodHash = {};
   errorMessage : string;
   sub : any;
   problem :boolean = false;
@@ -35,6 +37,9 @@ export class NewSearchComponent implements OnInit {
     this.territoryService.getNeighborhoods().subscribe(
       response=>{
         this.neighborhoods = response;
+        for(let neighborhood of this.neighborhoods){
+          this.neighborhoodHash[neighborhood.area_name] = neighborhood.macroarea;
+        }
         this.loading = false;
       },
       error=>{this.problem=true}
@@ -45,6 +50,7 @@ export class NewSearchComponent implements OnInit {
       this.newNeighborhood = true;
       this.neighborhoodIsSelected = false;
     }else{
+      this.addedCard.macroarea = this.neighborhoodHash[this.addedCard.area_name];
       this.loading = true;
       this.neighborhoodIsSelected = true;
       this.newNeighborhood = false;
@@ -68,5 +74,14 @@ export class NewSearchComponent implements OnInit {
       },
       error=>this.problem = true
     )
+  }
+  areaSelected(){
+    if(this.addedCard.area === ''){
+      this.areaIsSelected = false;
+      this.newArea = true;
+    }else{
+      this.areaIsSelected = true;
+      this.newArea = false;
+    }
   }
 }

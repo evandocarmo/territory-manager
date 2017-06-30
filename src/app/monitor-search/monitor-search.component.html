@@ -1,7 +1,7 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <form class="card-panel">
-  <p class="deep-purple-text center-align">Monitor all of the search territory. Select options to filter your search</p>
+  <p class="deep-purple-text center-align">Monitor all of the search territory. Select options to filter your search. Rotate your phone for better visualization.</p>
   <select (change)="log()" placeholder="Any User" class="browser-default" name="userQuery" [(ngModel)] = "query.user">
     <option value="">Any User</option>
     <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
@@ -35,14 +35,13 @@
   </div>
   <a class=" deep-purple darken-2 btn left waves-effect waves-light" (click)="log()">SEARCH</a>
   <a class=" green darken-2 btn right waves-effect waves-light" (click)="excel()">EXCEL <i class="material-icons right">file_download</i></a>
-  <table class="table bordered striped">
+  <table class="table bordered striped centered">
       <thead>
           <tr>
               <td>Card</td>
               <td>Taken</td>
               <td>last search</td>
               <td>Current publisher</td>
-              <td>Last publisher</td>
           </tr>
       </thead>
       <tbody>
@@ -51,7 +50,6 @@
               <td>{{card.TAKEN}}</td>
               <td>{{card.LAST_UPDATE}}</td>
               <td>{{usersHash[card.ID]}}</td>
-              <td>{{usersHash[card.LAST_ID]}}</td>
           </tr>
       </tbody>
   </table>

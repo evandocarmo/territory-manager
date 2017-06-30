@@ -54,6 +54,7 @@
     <div class="collapsible-body">
       <p class="deep-purple-text darken-2">Select a user to have his password changed</p>
       <select required class="browser-default" name="changePasswordUser" [(ngModel)] = "changePasswordUser.id">
+        <option value='' disabled>Select a publisher</option>
         <option *ngFor="let user of users" value="{{user.id}}">{{user.name}}</option>
       </select>
       <p class="deep-purple-text darken-2">New password</p>
@@ -92,6 +93,7 @@
       />
       <p class="deep-purple-text darken-2">New User's Privilege</p>
       <select required class="browser-default" name="newPrivilege" [(ngModel)]="newUser.privilege">
+        <option value='' disabled>Select a privilege</option>
         <option value="ELDER">ELDER</option>
         <option value="SERVANT">SERVANT</option>
         <option value="PUBLISHER">PUBLISHER</option>
