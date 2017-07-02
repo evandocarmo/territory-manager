@@ -135,6 +135,19 @@ import { AdminVisitComponent } from './admin-visit/admin-visit.component';
           canActivate:[GuardService]
         },
         {
+          path:'new-household',
+          component:NewHouseholdComponent,
+          canActivate:[GuardService]
+        },
+        {
+          path:'admin-visit',component:AdminVisitComponent,canActivate:[GuardService],
+          children:[
+            {
+              path:'new-household',component:NewHouseholdComponent,canActivate:[GuardService]
+            }
+          ]
+        },
+        {
           path:'admin-search',
           component:AdminSearchComponent,
           canActivate:[GuardService],

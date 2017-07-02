@@ -1,10 +1,10 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
-
 <form class="form" (ngSubmit)="onSubmit()" #takeSearchForm = "ngForm">
   <p class="deep-purple-text center-align">Select a user</p>
   <div id="take-user-select">
     <select required class="browser-default" name="user" [(ngModel)]="selectedUser" id="userSelect">
+      <option disabled value=''>Select a Publisher</option>
       <option
         *ngFor="let user of users"
         value="{{user.id}}">

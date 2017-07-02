@@ -52,16 +52,16 @@
               <td>{{usersHash[card.ID]}}</td>
               <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+card.cod">more_vert</a>
               <ul [attr.id]="'options'+card.cod" materialize="dropdown"class='dropdown-content z-depth-4'>
-                <li class="btn red waves-effect waves-light">
-                  <a class="white-text" (click)="delete(card  )">
+                <li class="red waves-effect waves-light btn red">
+                  <a (click)="delete(card)" class="white-text">
                     <i class="material-icons large">delete</i>
                   </a>
                 </li>
-                <li class="btn deep-purple darken-2 waves-effect waves-light">
+                <li class="waves-effect waves-light btn deep-purple darken-2">
                   <a
                     class="white-text"
                     [routerLink]='["/display-households-in-cards"]'
-                    [queryParams]="{cod_card_cod:card.cod,cod_card:card.COD_CARD}">
+                    [queryParams]="{cod_card_cod:[card.cod],cod_card:card.COD_CARD}">
                     <i class="material-icons large">search </i>
                   </a>
                 </li>

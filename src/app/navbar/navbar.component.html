@@ -2,29 +2,30 @@
   <nav>
     <div class="nav-wrapper deep-purple darken-2">
       <a [routerLink]="['home']" class="brand-logo left"> <i class="large material-icons">home</i></a>
-      <ul id="checkout" class="dropdown-content deep-purple darken-2">
+      <ul id="checkout" materialize="dropdown" class="dropdown-content deep-purple darken-2">
         <li><a class="white-text" [routerLink]="['take-search']">Search</a></li>
         <li><a [routerLink]="['take-visits']"class="white-text">Visits</a></li>
       </ul>
-      <ul id="update" class="dropdown-content deep-purple darken-2 white-text">
+      <ul id="update" materialize="dropdown" class="dropdown-content deep-purple darken-2 white-text">
         <li><a [routerLink]="['update-search']" class="white-text">Search</a></li>
         <li><a [routerLink]="['update-visits']" class="white-text">Visits</a></li>
+        <li><a [routerLink]="['new-household']" class="white-text">New Household</a></li>
       </ul>
-      <ul id="visualize" class="dropdown-content deep-purple darken-2 white-text">
+      <ul id="visualize" materialize="dropdown" class="dropdown-content deep-purple darken-2 white-text">
         <li><a [routerLink]="['my-search']" class="white-text">My Search</a></li>
         <li><a [routerLink]="['my-visits']" class="white-text">My Visits</a></li>
       </ul>
-      <ul id="admin" class="dropdown-content deep-purple darken-2 white-text">
+      <ul id="admin" materialize="dropdown" class="dropdown-content deep-purple darken-2 white-text">
         <li><a [routerLink]="['admin-users']" class="white-text">Users</a></li>
         <li><a [routerLink]="['admin-search']" class="white-text">Search Territory</a></li>
-        <li><a [routerLink]="['']" class="white-text">Households</a></li>
+        <li><a [routerLink]="['admin-visit']" class="white-text">Visit Territory</a></li>
         <li><a [routerLink]="['']" class="white-text">Statistics</a></li>
       </ul>
       <ul>
-        <a *ngIf="isLoggedIn()" class="dropdown-button right" [hidden]="user.privilege === 'PUBLISHER'" data-activates="checkout">Checkout</a>
-        <a *ngIf="isLoggedIn()" class="dropdown-button right" data-activates="update">Update</a>
-        <a *ngIf="isLoggedIn()" class="dropdown-button right" data-activates="visualize">Visualize</a>
-        <a *ngIf="isLoggedIn()" class="dropdown-button right" [hidden]="!(user.privilege === 'ELDER')" data-activates="admin">Admin</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right" [hidden]="user.privilege === 'PUBLISHER'" data-activates="checkout">Checkout</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown"class="dropdown-button right" data-activates="update">Update</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right" data-activates="visualize">Visualize</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right" [hidden]="!(user.privilege === 'ELDER')" data-activates="admin">Admin</a>
       </ul>
     </div>
   </nav>
