@@ -20,18 +20,22 @@ export class DisplayHouseholdsComponent implements OnInit {
   cods : any[];
   households:any[];
   problem :boolean = false;
+  loading = false;
   constructor(
       private route: ActivatedRoute,
       private router: Router,
       private householdService:HouseholdService) { }
   exportTable(event){}
   ngOnInit() {
+    this.loading = true;
     this.sub = this.route
       .queryParams
       .subscribe(params=>{
         this.cods = params.cods;
         this.householdService.getHouseholdsByCods(this.cods).subscribe(
-          response => this.households = response,
+          response => {
+            this.households = response;
+            this.loading = false},
           error => this.problem = true
         )
       });

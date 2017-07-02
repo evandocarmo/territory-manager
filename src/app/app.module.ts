@@ -37,6 +37,7 @@ import { AdminSearchComponent } from './admin-search/admin-search.component';
 import { MonitorSearchComponent } from './monitor-search/monitor-search.component';
 import { EditSearchComponent } from './edit-search/edit-search.component';
 import { NewSearchComponent } from './new-search/new-search.component';
+import { AdminVisitComponent } from './admin-visit/admin-visit.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { NewSearchComponent } from './new-search/new-search.component';
     AdminSearchComponent,
     MonitorSearchComponent,
     EditSearchComponent,
-    NewSearchComponent
+    NewSearchComponent,
+    AdminVisitComponent
   ],
   imports: [
     BrowserModule,

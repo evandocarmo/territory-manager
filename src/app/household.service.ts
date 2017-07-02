@@ -68,6 +68,12 @@ export class HouseholdService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  public addHousehold(household):Observable<any>{
+    let Options = new RequestOptions( {method: 'POST', headers: contentHeaders });
+    return this.http.post(API_URL + "households",JSON.stringify({household}),Options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
   public returnedHouseholds(cod,user):Observable<any>{
     let putOptions = new RequestOptions( {method: 'PUT', headers: contentHeaders });
     return this.http.put(API_URL + "households/return",JSON.stringify({cod,user}),putOptions)

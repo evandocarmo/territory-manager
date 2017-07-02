@@ -38,6 +38,34 @@ export class MonitorSearchComponent implements OnInit {
   result;
   constructor(private territoryService:TerritoryService,private userService:UserService) { }
 
+  ngOnViewInit() {
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      stopPropagation: false // Stops event propagation
+    }
+    );
+  }
+
+  delete(card){
+    if(confirm("Are you sure you want to delete this card? This action cannot be undone.")){
+      this.territoryService.deleteCard(card.cod).subscribe(
+        response=>{
+          let index = this.result.indexOf(card);
+          this.result.splice(index,1);
+        },
+        error=>{
+          this.problem = true;
+        }
+      )
+    }
+  }
+
   ngOnInit() {
     this.loading = true;
     this.userService.getAllUsers().subscribe(

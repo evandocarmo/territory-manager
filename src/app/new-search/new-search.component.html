@@ -1,3 +1,5 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <p class="deep-purple-text center-align">Add a new card to the database</p>
 <select *ngIf="!loading" [(ngModel)]="addedCard.area_name" class="browser-default" (change)="populateAreas()">
   <option selected disabled value=''>Select a neighborhood</option>

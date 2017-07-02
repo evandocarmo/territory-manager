@@ -23,6 +23,7 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
   householdsByCard = {}; //HASH TABLE CARD -> HOUSEHOLDS
   codCardNames = Array();
   problem :boolean = false;
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,6 +62,7 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.sub = this.route
       .queryParams
       .subscribe(params=>{
@@ -83,6 +85,7 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
         this.households = response;
         console.log(this.households);
         this.separatedHouseholdsByCard(this.households);
+        this.loading = false;
       },
       error =>{
         console.log(error);
@@ -92,6 +95,7 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
   }
 
   separatedHouseholdsByCard(households){
+    this.loading = true;
     for(let house in households){
         this.householdsByCard[households[house].COD_CARD]["households"].push(households[house]);
     }
@@ -100,6 +104,7 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
         this.householdsByCard[card].households.push({message:"There are no foreigners registered here"});
     }
     console.log(this.householdsByCard);
+    this.loading = false;
   }
 
 }

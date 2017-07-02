@@ -144,6 +144,15 @@ export class TerritoryService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+  public deleteCard(cod):Observable<any>{
+    let options = new RequestOptions ({method:'DELETE',headers: contentHeaders});
+    let params:URLSearchParams = new URLSearchParams();
+    params.set('cod',cod);
+    options.params = params;
+    return this.http.delete(API_URL + "cod_cards",options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
   public addNewCard(card){
     let options = new RequestOptions ({method:'POST',headers:contentHeaders})
     return this.http.post(API_URL + "cod_cards",JSON.stringify(card),options)

@@ -1,3 +1,4 @@
+<app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <ul class="collapsible popout" data-collapsible="accordion" materialize="collapsible">
     <li *ngFor="let cod_card of codCardNames" class="card-panel">
