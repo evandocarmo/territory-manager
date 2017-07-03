@@ -73,7 +73,7 @@
 <div id="edit" class="modal" materialize="modal">
     <div class="modal-content">
       <h4>Edit</h4>
-      <p>This household was last updated on {{editedHouse.fLAST_UPDATE}} by {{usersHash[editedHouse.LAST_ID]}}</p>
+      <p>This household was last updated on {{editedHouse['fLAST_UPDATE']}} by {{usersHash[editedHouse['LAST_ID']]}}</p>
         <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>
         <input name="{{editedHouse.COD}}ADDRESS" placeholder="Conjunto,bloco,casa,apt" type="text" [(ngModel)]="editedHouse['ADDRESS']">
         <legend class="deep-purple-text darken-2">Language</legend>
