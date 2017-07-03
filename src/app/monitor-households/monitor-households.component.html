@@ -19,4 +19,55 @@
     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
   </select>
 </form>
-{{queries | json}}
+<p *ngIf="results">Quantity: {{results.length}}</p>
+<table class="bordered striped">
+  <thead>
+    <tr>
+      <td>Address</td>
+      <td>Language</td>
+      <td>Publisher</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let house of results" class="tooltipped" materialize="tooltip" data-position="top" data-delay="50"
+    [attr.data-tooltip]="'Comments: ' + house.COMMENTS + ' - last update: ' + (setDate(house.fLAST_UPDATE) | date) + ' - taken: ' + house.fTAKEN">
+      <td>{{house['FULL_ADDRESS']}}</td>
+      <td>{{house.LANGUAGE}}</td>
+      <td>{{usersHash[house.ID]}}</td>
+      <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
+      <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
+        <li class="red waves-effect waves-light btn red">
+          <a (click)="delete(house)" class="white-text">
+            <i class="material-icons large">delete</i>
+          </a>
+        </li>
+        <li class="waves-effect waves-light center-align deep-purple darken-2 white-text"(click)="openCheckout(house)">
+          <a class="white-text center-align">Checkout</a>
+        </li>
+      </ul>
+    </tr>
+  </tbody>
+</table>
+
+
+<div id="modal" class="modal" materialize="modal">
+  <form #checkoutForm = "ngForm" (ngSubmit)="checkout()">
+    <div class="modal-content">
+      <h4>Checkout</h4>
+      <p>You are checking-out the house:
+        {{checkoutOptions.house.FULL_ADDRESS}},
+        {{checkoutOptions.house.LANGUAGE}},
+        last updated on:
+        {{checkoutOptions.house.fLAST_UPDATE}}
+      </p>
+      <p>Select a user to receive this house:</p>
+      <select name="userCheckout" class="browser-default" [(ngModel)]="checkoutOptions.user">
+        <option value="any">Any user</option>
+        <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+      </select>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="!checkoutForm.valid" class="modal-action modal-close waves-effect waves-light deep-purple darken-2 white-text btn-flat">Checkout</button>
+    </div>
+  </form>
+</div>

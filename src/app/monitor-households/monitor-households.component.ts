@@ -5,6 +5,9 @@ import { HouseholdService } from "../household.service";
 import { UserService } from "../user.service";
 import { TerritoryService } from "../territory.service";
 
+declare var $ : any;
+declare var Materialize :any;
+
 @Component({
   selector: 'app-monitor-households',
   templateUrl: './monitor-households.component.html',
@@ -19,11 +22,16 @@ export class MonitorHouseholdsComponent implements OnInit {
   neighborhoods;
   macroareas;
   users;
+  usersHash = {};
   queries={
     availability:'any',
     neighborhood:'any',
     user:'any',
     macroarea:'any',
+  }
+  checkoutOptions = {
+    house:'',
+    user:''
   }
 
   constructor(private householdService:HouseholdService,private territoryService:TerritoryService,private userService:UserService) { }
@@ -42,7 +50,11 @@ export class MonitorHouseholdsComponent implements OnInit {
                 this.macroareas = response;
                 this.userService.getAllUsers().subscribe(
                   response=>{
+                    response.splice(0,1);
                     this.users = response;
+                    for(let user of this.users){
+                      this.usersHash[user.id] = user.name;
+                    }
                     this.loading = false;
                   },
                   error=>{
@@ -107,6 +119,34 @@ export class MonitorHouseholdsComponent implements OnInit {
       }
     }
     console.log(this.results);
+  }
+
+  setDate(date) {
+    let newDate = new Date(date);
+    return newDate;
+  }
+  parseInt(int){
+    return parseInt(int);
+  }
+  delete(house){
+    console.log('delete',house);
+  }
+  openCheckout(house){
+    this.checkoutOptions.house = house;
+    $('#modal').modal('open');
+  }
+  checkout(){
+    this.loading = true;
+    let cod = this.checkoutOptions.house['COD'];
+    let user = parseInt(this.checkoutOptions.user);
+    this.householdService.checkoutHouseholds([cod],user).subscribe(
+      response=>{
+        this.loading = false;
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
   }
 
 }
