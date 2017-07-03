@@ -55,10 +55,10 @@
     <div class="modal-content">
       <h4>Checkout</h4>
       <p>You are checking-out the house:
-        {{checkoutOptions.house.FULL_ADDRESS}},
-        {{checkoutOptions.house.LANGUAGE}},
+        {{checkoutOptions.house['FULL_ADDRESS']}},
+        {{checkoutOptions.house.['LANGUAGE']}},
         last updated on:
-        {{checkoutOptions.house.fLAST_UPDATE}}
+        {{checkoutOptions.house['fLAST_UPDATE']}}
       </p>
       <p>Select a user to receive this house:</p>
       <select name="userCheckout" class="browser-default" [(ngModel)]="checkoutOptions.user">
