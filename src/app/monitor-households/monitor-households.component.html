@@ -29,8 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let house of results" class="tooltipped" materialize="tooltip" data-position="top" data-delay="50"
-    [attr.data-tooltip]="'Comments: ' + house.COMMENTS + ' - last update: ' + (setDate(house.fLAST_UPDATE) | date) + ' - taken: ' + house.fTAKEN">
+    <tr *ngFor="let house of results">
       <td>{{house['FULL_ADDRESS']}}</td>
       <td>{{house.LANGUAGE}}</td>
       <td>{{usersHash[house.ID]}}</td>
