@@ -1,0 +1,22 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<form #monitorForm="ngForm">
+  <select name="availability" class="browser-default" (change)="filter()" [(ngModel)]="queries.availability">
+    <option value="true">Available</option>
+    <option value="false">Not Available</option>
+    <option value="any">Any Availability</option>
+  </select>
+  <select name="neighborhood" class="browser-default" (change)="filter()" [(ngModel)]="queries.neighborhood">
+    <option value="any">Any neighborhood</option>
+    <option *ngFor="let neighborhood of neighborhoods">{{neighborhood.area_name}}</option>
+  </select>
+  <select name="macroarea" class="browser-default" (change)="filter()" [(ngModel)]="queries.macroarea">
+    <option value="any">Any area</option>
+    <option *ngFor="let area of macroareas">{{area}}</option>
+  </select>
+  <select name="user" class="browser-default" (change)="filter()" [(ngModel)]="queries.user">
+    <option value="any">Any user</option>
+    <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
+  </select>
+</form>
+{{queries | json}}

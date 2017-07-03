@@ -38,6 +38,7 @@ import { MonitorSearchComponent } from './monitor-search/monitor-search.componen
 import { EditSearchComponent } from './edit-search/edit-search.component';
 import { NewSearchComponent } from './new-search/new-search.component';
 import { AdminVisitComponent } from './admin-visit/admin-visit.component';
+import { MonitorHouseholdsComponent } from './monitor-households/monitor-households.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { AdminVisitComponent } from './admin-visit/admin-visit.component';
     MonitorSearchComponent,
     EditSearchComponent,
     NewSearchComponent,
-    AdminVisitComponent
+    AdminVisitComponent,
+    MonitorHouseholdsComponent
   ],
   imports: [
     BrowserModule,
@@ -144,6 +146,9 @@ import { AdminVisitComponent } from './admin-visit/admin-visit.component';
           children:[
             {
               path:'new-household',component:NewHouseholdComponent,canActivate:[GuardService]
+            },
+            {
+              path:'monitor-households',component:MonitorHouseholdsComponent,canActivate:[GuardService]
             }
           ]
         },

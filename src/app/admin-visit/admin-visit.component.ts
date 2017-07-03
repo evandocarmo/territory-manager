@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,EventEmitter } from '@angular/core';
+import {MaterializeModule} from "angular2-materialize";
+import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
+import { Router,ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-admin-visit',

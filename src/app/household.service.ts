@@ -11,7 +11,6 @@ const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
 contentHeaders.append('x-access-token',localStorage.getItem('token'));
-let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
 const API_URL: string = "https://modern-territory-evandocarmo.c9users.io/api/";
 
 @Injectable()
@@ -19,7 +18,14 @@ export class HouseholdService {
 
   constructor(private router: Router, private http: Http) { }
 
+  public getAllHouseholds(){
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
+    return this.http.get(API_URL + 'households',options)
+      .map(this.extractData)
+      .catch(this.handleError)
+  }
   public getHouseholdsByUser(user){
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
     params.set('user',user);
     options.params = params;
@@ -28,6 +34,7 @@ export class HouseholdService {
       .catch(this.handleError);
   }
   public getHouseholdsBycardCod(cardCod){
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
         for(var cod in cardCod){
           console.log(cardCod[cod]);
@@ -41,6 +48,7 @@ export class HouseholdService {
   }
 
   public getHouseholdsByQuantity(quantity,neighborhood){
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
     params.set("quantity",quantity);
     params.set("area_name",neighborhood);
@@ -51,6 +59,7 @@ export class HouseholdService {
   }
 
   public getHouseholdsByCods(cods){
+    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
     let params:URLSearchParams = new URLSearchParams();
         for(var cod in cods){
           console.log(cods[cod]);
