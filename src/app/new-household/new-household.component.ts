@@ -19,7 +19,7 @@ export class NewHouseholdComponent implements OnInit {
   problem = false;
   neighborhoods;
   cod_cards;
-  selectedCodCard;
+  selectedCodCard = '';
   cardsHash = {};
   codCardSelected = false;
   neighborhoodSelected = false;

@@ -5,6 +5,7 @@ import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import * as FileSaver  from 'file-saver';
+import {CsvService} from "angular2-json2csv";
  import 'rxjs/Rx' ;
 
 declare var $ : any;
@@ -36,7 +37,7 @@ export class MonitorSearchComponent implements OnInit {
     more_than:''
   };
   result;
-  constructor(private territoryService:TerritoryService,private userService:UserService) { }
+  constructor(private territoryService:TerritoryService,private userService:UserService,private csv:CsvService) { }
 
   ngOnViewInit() {
     $('.dropdown-button').dropdown({
@@ -107,26 +108,6 @@ export class MonitorSearchComponent implements OnInit {
     );
   }
   excel(){
-    this.territoryService.downloadExcel(this.query).subscribe(
-      blob=>{
-        if (window.navigator.msSaveOrOpenBlob) { //IE 11+
-          window.navigator.msSaveOrOpenBlob(blob, "search-territory.xlsx");
-        } else if (navigator.userAgent.match('FxiOS')) { //FF iOS
-          alert("Cannot display on FF iOS");
-        }
-      else if (navigator.userAgent.match('CriOS')) { //Chrome iOS
-          var reader = new FileReader();
-          reader.onloadend = function () { window.open(reader.result);};
-          reader.readAsDataURL(blob);
-        } else if (navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i)) { //Safari & Opera iOS
-          var url = window.URL.createObjectURL(blob);
-          window.open(url);
-      }
-      else {
-        FileSaver.saveAs(blob,'territory.xlsx');
-      }
-    },
-      error=>this.problem = true
-    )
+    this.csv.download(this.result,'search-territory');
   }
 }

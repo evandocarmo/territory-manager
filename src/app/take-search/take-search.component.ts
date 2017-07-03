@@ -22,7 +22,7 @@ export class TakeSearchComponent implements OnInit {
   neighborhoods = {};
   neighborhoodNames : string[] = Array();
   users :any[];
-  selectedUser;
+  selectedUser = '';
   selectedCards = Array();
   problem :boolean = false;
   selectedCardNames = Array();

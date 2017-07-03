@@ -5,6 +5,7 @@ import { HouseholdService } from "../household.service";
 import { UserService } from "../user.service";
 import { TerritoryService } from "../territory.service";
 import { Router } from '@angular/router';
+import {CsvService} from "angular2-json2csv";
 
 declare var $ : any;
 declare var Materialize :any;
@@ -45,17 +46,26 @@ export class MonitorHouseholdsComponent implements OnInit {
     private householdService:HouseholdService,
     private territoryService:TerritoryService,
     private userService:UserService,
-    private router:Router
+    private router:Router,
+    private csv:CsvService
   ) { }
 
   ngOnInit() {
     this.loading = true;
+    console.time("households")
     this.householdService.getAllHouseholds().subscribe(
       response=>{
+        console.timeEnd("households");
+        console.time('copying households');
         this.households = response;
+        console.timeEnd('copying households');
+        console.time('copying to results');
         this.results = this.households;
+        console.timeEnd("copying to results");
+        console.time('getting neighborhoods');
         this.territoryService.getNeighborhoods().subscribe(
           response=>{
+            console.timeEnd("getting neighborhoods");
             this.neighborhoods = response;
                 this.userService.getAllUsers().subscribe(
                   response=>{
@@ -149,7 +159,10 @@ export class MonitorHouseholdsComponent implements OnInit {
     let user = parseInt(this.checkoutOptions.user);
     this.householdService.checkoutHouseholds([cod],user).subscribe(
       response=>{
-        Materialize.toast("This household is now under "+ this.usersHash[user] + "'s name!",5000,'green white-text');
+        Materialize.toast("This household is now under " + this.usersHash[user] + "'s name!",5000,'green white-text');
+        this.router.navigateByUrl('/').then(() => {
+          this.router.navigateByUrl('/admin-visit/monitor-households');
+        })
       },
       error=>{
         this.problem = true;
@@ -161,10 +174,16 @@ export class MonitorHouseholdsComponent implements OnInit {
     this.householdService.updateHousehold(house).subscribe(
       response=>{
         Materialize.toast("Household successfully updated!",5000,'green white-text');
+        this.router.navigateByUrl('/').then(() => {
+          this.router.navigateByUrl('/admin-visit/monitor-households');
+        })
       },
       error=>{
         this.problem = true;
       }
     )
+  }
+  downloadExcel(){
+    this.csv.download(this.results,'households');
   }
 }

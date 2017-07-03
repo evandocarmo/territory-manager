@@ -13,6 +13,7 @@ text-rendering: optimizeLegibility;
   justify-content: center;
   position:fixed;
   height:100%;
+  left:0;
 }
 
 .indicator {

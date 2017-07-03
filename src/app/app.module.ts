@@ -13,6 +13,7 @@ import { AuthService } from './auth.service';
 import { TerritoryService } from './territory.service';
 import { UserService } from './user.service';
 import { HouseholdService } from './household.service';
+import { CsvService } from 'angular2-json2csv';
 import { TakeSearchComponent } from './take-search/take-search.component';
 import { LogoutComponent } from './logout/logout.component';
 import { TakeVisitsComponent } from './take-visits/take-visits.component';
@@ -179,7 +180,7 @@ import { MonitorHouseholdsComponent } from './monitor-households/monitor-househo
         }
       ])
   ],
-  providers: [GuardService,AuthService,TerritoryService,UserService,HouseholdService],
+  providers: [GuardService,AuthService,TerritoryService,UserService,HouseholdService,CsvService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

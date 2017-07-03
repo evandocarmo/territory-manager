@@ -23,8 +23,8 @@ export class TakeVisitsComponent implements OnInit {
   users = Array();
   errorMessage :string;
   quantity : number = 0;
-  selectedNeighborhood;
-  selectedUser;
+  selectedNeighborhood = '';
+  selectedUser = '';
   selectedHouseholds;
   selectedHouseholdCards;
   problem :boolean = false;

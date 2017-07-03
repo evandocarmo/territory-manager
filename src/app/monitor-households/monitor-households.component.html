@@ -15,6 +15,7 @@
     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
   </select>
 </form>
+<a class="btn green darken-2" (click)="downloadExcel()">Excel</a>
 <p *ngIf="results">Quantity: {{results.length}}</p>
 <table class="bordered striped">
   <thead>
@@ -59,8 +60,8 @@
         {{checkoutOptions.house['fLAST_UPDATE']}}
       </p>
       <p>Select a user to receive this house:</p>
-      <select name="userCheckout" class="browser-default" [(ngModel)]="checkoutOptions.user">
-        <option value="any">Any user</option>
+      <select required name="userCheckout" class="browser-default" [(ngModel)]="checkoutOptions.user">
+        <option disabled>Select a publisher</option>
         <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
       </select>
     </div>

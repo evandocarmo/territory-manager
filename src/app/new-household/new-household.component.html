@@ -1,3 +1,5 @@
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <p class="deep-purple-text darken-2 center-align">Add a new foreigner to the database</p>
 <form (ngSubmit)="onSubmit()" #newHouseholdForm = "ngForm" class="card-panel center-align">
   <select class="browser-default" name="area_name" [(ngModel)]="addedHousehold.area_name" (change)="populateCodCards()" required>
@@ -7,7 +9,7 @@
     </option>
   </select>
   <select *ngIf="neighborhoodSelected" class="browser-default" name="cod_card" [(ngModel)]="selectedCodCard" (change)="openAddress()" required>
-    <option disabled value='' selected>Select an Area(Quadra)</option>
+    <option disabled value="" selected>Select an Area(Quadra)</option>
     <option *ngFor="let cod_card of cod_cards">{{cod_card.COD_CARD}}</option>
   </select>
   <div *ngIf="codCardSelected">
