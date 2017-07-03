@@ -4,6 +4,7 @@ import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { HouseholdService } from "../household.service";
 import { UserService } from "../user.service";
 import { TerritoryService } from "../territory.service";
+import { Router } from '@angular/router';
 
 declare var $ : any;
 declare var Materialize :any;
@@ -33,8 +34,19 @@ export class MonitorHouseholdsComponent implements OnInit {
     house:'',
     user:''
   }
+  editedHouse = {
+    COD:'',
+    LANGUAGE:'',
+    ADDRESS:'',
+    COMMENTS:''
+  };
 
-  constructor(private householdService:HouseholdService,private territoryService:TerritoryService,private userService:UserService) { }
+  constructor(
+    private householdService:HouseholdService,
+    private territoryService:TerritoryService,
+    private userService:UserService,
+    private router:Router
+  ) { }
 
   ngOnInit() {
     this.loading = true;
@@ -45,9 +57,6 @@ export class MonitorHouseholdsComponent implements OnInit {
         this.territoryService.getNeighborhoods().subscribe(
           response=>{
             this.neighborhoods = response;
-            this.territoryService.getMacroareas().subscribe(
-              response=>{
-                this.macroareas = response;
                 this.userService.getAllUsers().subscribe(
                   response=>{
                     response.splice(0,1);
@@ -57,11 +66,6 @@ export class MonitorHouseholdsComponent implements OnInit {
                     }
                     this.loading = false;
                   },
-                  error=>{
-                    this.problem = true;
-                  }
-                )
-              },
               error=>{
                 this.problem = true;
               }
@@ -135,18 +139,32 @@ export class MonitorHouseholdsComponent implements OnInit {
     this.checkoutOptions.house = house;
     $('#modal').modal('open');
   }
+  openEdit(house){
+    this.editedHouse = house;
+    $('#edit').modal('open');
+  }
   checkout(){
-    this.loading = true;
+    Materialize.toast("Please, wait...",3000);
     let cod = this.checkoutOptions.house['COD'];
     let user = parseInt(this.checkoutOptions.user);
     this.householdService.checkoutHouseholds([cod],user).subscribe(
       response=>{
-        this.loading = false;
+        Materialize.toast("This household is now under "+ this.usersHash[user] + "'s name!",5000,'green white-text');
       },
       error=>{
         this.problem = true;
       }
     )
   }
-
+  saveHouse(house){
+    Materialize.toast('Please, wait...',3000);
+    this.householdService.updateHousehold(house).subscribe(
+      response=>{
+        Materialize.toast("Household successfully updated!",5000,'green white-text');
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
+  }
 }

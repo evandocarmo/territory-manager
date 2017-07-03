@@ -10,10 +10,6 @@
     <option value="any">Any neighborhood</option>
     <option *ngFor="let neighborhood of neighborhoods">{{neighborhood.area_name}}</option>
   </select>
-  <select name="macroarea" class="browser-default" (change)="filter()" [(ngModel)]="queries.macroarea">
-    <option value="any">Any area</option>
-    <option *ngFor="let area of macroareas">{{area}}</option>
-  </select>
   <select name="user" class="browser-default" (change)="filter()" [(ngModel)]="queries.user">
     <option value="any">Any user</option>
     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
@@ -35,13 +31,16 @@
       <td>{{usersHash[house.ID]}}</td>
       <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
       <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
+        <li class="waves-effect waves-light center-align deep-purple darken-2 white-text"(click)="openCheckout(house)">
+          <a class="white-text center-align">Checkout</a>
+        </li>
+        <li class="waves-effect waves-light center-align deep-purple darken-2 white-text"(click)="openEdit(house)">
+          <a class="white-text center-align">Edit</a>
+        </li>
         <li class="red waves-effect waves-light btn red">
           <a (click)="delete(house)" class="white-text">
             <i class="material-icons large">delete</i>
           </a>
-        </li>
-        <li class="waves-effect waves-light center-align deep-purple darken-2 white-text"(click)="openCheckout(house)">
-          <a class="white-text center-align">Checkout</a>
         </li>
       </ul>
     </tr>
@@ -69,4 +68,23 @@
       <button type="submit" [disabled]="!checkoutForm.valid" class="modal-action modal-close waves-effect waves-light deep-purple darken-2 white-text btn-flat">Checkout</button>
     </div>
   </form>
+</div>
+
+<div id="edit" class="modal" materialize="modal">
+    <div class="modal-content">
+      <h4>Edit</h4>
+      <p>This household was last updated on {{editedHouse.fLAST_UPDATE}} by {{usersHash[editedHouse.LAST_ID]}}</p>
+        <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>
+        <input name="{{editedHouse.COD}}ADDRESS" placeholder="Conjunto,bloco,casa,apt" type="text" [(ngModel)]="editedHouse['ADDRESS']">
+        <legend class="deep-purple-text darken-2">Language</legend>
+        <input name="{{editedHouse.COD}}LANGUAGE" type="text" [(ngModel)]="editedHouse['LANGUAGE']">
+        <legend class="deep-purple-text darken-2">Comments (country, publications left...)</legend>
+        <input name="{{editedHouse.COD}}COMMENTS" type="text" [(ngModel)]="editedHouse['COMMENTS']">
+      <a class="btn-floating green white-text" (click)="saveHouse(editedHouse)">
+        <i class="tiny material-icons">save</i>
+      </a>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-light grey white-text btn-flat">close</button>
+    </div>
 </div>
