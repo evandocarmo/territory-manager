@@ -82,7 +82,7 @@ export class NewHouseholdComponent implements OnInit {
     console.log(this.addedHousehold);
     this.territoryService.addNewCard(this.addedHousehold).subscribe(
       response=>{
-        Materialize.toast('Household successfully added!',10000,'green white-text');
+        Materialize.toast('Household successfully added!',5000,'green white-text');
       },
       error=>{
         this.problem = true;

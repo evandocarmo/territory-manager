@@ -5,7 +5,8 @@ import { HouseholdService } from "../household.service";
 import { UserService } from "../user.service";
 import { TerritoryService } from "../territory.service";
 import { Router } from '@angular/router';
-import {CsvService} from "angular2-json2csv";
+import { CsvService } from "angular2-json2csv";
+import 'rxjs/Rx';
 
 declare var $ : any;
 declare var Materialize :any;
@@ -52,6 +53,7 @@ export class MonitorHouseholdsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.loading = true;
     this.populateNeighborhoods();
     this.populateUsers();
     this.populateHouseholds();
@@ -141,7 +143,8 @@ export class MonitorHouseholdsComponent implements OnInit {
         let index = this.households.indexOf(this.checkoutOptions.house);
         this.households[index] = this.checkoutOptions.house;
         let rindex = this.results.indexOf(this.checkoutOptions.house);
-        this.results[rindex] = this.checkoutOptions.house;
+        this.results[rindex].ID = user;
+        console.log(this.results[rindex]);
       },
       error=>{
         this.problem = true;
@@ -152,18 +155,18 @@ export class MonitorHouseholdsComponent implements OnInit {
     Materialize.toast('Please, wait...',3000);
     this.householdService.returnedHouseholds(house.COD,house.ID).subscribe(
       response=>{
-        this.householdService.updateHousehold(house).subscribe(
-          response=>{
-            Materialize.toast("Household successfully updated!",5000,'green white-text');
-            let index = this.households.indexOf(house);
-            this.households[index] = house;
-            let rindex = this.results.indexOf(house);
-            this.results[rindex] = house;
-          },
-          error=>{
-            this.problem = true;
-          }
-        )
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
+    this.householdService.updateHousehold(house).subscribe(
+      response=>{
+        Materialize.toast("Household successfully updated!",5000,'green white-text');
+        let index = this.households.indexOf(house);
+        this.households[index] = house;
+        let rindex = this.results.indexOf(house);
+        this.results[rindex] = house;
       },
       error=>{
         this.problem = true;
@@ -174,7 +177,6 @@ export class MonitorHouseholdsComponent implements OnInit {
     this.csv.download(this.results,'households');
   }
   populateHouseholds(){
-    this.loading = true;
     console.time("households")
     this.householdService.getAllHouseholds().subscribe(
       response=>{
@@ -194,11 +196,9 @@ export class MonitorHouseholdsComponent implements OnInit {
   }
   populateNeighborhoods(){
     console.time("nei");
-    this.loading = true;
     this.territoryService.getNeighborhoods().subscribe(
       response=>{
         this.neighborhoods = response;
-        this.loading = false;
         console.timeEnd("nei");
       },
       error=>{
@@ -208,14 +208,14 @@ export class MonitorHouseholdsComponent implements OnInit {
   }
   populateUsers(){
     console.time('getting users');
-    this.loading = true;
+
     this.userService.getAllUsers().subscribe(
       response=>{
+        response.splice(0,1);
         for(let user of response){
           this.usersHash[user.id] = user.name;
           this.users.push(user);
         }
-        this.users.splice(0,1);
         console.timeEnd("getting users");
       },
       error=>{

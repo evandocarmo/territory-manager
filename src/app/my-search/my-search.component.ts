@@ -5,11 +5,12 @@ import {MaterializeModule} from "angular2-materialize";
 import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
 import { TerritoryService } from '../territory.service';
+import * as FileSaver  from 'file-saver';
 
 declare var $ : any;
 declare var Materialize :any;
-declare var FileSaver : any;
-declare var html2canvas :any;
+declare var html2canvas : any;
+
 
 @Component({
   selector: 'app-my-search',
@@ -62,5 +63,11 @@ export class MySearchComponent implements OnInit {
         this.problem = true;
       }
     )
+  }
+  downloadPicture(tableId){
+    console.log(document.getElementById(tableId));
+    html2canvas(document.getElementById(tableId),{
+      onrendered:function(canvas:any){document.body.appendChild(canvas)}
+    })
   }
 }

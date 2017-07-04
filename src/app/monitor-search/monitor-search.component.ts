@@ -4,14 +4,11 @@ import {MaterializeModule} from "angular2-materialize";
 import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
-import * as FileSaver  from 'file-saver';
 import {CsvService} from "angular2-json2csv";
  import 'rxjs/Rx' ;
 
 declare var $ : any;
 declare var Materialize :any;
-
-console.log(FileSaver);
 
 @Component({
   selector: 'app-monitor-search',
