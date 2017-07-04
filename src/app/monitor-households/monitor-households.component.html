@@ -22,14 +22,14 @@
     <tr>
         <td>Address</td>
       <td>Language</td>
-      <td>Publisher</td>
+      <td>Taken on</td>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let house of results">
       <td>{{house['FULL_ADDRESS']}}</td>
-      <td>{{house.LANGUAGE}}</td>
-      <td>{{usersHash[house.ID]}}</td>
+      <td>{{house['LANGUAGE']}}</td>
+      <td>{{house['fTAKEN']}}</td>
       <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
       <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
         <li class="waves-effect waves-light center-align white"(click)="openCheckout(house)">

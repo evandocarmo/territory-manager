@@ -137,6 +137,14 @@ export class MonitorHouseholdsComponent implements OnInit {
     Materialize.toast("Please, wait...",3000);
     let cod = this.checkoutOptions.house['COD'];
     let user = parseInt(this.checkoutOptions.user);
+    let oldUser = this.checkoutOptions.house['ID'];
+    this.householdService.returnedHouseholds(cod,oldUser).subscribe(
+      response=>{
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
     this.householdService.checkoutHouseholds([cod],user).subscribe(
       response=>{
         Materialize.toast("This household is now under " + this.usersHash[user] + "'s name!",5000,'green white-text');
@@ -153,13 +161,6 @@ export class MonitorHouseholdsComponent implements OnInit {
   }
   saveHouse(house){
     Materialize.toast('Please, wait...',3000);
-    this.householdService.returnedHouseholds(house.COD,house.ID).subscribe(
-      response=>{
-      },
-      error=>{
-        this.problem = true;
-      }
-    )
     this.householdService.updateHousehold(house).subscribe(
       response=>{
         Materialize.toast("Household successfully updated!",5000,'green white-text');

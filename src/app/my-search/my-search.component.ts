@@ -65,9 +65,10 @@ export class MySearchComponent implements OnInit {
     )
   }
   downloadPicture(tableId){
-    console.log(document.getElementById(tableId));
     html2canvas(document.getElementById(tableId),{
-      onrendered:function(canvas:any){document.body.appendChild(canvas)}
+      onrendered:function(canvas:any){
+        canvas.toDataURL();
+      }
     })
   }
 }
