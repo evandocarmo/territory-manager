@@ -32,11 +32,11 @@
       <td>{{usersHash[house.ID]}}</td>
       <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
       <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
-        <li class="waves-effect waves-light center-align deep-purple darken-2 white-text"(click)="openCheckout(house)">
-          <a class="white-text center-align">Checkout</a>
+        <li class="waves-effect waves-light center-align white"(click)="openCheckout(house)">
+          <a class="deep-purple-text darken-2 center-align">Checkout</a>
         </li>
-        <li class="waves-effect waves-light center-align deep-purple darken-2 white-text"(click)="openEdit(house)">
-          <a class="white-text center-align">Edit</a>
+        <li class="waves-effect waves-light center-align white"(click)="openEdit(house)">
+          <a class="deep-purple-text darken-2 center-align">Edit</a>
         </li>
         <li class="red waves-effect waves-light btn red">
           <a (click)="delete(house)" class="white-text">

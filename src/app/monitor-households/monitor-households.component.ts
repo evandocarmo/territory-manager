@@ -23,7 +23,7 @@ export class MonitorHouseholdsComponent implements OnInit {
   results;
   neighborhoods;
   macroareas;
-  users;
+  users = new Array();
   usersHash = {};
   queries={
     availability:'any',
@@ -41,6 +41,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     ADDRESS:'',
     COMMENTS:''
   };
+  currentUser = JSON.parse(localStorage.getItem('user'));
 
   constructor(
     private householdService:HouseholdService,
@@ -51,46 +52,9 @@ export class MonitorHouseholdsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.loading = true;
-    console.time("households")
-    this.householdService.getAllHouseholds().subscribe(
-      response=>{
-        console.timeEnd("households");
-        console.time('copying households');
-        this.households = response;
-        console.timeEnd('copying households');
-        console.time('copying to results');
-        this.results = this.households;
-        console.timeEnd("copying to results");
-        console.time('getting neighborhoods');
-        this.territoryService.getNeighborhoods().subscribe(
-          response=>{
-            console.timeEnd("getting neighborhoods");
-            this.neighborhoods = response;
-                this.userService.getAllUsers().subscribe(
-                  response=>{
-                    response.splice(0,1);
-                    this.users = response;
-                    for(let user of this.users){
-                      this.usersHash[user.id] = user.name;
-                    }
-                    this.loading = false;
-                  },
-              error=>{
-                this.problem = true;
-              }
-            )
-          },
-          error=>{
-            this.problem = true;
-          }
-        )
-
-      },
-      error=>{
-        this.problem = true;
-      }
-    )
+    this.populateNeighborhoods();
+    this.populateUsers();
+    this.populateHouseholds();
   }
   filter(){
     this.loading = true;
@@ -143,7 +107,21 @@ export class MonitorHouseholdsComponent implements OnInit {
     return parseInt(int);
   }
   delete(house){
-    console.log('delete',house);
+    if(confirm("Are you sure you want to delete this household?")){
+      Materialize.toast('Please,wait...',3000);
+      this.householdService.deleteHousehold(house.COD,this.currentUser.id).subscribe(
+        response=>{
+          Materialize.toast('Household successfully deleted!',5000,'green white-text');
+          let index = this.households.indexOf(house);
+          let rindex = this.results.indexOf(house);
+          this.households.splice(index,1);
+          this.results.splice(rindex,1);
+        },
+        error=>{
+          this.problem = true;
+        }
+      )
+    }
   }
   openCheckout(house){
     this.checkoutOptions.house = house;
@@ -160,9 +138,10 @@ export class MonitorHouseholdsComponent implements OnInit {
     this.householdService.checkoutHouseholds([cod],user).subscribe(
       response=>{
         Materialize.toast("This household is now under " + this.usersHash[user] + "'s name!",5000,'green white-text');
-        this.router.navigateByUrl('/').then(() => {
-          this.router.navigateByUrl('/admin-visit/monitor-households');
-        })
+        let index = this.households.indexOf(this.checkoutOptions.house);
+        this.households[index] = this.checkoutOptions.house;
+        let rindex = this.results.indexOf(this.checkoutOptions.house);
+        this.results[rindex] = this.checkoutOptions.house;
       },
       error=>{
         this.problem = true;
@@ -171,12 +150,20 @@ export class MonitorHouseholdsComponent implements OnInit {
   }
   saveHouse(house){
     Materialize.toast('Please, wait...',3000);
-    this.householdService.updateHousehold(house).subscribe(
+    this.householdService.returnedHouseholds(house.COD,house.ID).subscribe(
       response=>{
-        Materialize.toast("Household successfully updated!",5000,'green white-text');
-        this.router.navigateByUrl('/').then(() => {
-          this.router.navigateByUrl('/admin-visit/monitor-households');
-        })
+        this.householdService.updateHousehold(house).subscribe(
+          response=>{
+            Materialize.toast("Household successfully updated!",5000,'green white-text');
+            let index = this.households.indexOf(house);
+            this.households[index] = house;
+            let rindex = this.results.indexOf(house);
+            this.results[rindex] = house;
+          },
+          error=>{
+            this.problem = true;
+          }
+        )
       },
       error=>{
         this.problem = true;
@@ -185,5 +172,55 @@ export class MonitorHouseholdsComponent implements OnInit {
   }
   downloadExcel(){
     this.csv.download(this.results,'households');
+  }
+  populateHouseholds(){
+    this.loading = true;
+    console.time("households")
+    this.householdService.getAllHouseholds().subscribe(
+      response=>{
+        console.timeEnd("households");
+        console.time('copying households');
+        this.households = response;
+        console.timeEnd('copying households');
+        console.time('copying to results');
+        this.results = this.households;
+        console.timeEnd("copying to results");
+        this.loading = false;
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
+  }
+  populateNeighborhoods(){
+    console.time("nei");
+    this.loading = true;
+    this.territoryService.getNeighborhoods().subscribe(
+      response=>{
+        this.neighborhoods = response;
+        this.loading = false;
+        console.timeEnd("nei");
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
+  }
+  populateUsers(){
+    console.time('getting users');
+    this.loading = true;
+    this.userService.getAllUsers().subscribe(
+      response=>{
+        for(let user of response){
+          this.usersHash[user.id] = user.name;
+          this.users.push(user);
+        }
+        this.users.splice(0,1);
+        console.timeEnd("getting users");
+      },
+      error=>{
+        this.problem = true;
+      }
+    )
   }
 }
