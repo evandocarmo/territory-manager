@@ -10,7 +10,7 @@ import 'rxjs/Rx';
 
 declare var $ : any;
 declare var Materialize :any;
-
+declare var p : any;
 @Component({
   selector: 'app-monitor-households',
   templateUrl: './monitor-households.component.html',
