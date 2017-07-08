@@ -7,7 +7,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 import { GuardService } from './guard.service';
 import { AuthService } from './auth.service';
 import { TerritoryService } from './territory.service';
@@ -40,6 +40,7 @@ import { EditSearchComponent } from './edit-search/edit-search.component';
 import { NewSearchComponent } from './new-search/new-search.component';
 import { AdminVisitComponent } from './admin-visit/admin-visit.component';
 import { MonitorHouseholdsComponent } from './monitor-households/monitor-households.component';
+import { MonitorHouseholdItemComponent } from './monitor-household-item/monitor-household-item.component';
 
 @NgModule({
   declarations: [
@@ -69,10 +70,12 @@ import { MonitorHouseholdsComponent } from './monitor-households/monitor-househo
     EditSearchComponent,
     NewSearchComponent,
     AdminVisitComponent,
-    MonitorHouseholdsComponent
+    MonitorHouseholdsComponent,
+    MonitorHouseholdItemComponent
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     HttpModule,
     MaterializeModule,

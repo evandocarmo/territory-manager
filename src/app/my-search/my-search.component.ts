@@ -65,10 +65,27 @@ export class MySearchComponent implements OnInit {
     )
   }
   downloadPicture(tableId){
-    html2canvas(document.getElementById(tableId),{
-      onrendered:function(canvas:any){
-        canvas.toDataURL();
-      }
+    html2canvas(document.getElementById(tableId)).then(canvas=>{
+      let is_safari = navigator.userAgent.indexOf("Safari") > -1;
+      let saveAs = function(uri, filename) {
+          let link = document.createElement('a');
+          if (typeof link.download === 'string') {
+              document.body.appendChild(link); // Firefox requires the link to be in the body
+              link.download = filename;
+              link.href = uri;
+              link.click();
+              document.body.removeChild(link); // remove the link when done
+          } else {
+              location.replace(uri);
+          }
+      };
+
+      var img = canvas.toDataURL("image/jpg"),
+          uri = img.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
+      if((is_safari))
+          window.open(img);
+      else
+          saveAs(uri, 'tableExport.jpg');
     })
   }
 }

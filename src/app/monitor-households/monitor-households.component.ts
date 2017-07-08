@@ -6,6 +6,7 @@ import { UserService } from "../user.service";
 import { TerritoryService } from "../territory.service";
 import { Router } from '@angular/router';
 import { CsvService } from "angular2-json2csv";
+import { MonitorHouseholdItemComponent } from "../monitor-household-item/monitor-household-item.component";
 import 'rxjs/Rx';
 
 declare var $ : any;
@@ -59,6 +60,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     this.populateHouseholds();
   }
   filter(){
+    console.time('filter');
     this.loading = true;
     this.results = this.households;
     for(let property in this.queries){
@@ -67,38 +69,34 @@ export class MonitorHouseholdsComponent implements OnInit {
           this.results = this.results.filter(function(house){
             return house.AVAILABLE;
           });
-          this.loading = false;
         }
         else if(property === 'availability' && this.queries[property] === 'false'){
           this.results = this.results.filter(function(house){
             return !house.AVAILABLE;
           });
-          this.loading = false;
         }
         if(property === 'neighborhood'){
           let value = this.queries[property];
           this.results = this.results.filter(function(house){
             return house.AREA_NAME === value;
           });
-          this.loading = false;
         }
         if(property === 'macroarea'){
           let value = this.queries[property];
           this.results = this.results.filter(function(house){
             return house.MACROAREA === value;
           });
-          this.loading = false;
         }
         if(property === 'user'){
           let value = this.queries[property];
           this.results = this.results.filter(function(house){
             return house.ID === parseInt(value);
           });
-          this.loading = false;
         }
       }
     }
-    console.log(this.results);
+    console.timeEnd('filter');
+    this.loading = false;
   }
 
   setDate(date) {
@@ -175,6 +173,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     )
   }
   downloadExcel(){
+    this.filter();
     this.csv.download(this.results,'households');
   }
   populateHouseholds(){
@@ -185,9 +184,6 @@ export class MonitorHouseholdsComponent implements OnInit {
         console.time('copying households');
         this.households = response;
         console.timeEnd('copying households');
-        console.time('copying to results');
-        this.results = this.households;
-        console.timeEnd("copying to results");
         this.loading = false;
       },
       error=>{

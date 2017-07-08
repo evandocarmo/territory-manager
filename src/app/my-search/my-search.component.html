@@ -3,15 +3,15 @@
 <ul class="collapsible popout" data-collapsible="accordion" materialize="collapsible">
     <li *ngFor="let cod_card of codCardNames" class="card-panel">
       <div class="collapsible-header">
-          <a
-            (click)="downloadPicture('table'+cod_card)"
-            class="deep-purple darken-2 white-text btn-flat right"
-            >Picture</a>
         <legend class="territory-legend sub-legend">{{cod_card}}
           <i class="large material-icons">keyboard_arrow_down</i>
         </legend>
       </div>
       <table id="table{{cod_card}}" class="table bordered striped my-territory-table collapsible-body">
+        <a
+          (click)="downloadPicture('table'+cod_card)"
+          class="deep-purple darken-2 white-text btn-flat right"
+          >Picture</a>
           <thead>
               <tr>
                   <td>Address</td>

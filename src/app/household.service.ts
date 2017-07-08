@@ -59,12 +59,20 @@ export class HouseholdService {
   }
 
   public getHouseholdsByCods(cods){
+    console.log(cods);
+    console.log(cods.constructor);
     let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
+    if(cods.constructor !== Array()){
+      let temp = Array();
+      temp.push(cods);
+      cods = temp;
+    }
     let params:URLSearchParams = new URLSearchParams();
         for(var cod in cods){
           console.log(cods[cod]);
           params.append('cod',cods[cod]);
         }
+    console.log(params);
     options.params = params;
     return this.http.get(API_URL + "households",options)
       .map(this.extractData)

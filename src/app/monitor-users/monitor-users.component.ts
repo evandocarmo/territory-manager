@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-monitor-users',
+  selector: 'monitor-users',
   templateUrl: './monitor-users.component.html',
   styleUrls: ['./monitor-users.component.scss']
 })
-export class MonitorUsersComponent implements OnInit {
 
+export class MonitorUsersComponent {
+  
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

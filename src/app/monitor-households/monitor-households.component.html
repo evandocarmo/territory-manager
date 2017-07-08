@@ -1,50 +1,50 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <form #monitorForm="ngForm">
-  <select name="availability" class="browser-default" (change)="filter()" [(ngModel)]="queries.availability">
+  <select name="availability" class="browser-default" [(ngModel)]="queries.availability">
     <option value="true">Available</option>
     <option value="false">Not Available</option>
     <option value="any">Any Availability</option>
   </select>
-  <select name="neighborhood" class="browser-default" (change)="filter()" [(ngModel)]="queries.neighborhood">
+  <select name="neighborhood" class="browser-default" [(ngModel)]="queries.neighborhood">
     <option value="any">Any neighborhood</option>
     <option *ngFor="let neighborhood of neighborhoods">{{neighborhood.area_name}}</option>
   </select>
-  <select name="user" class="browser-default" (change)="filter()" [(ngModel)]="queries.user">
+  <select name="user" class="browser-default" [(ngModel)]="queries.user">
     <option value="any">Any user</option>
     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
   </select>
 </form>
 <a class="btn green darken-2" (click)="downloadExcel()">Excel</a>
+<a class="btn deep-purple darken-2" (click)="filter()">Search</a>
 <p *ngIf="results">Quantity: {{results.length}}</p>
 <table class="bordered striped">
   <thead>
     <tr>
-        <td>Address</td>
+      <td>Address</td>
       <td>Language</td>
-      <td>Taken on</td>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let house of results">
-      <td>{{house['FULL_ADDRESS']}}</td>
-      <td>{{house['LANGUAGE']}}</td>
-      <td>{{house['fTAKEN']}}</td>
-      <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
-      <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
-        <li class="waves-effect waves-light center-align white"(click)="openCheckout(house)">
-          <a class="deep-purple-text darken-2 center-align">Checkout</a>
-        </li>
-        <li class="waves-effect waves-light center-align white"(click)="openEdit(house)">
-          <a class="deep-purple-text darken-2 center-align">Edit</a>
-        </li>
-        <li class="red waves-effect waves-light btn red">
-          <a (click)="delete(house)" class="white-text">
-            <i class="material-icons large">delete</i>
-          </a>
-        </li>
-      </ul>
-    </tr>
+      <tr *ngFor="let house of results | paginate: { itemsPerPage: 10, currentPage: p }">
+        <td>{{house['FULL_ADDRESS']}}</td>
+        <td>{{house['LANGUAGE']}}</td>
+        <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
+        <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
+          <li class="waves-effect waves-light center-align white"(click)="openCheckout(house)">
+            <a class="deep-purple-text darken-2 center-align">Checkout</a>
+          </li>
+          <li class="waves-effect waves-light center-align white"(click)="openEdit(house)">
+            <a class="deep-purple-text darken-2 center-align">Edit</a>
+          </li>
+          <li class="red waves-effect waves-light btn red">
+            <a (click)="delete(house)" class="white-text">
+              <i class="material-icons large">delete</i>
+            </a>
+          </li>
+        </ul>
+      </tr>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
 
