@@ -6,7 +6,6 @@ import { UserService } from "../user.service";
 import { TerritoryService } from "../territory.service";
 import { Router } from '@angular/router';
 import { CsvService } from "angular2-json2csv";
-import { MonitorHouseholdItemComponent } from "../monitor-household-item/monitor-household-item.component";
 import 'rxjs/Rx';
 
 declare var $ : any;

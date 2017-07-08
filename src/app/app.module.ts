@@ -40,7 +40,6 @@ import { EditSearchComponent } from './edit-search/edit-search.component';
 import { NewSearchComponent } from './new-search/new-search.component';
 import { AdminVisitComponent } from './admin-visit/admin-visit.component';
 import { MonitorHouseholdsComponent } from './monitor-households/monitor-households.component';
-import { MonitorHouseholdItemComponent } from './monitor-household-item/monitor-household-item.component';
 
 @NgModule({
   declarations: [
@@ -70,8 +69,7 @@ import { MonitorHouseholdItemComponent } from './monitor-household-item/monitor-
     EditSearchComponent,
     NewSearchComponent,
     AdminVisitComponent,
-    MonitorHouseholdsComponent,
-    MonitorHouseholdItemComponent
+    MonitorHouseholdsComponent
   ],
   imports: [
     BrowserModule,
