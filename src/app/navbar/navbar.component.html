@@ -2,7 +2,7 @@
   <nav>
     <div class="nav-wrapper deep-purple darken-2">
       <a [routerLink]="['home']" class="brand-logo left"> <i class="large material-icons">home</i></a>
-      <a *ngIf="isLoggedIn()" data-activates="mobile-demo" materialize="sideNav" class="button-collapse right"><i class="material-icons">menu</i></a>
+      <a *ngIf="isLoggedIn()" data-activates="mobile-demo" materialize="sideNav" [materializeParams]="[{closeOnClick:true,draggable:false}]" class="button-collapse right"><i class="material-icons">menu</i></a>
       <a class="brand-logo small center">BSB ENGLISH TERRITORY</a>
         <ul *ngIf="isLoggedIn()" id="checkout" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 nav-mobile">
           <li><a class="white-text" [routerLink]="['take-search']">Search</a></li>
@@ -22,31 +22,31 @@
           <li><a [routerLink]="['admin-search']" class="white-text">Search Territory</a></li>
           <li><a [routerLink]="['admin-visit']" class="white-text">Visit Territory</a></li>
         </ul>
-        <ul  *ngIf="isLoggedIn()" class="side-nav" id="mobile-demo" materialze="sideNav">
+        <ul *ngIf="isLoggedIn()" class="side-nav" id="mobile-demo" materialize="sideNav">
           <div [hidden]="user.privilege === 'PUBLISHER'">
             <li><a class="subheader deep-purple-text text-darken-2">Checkout</a></li>
-            <li><a [routerLink]="['take-search']">Search</a></li>
-            <li><a [routerLink]="['take-visits']">Visits</a></li>
-            <li><div class="divider"></div></li>
+            <li (click)="closeNav()"><a [routerLink]="['take-search']">Search</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['take-visits']">Visits</a></li>
+            <li (click)="closeNav()"><div class="divider"></div></li>
           </div>
           <div class="grey lighten-2">
             <li><a class="subheader deep-purple-text text-darken-2">Update</a></li>
-            <li><a [routerLink]="['update-search']">Search</a></li>
-            <li><a [routerLink]="['update-visits']">Visits</a></li>
-            <li><a [routerLink]="['new-household']">New Household</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['update-search']">Search</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['update-visits']">Visits</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['new-household']">New Household</a></li>
             <li><div class="divider"></div></li>
           </div>
           <div>
-            <li><a class="subheader deep-purple-text text-darken-2">Visualize</a></li>
-            <li><a [routerLink]="['my-search']">My Search</a></li>
-            <li><a [routerLink]="['my-visits']">My Visits</a></li>
+            <li><a  class="subheader deep-purple-text text-darken-2">Visualize</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['my-search']">My Search</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['my-visits']">My Visits</a></li>
             <li><div class="divider"></div></li>
           </div>
           <div [hidden]="!(user.privilege === 'ELDER')" class="grey lighten-2">
-            <li><a class="subheader deep-purple-text text-darken-2">Admin</a></li>
-            <li><a [routerLink]="['admin-users']">Users</a></li>
-            <li><a [routerLink]="['admin-search']">Search Territory</a></li>
-            <li><a [routerLink]="['admin-visit']">Visit Territory</a></li>
+            <li><a  class="subheader deep-purple-text text-darken-2">Admin</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['admin-users']">Users</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['admin-search']">Search Territory</a></li>
+            <li (click)="closeNav()"><a [routerLink]="['admin-visit']">Visit Territory</a></li>
           </div>
         </ul>
       <ul id="nav-mobile" class="right hide-on-med-and-down">

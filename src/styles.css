@@ -29,3 +29,10 @@ text-rendering: optimizeLegibility;
 .ngx-pagination .current {
   background-color:#512da8!important;
 }
+#sidenav-overlay{
+  display:none;
+}
+
+.drag-target{
+  display:none;
+}
