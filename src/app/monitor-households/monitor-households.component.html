@@ -26,7 +26,7 @@
     </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let house of results | paginate: { itemsPerPage: 10, currentPage: p }">
+      <tr [ngClass]="{'red lighten-4':!house['AVAILABLE']}" *ngFor="let house of results | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>{{house['FULL_ADDRESS']}}</td>
         <td>{{house['LANGUAGE']}}</td>
         <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
@@ -44,10 +44,9 @@
           </li>
         </ul>
       </tr>
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </tbody>
 </table>
-
+<pagination-controls class="card-panel col s12"(pageChange)="p = $event"></pagination-controls>
 
 <div id="modal" class="modal" materialize="modal">
   <form #checkoutForm = "ngForm" (ngSubmit)="checkout()">

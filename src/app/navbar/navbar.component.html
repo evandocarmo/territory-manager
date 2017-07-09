@@ -2,30 +2,58 @@
   <nav>
     <div class="nav-wrapper deep-purple darken-2">
       <a [routerLink]="['home']" class="brand-logo left"> <i class="large material-icons">home</i></a>
-      <ul id="checkout" materialize="dropdown" class="dropdown-content deep-purple darken-2">
-        <li><a class="white-text" [routerLink]="['take-search']">Search</a></li>
-        <li><a [routerLink]="['take-visits']"class="white-text">Visits</a></li>
-      </ul>
-      <ul id="update" materialize="dropdown" class="dropdown-content deep-purple darken-2 white-text">
-        <li><a [routerLink]="['update-search']" class="white-text">Search</a></li>
-        <li><a [routerLink]="['update-visits']" class="white-text">Visits</a></li>
-        <li><a [routerLink]="['new-household']" class="white-text">New Household</a></li>
-      </ul>
-      <ul id="visualize" materialize="dropdown" class="dropdown-content deep-purple darken-2 white-text">
-        <li><a [routerLink]="['my-search']" class="white-text">My Search</a></li>
-        <li><a [routerLink]="['my-visits']" class="white-text">My Visits</a></li>
-      </ul>
-      <ul id="admin" materialize="dropdown" class="dropdown-content deep-purple darken-2 white-text">
-        <li><a [routerLink]="['admin-users']" class="white-text">Users</a></li>
-        <li><a [routerLink]="['admin-search']" class="white-text">Search Territory</a></li>
-        <li><a [routerLink]="['admin-visit']" class="white-text">Visit Territory</a></li>
-        <li><a [routerLink]="['']" class="white-text">Statistics</a></li>
-      </ul>
-      <ul>
-        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right" [hidden]="user.privilege === 'PUBLISHER'" data-activates="checkout">Checkout</a>
-        <a *ngIf="isLoggedIn()" materialize="dropdown"class="dropdown-button right" data-activates="update">Update</a>
-        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right" data-activates="visualize">Visualize</a>
-        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right" [hidden]="!(user.privilege === 'ELDER')" data-activates="admin">Admin</a>
+      <a *ngIf="isLoggedIn()" data-activates="mobile-demo" materialize="sideNav" class="button-collapse right"><i class="material-icons">menu</i></a>
+      <a class="brand-logo small center">BSB ENGLISH TERRITORY</a>
+        <ul *ngIf="isLoggedIn()" id="checkout" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 nav-mobile">
+          <li><a class="white-text" [routerLink]="['take-search']">Search</a></li>
+          <li><a [routerLink]="['take-visits']"class="white-text">Visits</a></li>
+        </ul>
+        <ul *ngIf="isLoggedIn()" id="update" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 white-text">
+          <li><a [routerLink]="['update-search']" class="white-text">Search</a></li>
+          <li><a [routerLink]="['update-visits']" class="white-text">Visits</a></li>
+          <li><a [routerLink]="['new-household']" class="white-text">New Household</a></li>
+        </ul>
+        <ul *ngIf="isLoggedIn()" id="visualize" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 white-text">
+          <li><a [routerLink]="['my-search']" class="white-text">My Search</a></li>
+          <li><a [routerLink]="['my-visits']" class="white-text">My Visits</a></li>
+        </ul>
+        <ul *ngIf="isLoggedIn()" id="admin" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 white-text">
+          <li><a [routerLink]="['admin-users']" class="white-text">Users</a></li>
+          <li><a [routerLink]="['admin-search']" class="white-text">Search Territory</a></li>
+          <li><a [routerLink]="['admin-visit']" class="white-text">Visit Territory</a></li>
+        </ul>
+        <ul  *ngIf="isLoggedIn()" class="side-nav" id="mobile-demo" materialze="sideNav">
+          <div [hidden]="user.privilege === 'PUBLISHER'">
+            <li><a class="subheader deep-purple-text text-darken-2">Checkout</a></li>
+            <li><a [routerLink]="['take-search']">Search</a></li>
+            <li><a [routerLink]="['take-visits']">Visits</a></li>
+            <li><div class="divider"></div></li>
+          </div>
+          <div class="grey lighten-2">
+            <li><a class="subheader deep-purple-text text-darken-2">Update</a></li>
+            <li><a [routerLink]="['update-search']">Search</a></li>
+            <li><a [routerLink]="['update-visits']">Visits</a></li>
+            <li><a [routerLink]="['new-household']">New Household</a></li>
+            <li><div class="divider"></div></li>
+          </div>
+          <div>
+            <li><a class="subheader deep-purple-text text-darken-2">Visualize</a></li>
+            <li><a [routerLink]="['my-search']">My Search</a></li>
+            <li><a [routerLink]="['my-visits']">My Visits</a></li>
+            <li><div class="divider"></div></li>
+          </div>
+          <div [hidden]="!(user.privilege === 'ELDER')" class="grey lighten-2">
+            <li><a class="subheader deep-purple-text text-darken-2">Admin</a></li>
+            <li><a [routerLink]="['admin-users']">Users</a></li>
+            <li><a [routerLink]="['admin-search']">Search Territory</a></li>
+            <li><a [routerLink]="['admin-visit']">Visit Territory</a></li>
+          </div>
+        </ul>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right hide-on-med-and-down" [hidden]="user.privilege === 'PUBLISHER'" data-activates="checkout">Checkout</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown"class="dropdown-button right hide-on-med-and-down" data-activates="update">Update</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right hide-on-med-and-down" data-activates="visualize">Visualize</a>
+        <a *ngIf="isLoggedIn()" materialize="dropdown" class="dropdown-button right hide-on-med-and-down" [hidden]="!(user.privilege === 'ELDER')" data-activates="admin">Admin</a>
       </ul>
     </div>
   </nav>

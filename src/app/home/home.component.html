@@ -2,13 +2,13 @@
 <div class="card-panel center-align">
   <h4>Hello, {{screenName}}! </h4>
   <p>You have {{user.holding}} card(s) under your name</p>
-  <a class="deep-purple-text darken-2" [routerLink]="['/my-search']">Visualize</a>
+  <a class="deep-purple-text text-darken-2" [routerLink]="['/my-search']">Visualize</a>
    |
-  <a class="deep-purple-text darken-2" [routerLink]="['/update-search']">Update</a>
+  <a class="deep-purple-text text-darken-2" [routerLink]="['/update-search']">Update</a>
   <p>You are currently visiting {{user.visiting}} house(s)</p>
-  <a class="deep-purple-text darken-2" [routerLink]="['/my-visits']">Visualize</a>
+  <a class="deep-purple-text text-darken-2" [routerLink]="['/my-visits']">Visualize</a>
    |
-  <a class="deep-purple-text darken-2" [routerLink]="['/update-visits']">Update</a>
+  <a class="deep-purple-text text-darken-2" [routerLink]="['/update-visits']">Update</a>
 </div>
 
 <div class="col s6 z-depth-3" [hidden]="user.privilege === 'PUBLISHER'">
@@ -53,7 +53,6 @@
         <a class="deep-purple-text btn-large flat-btn-large white darken-2 s3 "[routerLink]="['/admin-users']"><i class="material-icons left medium">people</i> Users</a>
         <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="['/admin-search']"><i class="material-icons left medium">edit_location</i> Search Territory</a>
         <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="['/admin-visit']"><i class="material-icons left medium">work</i>Visit Territory</a>
-        <a class="deep-purple-text btn-large s3 flat-btn-large white darken-2 "[routerLink]="[]"><i class="material-icons left medium">list</i> Statistics</a>
       </div>
     </div>
   </div>

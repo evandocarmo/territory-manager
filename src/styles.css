@@ -17,11 +17,15 @@ text-rendering: optimizeLegibility;
 }
 
 .indicator {
-  background-color:#7b1fa2 !important;
+  background-color:#512da8 !important;
 }
 .tabs .tab a:hover, .tabs .tab a.active{
-  color:#7b1fa2 !important;
+  color:#512da8 !important;
 }
 .tabs .tab a{
-    color:#7b1fa2 !important;
+    color:#512da8 !important;
+}
+
+.ngx-pagination .current {
+  background-color:#512da8!important;
 }
