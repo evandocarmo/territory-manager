@@ -17,13 +17,13 @@ text-rendering: optimizeLegibility;
 }
 
 .indicator {
-  background-color:#512da8 !important;
+  background-color:#512da8!important;
 }
 .tabs .tab a:hover, .tabs .tab a.active{
-  color:#512da8 !important;
+  color:#512da8!important;
 }
 .tabs .tab a{
-    color:#512da8 !important;
+    color:#512da8!important;
 }
 
 .ngx-pagination .current {
@@ -36,3 +36,48 @@ text-rendering: optimizeLegibility;
 .drag-target{
   display:none;
 }
+/* label color */
+ .input-field label {
+   color: #512da8!important;
+ }
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+   color:#512da8!important;
+ }
+ .input-field input[type=password]:focus + label {
+   color:#512da8!important;
+ }
+ .input-field input[type=password]:focus:not([readonly]) {
+   color:#512da8!important;
+ }
+ input[type=password]:focus:not([readonly]){
+   border-bottom: 1px solid #512da8!important;
+   box-shadow: 0 1px 0 0 #512da8!important;
+ }
+ input:focus:not([readonly]){
+   border-bottom: 1px solid #512da8!important;
+   box-shadow: 0 1px 0 0 #512da8!important;
+ }
+ /* label underline focus color */
+ .input-field input[type=text]:focus {
+   border-bottom: 1px solid #512da8!important;
+   box-shadow: 0 1px 0 0 #512da8!important;
+ }
+ .input-field input[type=password]:focus {
+   border-bottom: 1px solid #512da8!important;
+   box-shadow: 0 1px 0 0 #512da8!important;
+ }
+ /* valid color */
+ .input-field input[type=text].valid {
+   border-bottom: 1px solid #512da8!important;
+   box-shadow: 0 1px 0 0 #512da8!important;
+ }
+ /* invalid color */
+ .input-field input[type=text].invalid {
+   border-bottom: 1px solid #512da8!important;
+   box-shadow: 0 1px 0 0 #512da8!important;
+ }
+ /* icon prefix focus color */
+ .input-field .prefix.active {
+   color:#512da8!important;
+ }

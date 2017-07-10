@@ -8,19 +8,27 @@ declare var $ : any;
 declare var Materialize :any;
 
 @Component({
-  selector: 'app-new-user',
-  templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.scss']
+  selector: 'app-change-passwords',
+  templateUrl: './change-passwords.component.html',
+  styleUrls: ['./change-passwords.component.css']
 })
-export class NewUserComponent implements OnInit {
+export class ChangePasswordsComponent implements OnInit {
 
-  users = Array();
   problem :boolean = false;
-  newUser = {name:'',password:'',privilege:''};
+  changePasswordUser = {id:0,password:''};
   loading = false;
+  users = Array();
+  match = false;
+  confirmPassword = '';
 
   constructor(private userService:UserService) { }
-
+  checkMatch(){
+    if(this.confirmPassword === this.changePasswordUser.password){
+      this.match = true;
+    } else {
+      this.match = false;
+    }
+  }
   ngOnInit() {
     this.loading = true;
     this.userService.getAllUsers().subscribe(
@@ -33,16 +41,18 @@ export class NewUserComponent implements OnInit {
       error => this.problem = true
     )
   }
-  AddNewUser(user){
+
+  changePassword(user){
     Materialize.toast("Please, wait...",1000);
-    this.userService.addUser(user).subscribe(
+    this.userService.changePassword(user).subscribe(
       response=>{
-        if(response.message)
-          Materialize.toast(response.message,4000,"red white-text");
-        else
-          Materialize.toast("User succesfully added!",4000,"green white-text");
+        Materialize.toast("Password successfully changed!",4000,"green white-text");
+        console.log(response);
       },
-      error=>this.problem = true
+      error=>{
+        this.problem = true;
+      }
     )
   }
+
 }

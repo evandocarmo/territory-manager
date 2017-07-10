@@ -1,3 +1,42 @@
-<p>
-  monitor-users works!
-</p>
+<app-spinner *ngIf="loading"></app-spinner>
+<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div><div class="card-panel">
+  <div>
+      <p class="deep-purple-text darken-2 center-align">
+        Manage Users
+      </p>
+  </div>
+  <div>
+      <table>
+        <thead>
+          <td>Name</td>
+          <td>Privilege</td>
+          <td>Save</td>
+          <td>Delete</td>
+        </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td><input name="{{user.name}}NAME" placeholder="Name" type="text" [(ngModel)]="user.name"></td>
+              <td>
+                <select required class="browser-default" name="{{user.privilege}}PRIVILEGE" [(ngModel)]="user.privilege">
+                  <option disabled selected>{{user.privilege}}</option>
+                  <option value="ELDER">ELDER</option>
+                  <option value="SERVANT">SERVANT</option>
+                  <option value="PUBLISHER">PUBLISHER</option>
+                </select>
+              </td>
+              <td>
+                <a class="btn-floating green white-text" (click)="saveUser(user)">
+                  <i class="tiny material-icons">save</i>
+                </a>
+              </td>
+              <td>
+                <a class="btn-floating red white-text" (click)="deleteUser(user)">
+                  <i class="tiny material-icons">delete</i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+
+      </table>
+    </div>
+  </div>

@@ -1,2 +1,9 @@
-<a (click)="logOut()">Log Out</a>
-<br>
+<div class="row">
+  <div class="col s1"></div>
+  <div class="col s10">
+    <a (click)="logOut()" class="left">Log Out</a>
+    <a [routerLink]="['change-password']" class="right">Change Password</a>
+    <br>
+  </div>
+  <div class="col s1"></div>
+</div>

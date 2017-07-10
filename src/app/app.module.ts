@@ -40,6 +40,8 @@ import { EditSearchComponent } from './edit-search/edit-search.component';
 import { NewSearchComponent } from './new-search/new-search.component';
 import { AdminVisitComponent } from './admin-visit/admin-visit.component';
 import { MonitorHouseholdsComponent } from './monitor-households/monitor-households.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ChangePasswordsComponent } from './change-passwords/change-passwords.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +71,9 @@ import { MonitorHouseholdsComponent } from './monitor-households/monitor-househo
     EditSearchComponent,
     NewSearchComponent,
     AdminVisitComponent,
-    MonitorHouseholdsComponent
+    MonitorHouseholdsComponent,
+    ChangePasswordComponent,
+    ChangePasswordsComponent
   ],
   imports: [
     BrowserModule,
@@ -136,7 +140,13 @@ import { MonitorHouseholdsComponent } from './monitor-households/monitor-househo
         {
           path:'admin-users',
           component:AdminUsersComponent,
-          canActivate:[GuardService]
+          canActivate:[GuardService],
+          children:[
+            {path:'',redirectTo:'monitor-users',pathMatch:'full'},
+            {path:'monitor-users',component:MonitorUsersComponent,canActivate:[GuardService]},
+            {path:'change-passwords',component:ChangePasswordsComponent,canActivate:[GuardService]},
+            {path:'new-user',component:NewUserComponent,canActivate:[GuardService]}
+          ]
         },
         {
           path:'new-household',
@@ -144,8 +154,16 @@ import { MonitorHouseholdsComponent } from './monitor-households/monitor-househo
           canActivate:[GuardService]
         },
         {
+          path:'change-password',
+          component:ChangePasswordComponent,
+          canActivate:[GuardService]
+        },
+        {
           path:'admin-visit',component:AdminVisitComponent,canActivate:[GuardService],
           children:[
+            {
+              path:'',redirectTo:'monitor-households',pathMatch:'full'
+            },
             {
               path:'new-household',component:NewHouseholdComponent,canActivate:[GuardService]
             },
