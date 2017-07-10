@@ -18,6 +18,7 @@ export class ChangePasswordComponent implements OnInit {
   problem = false;
   match = false;
   confirmPassword = '';
+  loading = false;
   constructor(private userService:UserService) { }
   checkMatch(){
     if(this.confirmPassword === this.user.password){
