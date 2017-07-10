@@ -34,7 +34,7 @@ text-rendering: optimizeLegibility;
 }
 
 .drag-target{
-  display:none;
+  opacity:0;
 }
 /* label color */
  .input-field label {

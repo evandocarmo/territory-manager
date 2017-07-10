@@ -33,9 +33,10 @@
       <br>
     </div>
   </div>
-  <a class=" deep-purple darken-2 btn left waves-effect waves-light" (click)="log()">SEARCH</a>
-  <a class=" green darken-2 btn right waves-effect waves-light" (click)="excel()">EXCEL <i class="material-icons right">file_download</i></a>
+  <a class=" green darken-2 btn waves-effect waves-light" (click)="excel()">EXCEL <i class="material-icons right">file_download</i></a>
+  <a class=" deep-purple darken-2 btn waves-effect waves-light" (click)="log()">SEARCH</a>
   <table class="table bordered striped centered card-panel">
+      <p *ngIf="result">Quantity: {{result.length}}</p>
       <thead>
           <tr>
               <td>Card</td>
@@ -45,7 +46,7 @@
           </tr>
       </thead>
       <tbody>
-          <tr class="row" [ngClass]="{'red lighten-4':!card.available}" *ngFor="let card of result">
+          <tr class="row" [ngClass]="{'red lighten-4':!card.available}" *ngFor="let card of result | paginate: { itemsPerPage: 10, currentPage: p }">
               <td>{{card.COD_CARD}}, {{card.AREA_NAME}}</td>
               <td>{{card.TAKEN}}</td>
               <td>{{card.LAST_UPDATE}}</td>
@@ -70,3 +71,4 @@
       </tbody>
   </table>
 </form>
+<pagination-controls class="card-panel col s12"(pageChange)="p = $event"></pagination-controls>
