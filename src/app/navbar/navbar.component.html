@@ -2,7 +2,7 @@
   <nav>
     <div class="nav-wrapper deep-purple darken-2">
       <a [routerLink]="['home']" class="brand-logo left"> <i class="large material-icons">home</i></a>
-      <a *ngIf="isLoggedIn()" data-activates="mobile-demo" materialize="sideNav" [materializeParams]="[{closeOnClick:true,draggable:true,edge:'right',onClose:closeNav()}]" class="button-collapse right"><i class="material-icons">menu</i></a>
+      <a *ngIf="isLoggedIn()" data-activates="mobile-demo" materialize="sideNav"[materializeParams]="[{closeOnClick:true,draggable:true,edge:'right',onClose:closeNav()}]" class="button-collapse right"><i class="material-icons">menu</i></a>
       <a class="brand-logo small center">BSB ENGLISH TERRITORY</a>
         <ul *ngIf="isLoggedIn()" id="checkout" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 nav-mobile">
           <li><a class="white-text" [routerLink]="['take-search']">Search</a></li>
