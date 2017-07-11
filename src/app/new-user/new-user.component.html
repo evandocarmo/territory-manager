@@ -28,6 +28,7 @@
       <option value="SERVANT">SERVANT</option>
       <option value="PUBLISHER">PUBLISHER</option>
     </select>
-    <a class="btn deep-purple darken-2 white-text" (click)="AddNewUser(newUser)">Add</a>
+    <br>
+    <button [disabled]="!newUser.name || !newUser.password || !newUser.privilege" class="btn deep-purple darken-2 white-text" (click)="AddNewUser(newUser)">Add</button>
   </div>
 </div>
