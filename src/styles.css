@@ -29,13 +29,6 @@ text-rendering: optimizeLegibility;
 .ngx-pagination .current {
   background-color:#512da8!important;
 }
-#sidenav-overlay{
-  display:none;
-}
-
-.drag-target{
-  opacity:0;
-}
 /* label color */
  .input-field label {
    color: #512da8!important;
