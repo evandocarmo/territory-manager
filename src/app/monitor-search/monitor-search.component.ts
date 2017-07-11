@@ -34,6 +34,7 @@ export class MonitorSearchComponent implements OnInit {
     more_than:''
   };
   result;
+  p;
   constructor(private territoryService:TerritoryService,private userService:UserService,private csv:CsvService) { }
 
   ngOnViewInit() {
