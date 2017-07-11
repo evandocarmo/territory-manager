@@ -12,7 +12,7 @@ declare var Materialize :any;
 const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
-const API_URL: string = "https://modern-territory-evandocarmo.c9users.io/";
+const API_URL: string = "https://apiterritory.herokuapp.com/";
 
 @Injectable()
 export class AuthService {
