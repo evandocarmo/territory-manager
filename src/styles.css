@@ -16,6 +16,14 @@ text-rendering: optimizeLegibility;
   left:0;
 }
 
+.drag-target{
+  display:none;
+}
+
+#sidenav-overlay{
+  display:none;
+}
+
 .indicator {
   background-color:#512da8!important;
 }

@@ -17,11 +17,6 @@ export class NavbarComponent implements OnInit {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
   closeNav(){
-    $('#sidenav-overlay').velocity({opacity: 0}, {duration: 200,
-        queue: false, easing: 'easeOutQuad',
-      complete: function() {
-        $(this).remove();
-      } });
   }
   ngOnInit() {
   }
