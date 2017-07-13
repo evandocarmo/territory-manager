@@ -19,7 +19,9 @@
         </legend>
       </div>
       <ul class="collapsible-body">
-        <legend class="grey-text center center-align">Edit or Delete this Household</legend>
+        <legend class="grey-text center center-align"><a target="_blank" href="https://www.google.com/maps/search/{{house.FULL_ADDRESS}}">Map<i class="material-icons"><map>
+
+        </map></i></a></legend>
         <li class="data address">
           <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>
           <input name="{{house.COD}}ADDRESS" placeholder="Conjunto,bloco,casa,apt" type="text" [(ngModel)]="house['ADDRESS']">

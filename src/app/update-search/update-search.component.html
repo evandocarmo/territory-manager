@@ -17,7 +17,7 @@
                   </li>
               </ul>
                 <ul class="collapsible-body z-depth-4 center-align update-card" *ngFor="let house of householdsByCard[cod_card].households; let i = index">
-                    <legend class="grey-text center center-align">Edit or Delete this Household</legend>
+                    <legend class="grey-text center center-align"><a target="_blank" href="https://www.google.com/maps/search/{{householdsByCard[cod_card].households[i]['FULL_ADDRESS']}}">{{householdsByCard[cod_card].households[i]['FULL_ADDRESS']}}</a></legend>
                     <li class="data address">
                       <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>
                       <input name="{{householdsByCard[cod_card].households[i].COD}}ADDRESS" placeholder="Conjunto,bloco,casa,apt" type="text" [(ngModel)]="householdsByCard[cod_card].households[i]['ADDRESS']">

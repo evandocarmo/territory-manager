@@ -28,32 +28,32 @@
           <ul class="collapsible grey-text" data-collapsible="accordion">
             <li [hidden]="user.privilege === 'PUBLISHER'">
               <div class="collapsible-header"><a class="subheader deep-purple-text text-darken-2">Checkout</a></div>
-              <div class="collapsible-body">
-                  <li (click)="closeNav()"><a [routerLink]="['take-search']">Search</a></li>
-                  <li (click)="closeNav()"><a [routerLink]="['take-visits']">Visits</a></li>
+              <div class="collapsible-body grey lighten-3">
+                  <li (click)="closeNav()"><a [routerLink]="['take-search']" routerLinkActive='deep-purple darken-2 white-text'>Search</a></li>
+                  <li (click)="closeNav()"><a [routerLink]="['take-visits']" routerLinkActive='deep-purple darken-2 white-text'>Visits</a></li>
               </div>
             </li>
             <li>
               <div class="collapsible-header"><a class="subheader deep-purple-text text-darken-2">Update</a></div>
-              <div class="collapsible-body">
-                <li (click)="closeNav()"><a [routerLink]="['update-search']">Search</a></li>
-                <li (click)="closeNav()"><a [routerLink]="['update-visits']">Visits</a></li>
-                <li (click)="closeNav()"><a [routerLink]="['new-household']">New Household</a></li>
+              <div class="collapsible-body grey lighten-3">
+                <li (click)="closeNav()"><a [routerLink]="['update-search']" routerLinkActive='deep-purple darken-2 white-text'>Search</a></li>
+                <li (click)="closeNav()"><a [routerLink]="['update-visits']" routerLinkActive='deep-purple darken-2 white-text'>Visits</a></li>
+                <li (click)="closeNav()"><a [routerLink]="['new-household']" routerLinkActive='deep-purple darken-2 white-text'>New Household</a></li>
               </div>
             </li>
             <li>
               <div class="collapsible-header"><a  class="subheader deep-purple-text text-darken-2">Visualize</a></div>
-              <div class="collapsible-body">
-                <li (click)="closeNav()"><a [routerLink]="['my-search']">My Search</a></li>
-                <li (click)="closeNav()"><a [routerLink]="['my-visits']">My Visits</a></li>
+              <div class="collapsible-body grey lighten-3">
+                <li (click)="closeNav()"><a [routerLink]="['my-search']" routerLinkActive='deep-purple darken-2 white-text'>My Search</a></li>
+                <li (click)="closeNav()"><a [routerLink]="['my-visits']" routerLinkActive='deep-purple darken-2 white-text'>My Visits</a></li>
               </div>
             </li>
             <li [hidden]="!(user.privilege === 'ELDER')">
               <div class="collapsible-header"><a  class="subheader deep-purple-text text-darken-2">Admin</a></div>
-              <div class="collapsible-body">
-                <li (click)="closeNav()"><a [routerLink]="['admin-users']">Users</a></li>
-                <li (click)="closeNav()"><a [routerLink]="['admin-search']">Search Territory</a></li>
-                <li (click)="closeNav()"><a [routerLink]="['admin-visit']">Visit Territory</a></li>
+              <div class="collapsible-body grey lighten-3">
+                <li (click)="closeNav()"><a [routerLink]="['admin-users']" routerLinkActive='deep-purple darken-2 white-text'>Users</a></li>
+                <li (click)="closeNav()"><a [routerLink]="['admin-search']" routerLinkActive='deep-purple darken-2 white-text'>Search Territory</a></li>
+                <li (click)="closeNav()"><a [routerLink]="['admin-visit']" routerLinkActive='deep-purple darken-2 white-text'>Visit Territory</a></li>
               </div>
             </li>
           </ul>

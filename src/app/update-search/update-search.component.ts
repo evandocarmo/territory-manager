@@ -40,6 +40,7 @@ export class UpdateSearchComponent implements OnInit {
     private userService:UserService
   ) { }
   saveChanges(element){
+    element['FULL_ADDRESS'] = element['AREA'] + " " + element['AREA_NUMBER'] + " " + element['ADDRESS'] + " " + element['AREA_NAME'] + " " + "Brasilia DF";
     Materialize.toast('please, wait...',1000);
     this.householdService.updateHousehold(element).subscribe(
       response => Materialize.toast("Saved! Thank you for your help.",4000,"green white-text"),
