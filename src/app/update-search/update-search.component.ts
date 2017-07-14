@@ -42,20 +42,24 @@ export class UpdateSearchComponent implements OnInit {
   ) { }
   saveChanges(element){
     element['FULL_ADDRESS'] = element['AREA'] + " " + element['AREA_NUMBER'] + " " + element['ADDRESS'] + " " + element['AREA_NAME'] + " " + "Brasilia DF";
-    Materialize.toast('please, wait...',1000);
+    this.loading = true;
     this.householdService.updateHousehold(element).subscribe(
-      response => Materialize.toast("Saved! Thank you for your help.",4000,"green white-text"),
+      response =>{
+        Materialize.toast("Saved! Thank you for your help.",4000,"green white-text");
+        this.loading = false;
+      },
       error => this.problem = true
     )
   }
   deleteHousehold(element,cod_card){
     if(confirm("Are you sure you want to delete this?")){
-      Materialize.toast("Please, wait...",1000);
+      this.loading = true;
       this.householdService.deleteHousehold(element.COD,this.user.id).subscribe(
         response=>{
-          Materialize.toast("Household deleted! Thanks for your help.",4000,"green white-text");
           let index = this.householdsByCard[cod_card].households.indexOf(element);
           this.householdsByCard[cod_card].households.splice(index,1);
+          this.loading = false;
+          Materialize.toast("Household deleted! Thanks for your help.",4000,"green white-text");
         },
         error => this.problem = true
       )
@@ -63,13 +67,13 @@ export class UpdateSearchComponent implements OnInit {
   }
   returnCard(card,name){
     if(confirm("Are you sure you want to return this card?")){
-      Materialize.toast("Please, wait...",1000)
+      this.loading = true;
       this.territoryService.returnCard(card.cod,this.user.id).subscribe(
         response=>{
-          Materialize.toast("Card returned! Thanks for your help",4000,'green white-text');
           let index = this.codCardNames.indexOf(name);
           this.codCardNames.splice(index,1);
-          console.log(this.codCardNames);
+          Materialize.toast("Card returned! Thanks for your help",4000,'green white-text');
+          this.loading = false;
         }
       )
     }
@@ -128,6 +132,5 @@ export class UpdateSearchComponent implements OnInit {
             this.problem = true;
           }
         )
-    console.log(this);
   }
 }
