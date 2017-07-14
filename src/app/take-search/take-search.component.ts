@@ -74,7 +74,7 @@ export class TakeSearchComponent implements OnInit {
           let card = array[index];
           this.neighborhoods[card.AREA_NAME].codcards.push(card);
   		  }
-        //this.sortByNumber();
+        this.sortByNumber();
         this.userService.getMaxedUsers(false).subscribe(
           response => {
             if(response["fatal"]){
