@@ -31,6 +31,7 @@ export class UpdateSearchComponent implements OnInit {
   codCardNames = Array();
   problem :boolean = false;
   user;
+  loading = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -74,6 +75,7 @@ export class UpdateSearchComponent implements OnInit {
     }
   }
   ngOnInit() {
+        this.loading = true;
         this.user = JSON.parse(localStorage.getItem('user'));
         this.territoryService.getCardsByUser(this.user.id).subscribe(
           response => {
@@ -89,9 +91,31 @@ export class UpdateSearchComponent implements OnInit {
             }
             this.householdService.getHouseholdsBycardCod(this.codCards).subscribe(
               response => {
+                response.sort(function naturalSorter(as, bs){
+                    as = as['FULL_ADDRESS'];
+                    bs = bs['FULL_ADDRESS'];
+                    let a, b, a1, b1, i= 0, n, L,
+                    rx=/(\.\d+)|(\d+(\.\d+)?)|([^\d.]+)|(\.\D+)|(\.$)/g;
+                    if(as=== bs) return 0;
+                    a= as.toLowerCase().match(rx);
+                    b= bs.toLowerCase().match(rx);
+                    L= a.length;
+                    while(i<L){
+                        if(!b[i]) return 1;
+                        a1= a[i],
+                        b1= b[i++];
+                        if(a1!== b1){
+                            n= a1-b1;
+                            if(!isNaN(n)) return n;
+                            return a1>b1? 1:-1;
+                        }
+                    }
+                    return b[i]? -1:0;
+                });
                 for(let house of response){
                   this.householdsByCard[house.COD_CARD].households.push(house);
                 }
+                this.loading = false;
               },
               error => this.problem = true
             )

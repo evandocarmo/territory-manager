@@ -16,8 +16,6 @@ export class NavbarComponent implements OnInit {
   constructor(private router:Router) {
     this.user = JSON.parse(localStorage.getItem('user'));
   }
-  closeNav(){
-  }
   ngOnInit() {
   }
   ngAfterViewInit(){
@@ -33,7 +31,7 @@ export class NavbarComponent implements OnInit {
         stopPropagation: false // Stops event propagation
         }
       );
-    })
+    });
   }
   isLoggedIn():boolean{
     return this.user ? true : false;

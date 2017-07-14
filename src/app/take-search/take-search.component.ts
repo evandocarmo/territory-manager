@@ -74,6 +74,7 @@ export class TakeSearchComponent implements OnInit {
           let card = array[index];
           this.neighborhoods[card.AREA_NAME].codcards.push(card);
   		  }
+        //this.sortByNumber();
         this.userService.getMaxedUsers(false).subscribe(
           response => {
             if(response["fatal"]){
@@ -143,8 +144,26 @@ export class TakeSearchComponent implements OnInit {
     this.sortedByNumber = true;
     for(let area in this.neighborhoods){
       this.neighborhoods[area].codcards.sort(
-        function(a,b) {
-          return a.AREA_NUMBER - b.AREA_NUMBER;
+        function naturalSorter(as, bs){
+            as = as['COD_CARD'];
+            bs = bs['COD_CARD'];
+            let a, b, a1, b1, i= 0, n, L,
+            rx=/(\.\d+)|(\d+(\.\d+)?)|([^\d.]+)|(\.\D+)|(\.$)/g;
+            if(as=== bs) return 0;
+            a= as.toLowerCase().match(rx);
+            b= bs.toLowerCase().match(rx);
+            L= a.length;
+            while(i<L){
+                if(!b[i]) return 1;
+                a1= a[i],
+                b1= b[i++];
+                if(a1!== b1){
+                    n= a1-b1;
+                    if(!isNaN(n)) return n;
+                    return a1>b1? 1:-1;
+                }
+            }
+            return b[i]? -1:0;
         });
     }
   }
