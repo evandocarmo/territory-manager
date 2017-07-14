@@ -40,6 +40,11 @@ export class MySearchComponent implements OnInit {
     this.loading = true;
     this.territoryService.getCardsByUser(this.user.id).subscribe(
       response => {
+        if(!response[0]){
+          this.loading = false;
+          Materialize.toast('This seems to be empty',4000);
+          return;
+        }
         for(let card of response){
           this.cardCods.push(card['cod']);
           this.codCardNames.push(card['COD_CARD']);

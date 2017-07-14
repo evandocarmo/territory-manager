@@ -81,8 +81,11 @@ export class UpdateSearchComponent implements OnInit {
           response => {
             console.log(response);
             let temp = response;
-            if(!temp[0])
+            if(!response[0]){
+              this.loading = false;
+              Materialize.toast('This seems to be empty',4000);
               return;
+            }
             for(let card of temp){
               this.householdsByCard[card['COD_CARD']] = {households:[]};
               this.codsByCard[card['COD_CARD']] = {cod:card['cod']};

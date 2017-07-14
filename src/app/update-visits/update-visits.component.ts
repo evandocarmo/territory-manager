@@ -94,6 +94,11 @@ export class UpdateVisitsComponent implements OnInit {
     this.householdService.getHouseholdsByUser(this.user.id).subscribe(
       response=>{
         this.households = response;
+        if(!response[0]){
+          this.loading = false;
+          Materialize.toast('This seems to be empty',4000);
+          return;
+        }
         this.households.sort(function naturalSorter(as, bs){
             as = as['FULL_ADDRESS'];
             bs = bs['FULL_ADDRESS'];
