@@ -1,6 +1,8 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
-<table id="table" class="table bordered striped my-territory-table card-panel">
+
+<br><a class="btn export deep-purple darken-2 left" (click)="downloadPicture('table')"> picture</a>
+<table id="table" class="table bordered striped my-territory-table card-panel white">
     <thead>
         <tr>
             <td>Address</td>
@@ -15,5 +17,4 @@
             <td class="data">{{house.COMMENTS}}</td>
         </tr>
     </tbody>
-    <a class="btn-large export deep-purple darken-2" (click)="downloadPicture('table')"> picture</a>
 </table>

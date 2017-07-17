@@ -28,11 +28,11 @@ export class ChangePasswordComponent implements OnInit {
     }
   }
   changePassword(){
-    Materialize.toast("Please, wait...",1000);
+    this.loading = true;
     this.userService.changePassword(this.user).subscribe(
       response=>{
+        this.loading = false;
         Materialize.toast("Password successfully changed!",4000,"green white-text");
-        console.log(response);
       },
       error=>{
         this.problem = true;

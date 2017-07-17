@@ -53,10 +53,12 @@ export class MonitorSearchComponent implements OnInit {
 
   delete(card){
     if(confirm("Are you sure you want to delete this card? This action cannot be undone.")){
+      this.loading = true;
       this.territoryService.deleteCard(card.cod).subscribe(
         response=>{
           let index = this.result.indexOf(card);
           this.result.splice(index,1);
+          this.loading = false;
         },
         error=>{
           this.problem = true;

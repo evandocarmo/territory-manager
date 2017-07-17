@@ -5,6 +5,8 @@ import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 
+declare var Materialize:any;
+
 @Component({
   selector: 'app-new-search',
   templateUrl: './new-search.component.html',
@@ -66,11 +68,13 @@ export class NewSearchComponent implements OnInit {
     }
   }
   addCard(){
+    this.loading = true;
     this.addedCard.cod_card = this.addedCard.area + this.addedCard.area_number;
     console.log(this.addedCard);
     this.territoryService.addNewCard(this.addedCard).subscribe(
       response=>{
-        console.log(response);
+        this.loading = false;
+        Materialize.toast('Card successfully added!',4000,'green white-text');
       },
       error=>this.problem = true
     )

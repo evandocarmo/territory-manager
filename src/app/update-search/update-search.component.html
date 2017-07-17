@@ -12,9 +12,9 @@
             <i class="large material-icons">keyboard_arrow_down</i>
           </legend>
         </div>
-              <ul *ngIf="householdsByCard[cod_card].households.length === 0" class="collapsible-body">
+              <ul *ngIf="householdsByCard[cod_card].households.length === 0"  class="collapsible-body">
                   <li>
-                    <p>Sorry, there are no foreigners in this card. Click here to add one.</p>
+                    <p>Sorry, there are no foreigners in this card. <a [routerLink]='["/new-household"]'>Click here to add one.</a></p>
                   </li>
               </ul>
                 <ul class="collapsible-body z-depth-4 center-align update-card" *ngFor="let house of householdsByCard[cod_card].households; let i = index">

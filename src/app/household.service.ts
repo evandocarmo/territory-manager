@@ -11,7 +11,7 @@ const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
 contentHeaders.append('x-access-token',localStorage.getItem('token'));
-const API_URL: string = "https://apiterritory.herokuapp.com/api/";
+const API_URL: string = "https://modern-territory-evandocarmo.c9users.io/api/";
 
 @Injectable()
 export class HouseholdService {

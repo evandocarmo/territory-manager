@@ -7,13 +7,14 @@ text-rendering: optimizeLegibility;
 .loading-page{
   background:rgba(105, 104, 104, 0.5);
   width:100%;
-  z-index:999999!important;
+  z-index:999999 !important;
   display:flex;
   align-items: center;
   justify-content: center;
   position:fixed;
   height:100%;
   left:0;
+  top:0;
 }
 
 .drag-target{

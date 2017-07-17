@@ -21,5 +21,4 @@ export class LoginComponent implements OnInit {
   login(event, username,password) {
     this.authService.authenticate(username,password);
   }
-
 }

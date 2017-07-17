@@ -60,7 +60,7 @@
       </p>
       <p>Select a user to receive this house:</p>
       <select required name="userCheckout" class="browser-default" [(ngModel)]="checkoutOptions.user">
-        <option disabled>Select a publisher</option>
+        <option value = '' disabled>Select a publisher</option>
         <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
       </select>
     </div>

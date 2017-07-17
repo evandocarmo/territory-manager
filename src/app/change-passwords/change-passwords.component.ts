@@ -41,13 +41,12 @@ export class ChangePasswordsComponent implements OnInit {
       error => this.problem = true
     )
   }
-
   changePassword(user){
-    Materialize.toast("Please, wait...",1000);
+    this.loading = true;
     this.userService.changePassword(user).subscribe(
       response=>{
+        this.loading = false;
         Materialize.toast("Password successfully changed!",4000,"green white-text");
-        console.log(response);
       },
       error=>{
         this.problem = true;

@@ -72,22 +72,22 @@ export class NewHouseholdComponent implements OnInit {
   }
 
   onSubmit(){
-    Materialize.toast('Please, wait...',4000);
+    this.loading = true;
     let card = this.cardsHash[this.selectedCodCard];
     this.addedHousehold.cod_card = card.COD_CARD;
     this.addedHousehold.area = card.AREA;
     this.addedHousehold.area_number = card.AREA_NUMBER;
     this.addedHousehold.macroarea = card.MACROAREA;
-    this.addedHousehold.full_address = this.addedHousehold.cod_card + ', ' + this.addedHousehold.address + ', ' + this.addedHousehold.area_name + ", Brasília DF";
+    this.addedHousehold.full_address = this.addedHousehold.area + " " + this.addedHousehold.area_number + ', ' + this.addedHousehold.address + ', ' + this.addedHousehold.area_name + ", Brasília DF";
     console.log(this.addedHousehold);
-    this.territoryService.addNewCard(this.addedHousehold).subscribe(
+    this.HouseholdService.addHousehold(this.addedHousehold).subscribe(
       response=>{
-        Materialize.toast('Household successfully added!',5000,'green white-text');
+        this.loading = false;
+        Materialize.toast('Household successfully added!',4000,'green white-text');
       },
       error=>{
         this.problem = true;
       }
     )
   }
-
 }

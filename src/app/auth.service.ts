@@ -48,7 +48,7 @@ export class AuthService {
             window.location.reload(true);
             return;
           }else{
-            Materialize.toast("Sorry! Your credentials are incorrect. Try again.",4000,"red white-text");
+            Materialize.toast("Sorry! Your credentials are incorrect.",4000,"red white-text");
           	return false;
           }
         },

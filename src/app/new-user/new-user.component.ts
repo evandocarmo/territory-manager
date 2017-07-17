@@ -34,13 +34,17 @@ export class NewUserComponent implements OnInit {
     )
   }
   AddNewUser(user){
-    Materialize.toast("Please, wait...",1000);
+    this.loading = true;
     this.userService.addUser(user).subscribe(
       response=>{
-        if(response.message)
+        if(response.message){
+          this.loading = false;
           Materialize.toast(response.message,4000,"red white-text");
-        else
+        }
+        else{
+          this.loading = false;
           Materialize.toast("User succesfully added!",4000,"green white-text");
+        }
       },
       error=>this.problem = true
     )
