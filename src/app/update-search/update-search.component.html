@@ -3,8 +3,8 @@
 <p class="deep-purple-text center-align">Return your cards or update their households</p>
 <form>
   <ul class="collapsible" data-collapsible="accordion" materialize="collapsible">
-      <li *ngFor="let cod_card of codCardNames" class="card-panel">
-        <div class="collapsible-header">
+      <li *ngFor="let cod_card of codCardNames" class="card-panel grey lighten-4">
+        <div class="collapsible-header grey lighten-4">
             <span
               class="deep-purple darken-2 white-text btn-flat right"
               (click)="returnCard(codsByCard[cod_card],cod_card)">RETURN</span>
@@ -12,12 +12,12 @@
             <i class="large material-icons">keyboard_arrow_down</i>
           </legend>
         </div>
-              <ul *ngIf="householdsByCard[cod_card].households.length === 0"  class="collapsible-body">
+              <ul *ngIf="householdsByCard[cod_card].households.length === 0"  class="collapsible-body white">
                   <li>
                     <p>Sorry, there are no foreigners in this card. <a [routerLink]='["/new-household"]'>Click here to add one.</a></p>
                   </li>
               </ul>
-                <ul class="collapsible-body z-depth-4 center-align update-card" *ngFor="let house of householdsByCard[cod_card].households; let i = index">
+                <ul class="collapsible-body z-depth-4 center-align update-card white" *ngFor="let house of householdsByCard[cod_card].households; let i = index">
                     <legend class="grey-text center center-align"><a target="_blank" href="https://www.google.com/maps/search/{{householdsByCard[cod_card].households[i]['FULL_ADDRESS']}}">{{householdsByCard[cod_card].households[i]['FULL_ADDRESS']}}</a></legend>
                     <li class="data address">
                       <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>

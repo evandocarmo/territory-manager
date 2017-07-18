@@ -67,8 +67,16 @@ export class NewSearchComponent implements OnInit {
       )
     }
   }
+
+  normalize(string){
+    string =  string.replace(/^\s+|\s+$/g, "").toUpperCase();
+    return string;
+  }
+
   addCard(){
     this.loading = true;
+    this.addedCard.area_name = this.normalize(this.addedCard.area_name);
+    this.addedCard.area = this.normalize(this.addedCard.area);
     this.addedCard.cod_card = this.addedCard.area + this.addedCard.area_number;
     console.log(this.addedCard);
     this.territoryService.addNewCard(this.addedCard).subscribe(
