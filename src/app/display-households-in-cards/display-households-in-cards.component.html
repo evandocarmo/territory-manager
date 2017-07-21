@@ -7,9 +7,9 @@
           <i class="large material-icons">keyboard_arrow_down</i>
         </legend>
       </div>
-      <div class="collapsible-body">
+      <div class="collapsible-body" id='picturebody{{cod_card}}'>
         <a
-          (click)="downloadPicture('table'+cod_card)"
+          (click)="downloadPicture('picturebody'+cod_card)"
           class="deep-purple darken-2 white-text btn-flat left"
           >Picture</a>
         <table id="table{{cod_card}}" class="table bordered striped my-territory-table white">
