@@ -34,6 +34,7 @@ export class DisplayHouseholdsInCardsComponent implements OnInit {
     downloadPicture(tableId){
     html2canvas(document.getElementById(tableId)).then(canvas=>{
       let is_safari = navigator.userAgent.indexOf("Safari") > -1;
+      console.log("is safari?",is_safari);
       let saveAs = function(uri, filename) {
           let link = document.createElement('a');
           if (typeof link.download === 'string') {

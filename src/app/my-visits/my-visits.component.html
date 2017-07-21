@@ -2,19 +2,21 @@
 <div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <p class="deep-purple-text darken-2 center-align">These are the houses you are currently supposed to visit</p>
 <a class="btn export deep-purple darken-2"(click)="downloadPicture('tableVisits')"> picture</a>
-<table id="tableVisits" class="table bordered striped my-territory-table card-panel">
-    <thead>
-        <tr>
-            <td>Address</td>
-            <td>Language</td>
-            <td>Comments</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="row" *ngFor="let house of households">
-            <td class="data address"><a target="_blank" href="https://www.google.com/maps/search/{{house.FULL_ADDRESS}}">{{house.FULL_ADDRESS}}</a></td>
-            <td class="data">{{house.LANGUAGE}}</td>
-            <td class="data">{{house.COMMENTS}}</td>
-        </tr>
-    </tbody>
-</table>
+<div id="tableVisits">
+  <table class="table bordered striped my-territory-table card-panel">
+      <thead>
+          <tr>
+              <td>Address</td>
+              <td>Language</td>
+              <td>Comments</td>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="row" *ngFor="let house of households">
+              <td class="data address"><a target="_blank" href="https://www.google.com/maps/search/{{house.FULL_ADDRESS}}">{{house.FULL_ADDRESS}}</a></td>
+              <td class="data">{{house.LANGUAGE}}</td>
+              <td class="data">{{house.COMMENTS}}</td>
+          </tr>
+      </tbody>
+    </table>
+</div>
