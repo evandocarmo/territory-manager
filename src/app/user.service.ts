@@ -3,13 +3,14 @@ import { Router } from '@angular/router';
 import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/Rx';
+import { environment } from '../environments/environment';
 
 const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
 contentHeaders.append('x-access-token',localStorage.getItem('token'));
 //contentHeaders.append('Cache-Control','no-cache');
-const API_URL: string = "https://apiterritory.herokuapp.com/api/";
+const API_URL: string = environment.API_URL + '/api/';
 
 @Injectable()
 export class UserService {

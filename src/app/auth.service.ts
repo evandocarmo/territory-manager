@@ -5,6 +5,7 @@ import { Headers, Http, Response, RequestOptions  } from '@angular/http';
 import { Observable } from 'rxjs';
 import {MaterializeModule} from "angular2-materialize";
 import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
+import { environment } from '../environments/environment';
 
 declare var $ : any;
 declare var Materialize :any;
@@ -12,7 +13,7 @@ declare var Materialize :any;
 const contentHeaders = new Headers();
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
-const API_URL: string = "https://apiterritory.herokuapp.com/";
+const API_URL = environment.API_URL;
 
 @Injectable()
 export class AuthService {
