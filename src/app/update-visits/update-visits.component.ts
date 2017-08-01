@@ -6,7 +6,7 @@ import { Codcard } from '../codcard';
 import {MaterializeModule} from "angular2-materialize";
 import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
-
+import { Languages } from '../../../languages';
 declare var $ : any;
 declare var Materialize :any;
 
@@ -23,6 +23,7 @@ export class UpdateVisitsComponent implements OnInit {
   problem :boolean = false;
   user;
   loading = false;
+  languages = Languages;
 
   constructor(
     private route: ActivatedRoute,
@@ -92,6 +93,7 @@ export class UpdateVisitsComponent implements OnInit {
   ngAfterViewInit(){
   }
   ngOnInit() {
+    console.log(this.languages);
     this.loading = true;
     this.user = JSON.parse(localStorage.getItem('user'));
     this.householdService.getHouseholdsByUser(this.user.id).subscribe(

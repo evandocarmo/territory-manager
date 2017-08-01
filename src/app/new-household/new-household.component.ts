@@ -5,6 +5,7 @@ import {MaterializeModule} from "angular2-materialize";
 import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
+import { Languages } from '../../../languages';
 
 declare var $ : any;
 declare var Materialize :any;
@@ -34,6 +35,7 @@ export class NewHouseholdComponent implements OnInit {
     full_address:'',
     macroarea:''
   }
+  languages = Languages;
   constructor(private territoryService:TerritoryService,private HouseholdService:HouseholdService) { }
 
   ngOnInit() {

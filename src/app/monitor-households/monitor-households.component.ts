@@ -7,6 +7,7 @@ import { TerritoryService } from "../territory.service";
 import { Router } from '@angular/router';
 import { CsvService } from "angular2-json2csv";
 import 'rxjs/Rx';
+import { Languages } from "../../../languages";
 
 declare var $ : any;
 declare var Materialize :any;
@@ -31,6 +32,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     neighborhood:'any',
     user:'any',
     macroarea:'any',
+    language:'any',
   }
   checkoutOptions = {
     house:'',
@@ -43,7 +45,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     COMMENTS:''
   };
   currentUser = JSON.parse(localStorage.getItem('user'));
-
+  languages = Languages;
   constructor(
     private householdService:HouseholdService,
     private territoryService:TerritoryService,
@@ -91,6 +93,12 @@ export class MonitorHouseholdsComponent implements OnInit {
           let value = this.queries[property];
           this.results = this.results.filter(function(house){
             return house.ID === parseInt(value);
+          });
+        }
+        if(property === 'language'){
+          let value = this.queries[property];
+          this.results = this.results.filter(function(house){
+            return house.LANGUAGE === value;
           });
         }
       }

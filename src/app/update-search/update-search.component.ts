@@ -9,6 +9,7 @@ import { Codcard } from '../codcard';
 import {MaterializeModule} from "angular2-materialize";
 import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
 import { Router,ActivatedRoute } from '@angular/router';
+import { Languages } from '../../../languages';
 
 declare var $ : any;
 declare var Materialize :any;
@@ -32,6 +33,7 @@ export class UpdateSearchComponent implements OnInit {
   problem :boolean = false;
   user;
   loading = false;
+  languages = Languages;
 
   constructor(
     private route: ActivatedRoute,

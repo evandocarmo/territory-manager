@@ -14,6 +14,10 @@
     <option value="any">Any user</option>
     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
   </select>
+  <select name="user" class="browser-default" [(ngModel)]="queries.language">
+    <option value="any">Any language</option>
+    <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+  </select>
 </form>
 <a class="btn green darken-2" (click)="downloadExcel()">Excel</a>
 <a class="btn deep-purple darken-2" (click)="filter()">Search</a>

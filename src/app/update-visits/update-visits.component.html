@@ -28,7 +28,10 @@
         </li>
         <li class="data">
           <legend class="deep-purple-text darken-2">Language</legend>
-          <input name="{{house.COD}}LANGUAGE" type="text" [(ngModel)]="house['LANGUAGE']">
+          <select class="browser-default" name="{{house.COD}}LANGUAGE" [(ngModel)]="house['LANGUAGE']">
+              <option>{{house['LANGUAGE']}}</option>
+              <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
+          </select>
         </li>
         <li class="data">
           <legend class="deep-purple-text darken-2">Comments (country, publications left...)</legend>

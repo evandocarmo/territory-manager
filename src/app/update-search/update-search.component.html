@@ -25,7 +25,10 @@
                     </li>
                     <li class="data">
                       <legend class="deep-purple-text darken-2">Language</legend>
-                      <input name="{{householdsByCard[cod_card].households[i].COD}}LANGUAGE" type="text" [(ngModel)]="householdsByCard[cod_card].households[i]['LANGUAGE']">
+                      <select class="browser-default" name="{{householdsByCard[cod_card].households[i].COD}}LANGUAGE" [(ngModel)]="householdsByCard[cod_card].households[i]['LANGUAGE']">
+                          <option>{{householdsByCard[cod_card].households[i]['LANGUAGE']}}</option>
+                          <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
+                      </select>
                     </li>
                     <li class="data">
                       <legend class="deep-purple-text darken-2">Comments (country, publications left...)</legend>

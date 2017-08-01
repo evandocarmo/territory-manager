@@ -16,7 +16,9 @@
     <p>What is the address? Bloco, conjunto, apartment, house...</p>
     <input type="text" name="address" [(ngModel)]="addedHousehold.address" placeholder="Address" required>
     <p>What language do they speak?</p>
-    <input type="text" name="language" [(ngModel)]="addedHousehold.language" placeholder="Language" required>
+    <select class="browser-default" name="language" [(ngModel)]="addedHousehold.language" required>
+        <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
+    </select>
     <p>Did you talk? What publications did you leave? What country are they from?</p>
     <input type="text" name="comment" [(ngModel)]="addedHousehold.comments" placeholder="comments" required>
   </div>
