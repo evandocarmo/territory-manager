@@ -4,10 +4,10 @@
 <form>
   <ul class="collapsible" data-collapsible="accordion" materialize="collapsible">
       <li *ngFor="let cod_card of codCardNames" class="card-panel grey lighten-4">
+        <span
+          class="deep-purple darken-2 waves-effect waves-light white-text btn-flat right"
+          (click)="returnCard(codsByCard[cod_card],cod_card)">RETURN</span>
         <div class="collapsible-header grey lighten-4">
-            <span
-              class="deep-purple darken-2 white-text btn-flat right"
-              (click)="returnCard(codsByCard[cod_card],cod_card)">RETURN</span>
           <legend class="territory-legend sub-legend">{{cod_card}}
             <i class="large material-icons">keyboard_arrow_down</i>
           </legend>

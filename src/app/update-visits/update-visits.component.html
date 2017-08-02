@@ -8,19 +8,19 @@
     materialize="collapsible"
   >
     <li *ngFor="let house of households; let i = index" class="card-panel">
+      <span
+        class="deep-purple darken-2 white-text btn-flat right"
+        (click)="returnHouse(house)">
+        RETURN
+      </span>
       <div class="collapsible-header">
-        <legend class="territory-legend sub-legend truncate">
-          <h6><span class="grey-text">{{house['COD_CARD']}}, {{house["ADDRESS"]}}</span> - {{house['LANGUAGE']}}</h6>
-          <span
-            class="deep-purple darken-2 white-text btn-flat left"
-            (click)="returnHouse(house)">
-            RETURN
-          </span>
-          <i class="large material-icons right">keyboard_arrow_down</i>
+        <legend class="territory-legend sub-legend truncate left">
+          <h6>{{house['LANGUAGE']}}</h6>
+          <i class="large material-icons">keyboard_arrow_down</i>
         </legend>
       </div>
       <ul class="collapsible-body">
-        <legend class="grey-text center center-align"><a target="_blank" href="https://www.google.com/maps/search/{{house.FULL_ADDRESS}}">Map <i class="material-icons">navigation</i></a></legend>
+        <legend class="grey-text center center-align"><a target="_blank" href="https://www.google.com/maps/search/{{house.FULL_ADDRESS}}">{{house['FULL_ADDRESS']}}</a></legend>
         <br>
         <li class="data address">
           <legend class="deep-purple-text darken-2">Conjunto, bloco, apt, casa</legend>
