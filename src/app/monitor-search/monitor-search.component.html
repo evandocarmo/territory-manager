@@ -40,16 +40,16 @@
       <thead>
           <tr>
               <td>Card</td>
-              <td>Taken</td>
-              <td>last search</td>
+              <td class="hide-on-small-only">Taken</td>
+              <td class="hide-on-small-only">last search</td>
               <td>Current publisher</td>
           </tr>
       </thead>
       <tbody>
           <tr class="row" [ngClass]="{'red lighten-4':!card.available}" *ngFor="let card of result | paginate: { itemsPerPage: 10, currentPage: p }">
               <td>{{card.COD_CARD}}, {{card.AREA_NAME}}</td>
-              <td>{{card.TAKEN}}</td>
-              <td>{{card.LAST_UPDATE}}</td>
+              <td class="hide-on-small-only">{{card.TAKEN}}</td>
+              <td class="hide-on-small-only">{{card.LAST_UPDATE}}</td>
               <td>{{usersHash[card.ID]}}</td>
               <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+card.cod">more_vert</a>
               <ul [attr.id]="'options'+card.cod" materialize="dropdown"class='dropdown-content z-depth-4'>

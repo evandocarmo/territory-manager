@@ -10,6 +10,8 @@
         <thead>
           <td>Name</td>
           <td>Privilege</td>
+          <td class="hide-on-small-only">Cards</td>
+          <td class="hide-on-small-only">Houses</td>
           <td>Save</td>
           <td>Delete</td>
         </thead>
@@ -24,6 +26,8 @@
                   <option value="PUBLISHER">PUBLISHER</option>
                 </select>
               </td>
+              <td class="hide-on-small-only">{{user.holding}}</td>
+              <td class="hide-on-small-only">{{user.visiting}}</td>
               <td>
                 <a class="btn-floating green white-text" (click)="saveUser(user)">
                   <i class="tiny material-icons">save</i>

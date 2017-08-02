@@ -27,12 +27,16 @@
     <tr>
       <td>Address</td>
       <td>Language</td>
+      <td class="hide-on-small-only">Last Update</td>
+      <td class="hide-on-small-only">Publisher</td>
     </tr>
   </thead>
   <tbody>
       <tr [ngClass]="{'red lighten-4':!house['AVAILABLE']}" *ngFor="let house of results | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>{{house['FULL_ADDRESS']}}</td>
         <td>{{house['LANGUAGE']}}</td>
+        <td class="hide-on-small-only">{{house['fLAST_UPDATE']}}</td>
+        <td class="hide-on-small-only">{{usersHash[house['ID']]}}</td>
         <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
         <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
           <li class="waves-effect waves-light center-align white"(click)="openCheckout(house)">
