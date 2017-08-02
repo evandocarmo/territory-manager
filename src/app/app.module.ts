@@ -199,9 +199,7 @@ const appRoutes:Routes = [
     HttpModule,
     MaterializeModule,
     Ng2PageScrollModule.forRoot(),
-    RouterModule.forRoot(
-      appRoutes
-    )
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [GuardService,AuthService,TerritoryService,UserService,HouseholdService,CsvService],
   bootstrap: [AppComponent]
