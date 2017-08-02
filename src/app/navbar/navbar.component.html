@@ -1,7 +1,7 @@
 <div class="navbar-fixed">
   <nav>
     <div class="nav-wrapper deep-purple darken-2">
-      <a [routerLink]="['home']" class="brand-logo left"> <i class="large material-icons">home</i></a>
+      <a routerLink="/home" class="brand-logo left"> <i class="large material-icons">home</i></a>
       <a *ngIf="isLoggedIn()" data-activates="mobile-demo" materialize="sideNav"[materializeParams]="[{closeOnClick:true,draggable:false,edge:'right'}]" class="button-collapse right"><i class="material-icons">menu</i></a>
       <a class="brand-logo small center">BSB ENGLISH TERRITORY</a>
         <ul *ngIf="isLoggedIn()" id="checkout" materialize="dropdown" class="hide-on-med-and-down dropdown-content deep-purple darken-2 nav-mobile">
