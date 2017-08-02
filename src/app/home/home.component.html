@@ -11,8 +11,7 @@
   <a class="deep-purple-text text-darken-2" [routerLink]="['/update-visits']">Update</a>
 </div>
 
-<div class="col s6 z-depth-3" [hidden]="user.privilege === 'PUBLISHER'">
-  <div class="card horizontal">
+<div class="col s12 z-depth-3 card horizontal" [hidden]="user.privilege === 'PUBLISHER'">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header black-text">Checkout</h4>
@@ -20,10 +19,8 @@
         <a class="white-text btn s3 deep-purple darken-2 "[routerLink]='["/take-visits"]'><i class="material-icons left medium">assignment</i> Visits</a>
       </div>
     </div>
-  </div>
 </div>
-<div class="col s6 z-depth-3">
-  <div class="card horizontal deep-purple darken-2">
+<div class="col s12 z-depth-3 card horizontal deep-purple darken-2">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header white-text">Update</h4>
@@ -31,11 +28,9 @@
         <a class="deep-purple-text btn s3 flat-btn white darken-2 "[routerLink]="['/update-visits']"><i class="material-icons left medium">assignment_turned_in</i> Visits</a>
         <a class="deep-purple-text btn s3 flat-btn white darken-2 "[routerLink]="['/new-household']"><i class="material-icons left medium">note_add</i> New Household</a>
       </div>
-    </div>
   </div>
 </div>
-<div class="col s6 z-depth-3">
-  <div class="card horizontal">
+<div class="col s12 z-depth-3 card horizontal">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header black-text">Visualize</h4>
@@ -43,10 +38,8 @@
         <a class="white-text btn s3 deep-purple darken-2 "[routerLink]="['/my-visits']"><i class="material-icons left medium">assignment_ind</i> My Visits</a>
       </div>
     </div>
-  </div>
 </div>
-<div class="col s6 z-depth-3" [hidden]="!(user.privilege === 'ELDER')">
-  <div class="card horizontal deep-purple darken-2">
+<div class="col s12 z-depth-3 card horizontal deep-purple darken-2" [hidden]="!(user.privilege === 'ELDER')">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header white-text">Admin</h4>
@@ -55,5 +48,4 @@
         <a class="deep-purple-text btn s3 flat-btn white darken-2 "[routerLink]="['/admin-visit']"><i class="material-icons left medium">work</i>Visit Territory</a>
       </div>
     </div>
-  </div>
 </div>
