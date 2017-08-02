@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   password:string;
   loading = false;
   ngOnInit() {
-     this.router.navigate(['home']);
+     this.router.navigate(['/home']);
   }
 
   login(event, username,password) {
