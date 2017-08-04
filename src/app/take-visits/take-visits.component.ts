@@ -52,7 +52,7 @@ export class TakeVisitsComponent implements OnInit {
 
       }
     );
-    this.userService.getMaxedVisitingUsers(false).subscribe(
+    this.userService.getAllUsers().subscribe(
       response => {
         this.users = response;
         this.loading = false;

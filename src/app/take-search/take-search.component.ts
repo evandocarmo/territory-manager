@@ -75,7 +75,7 @@ export class TakeSearchComponent implements OnInit {
           this.neighborhoods[card.AREA_NAME].codcards.push(card);
   		  }
         this.sortByNumber();
-        this.userService.getMaxedUsers(false).subscribe(
+        this.userService.getAllUsers().subscribe(
           response => {
             if(response["fatal"]){
               this.router.navigate['/take-search'];
