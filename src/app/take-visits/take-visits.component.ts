@@ -55,6 +55,8 @@ export class TakeVisitsComponent implements OnInit {
     this.userService.getAllUsers().subscribe(
       response => {
         this.users = response;
+        if(this.users[0]['name'] === 'UNKNOWN')
+          this.users.shift();
         this.loading = false;
         let myself = this.currentUser;
         myself.name = "Myself";

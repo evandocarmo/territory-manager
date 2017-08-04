@@ -82,6 +82,8 @@ export class TakeSearchComponent implements OnInit {
               return;
             }
             this.users = response;
+            if(this.users[0]['name'] === 'UNKNOWN')
+              this.users.shift();
             console.log(this.users);
             this.loading = false;
             let myself = this.currentUser;
