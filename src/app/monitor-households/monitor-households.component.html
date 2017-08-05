@@ -25,10 +25,10 @@
 <table class="bordered striped">
   <thead>
     <tr>
-      <td>Address</td>
-      <td>Language</td>
-      <td class="hide-on-small-only">Last Update</td>
-      <td class="hide-on-small-only">Publisher</td>
+      <td (click)="sortByAddress()">Address</td>
+      <td (click)="sortBy('LANGUAGE')">Language</td>
+      <td (click)="sortByUpdate()" class="hide-on-small-only">Last Update</td>
+      <td (click)="sortByPublisher()" class="hide-on-small-only">Publisher</td>
     </tr>
   </thead>
   <tbody>

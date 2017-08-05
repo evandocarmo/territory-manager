@@ -39,10 +39,10 @@
       <p *ngIf="result">Quantity: {{result.length}}</p>
       <thead>
           <tr>
-              <td>Card</td>
-              <td class="hide-on-small-only">Taken</td>
-              <td class="hide-on-small-only">last search</td>
-              <td>Current publisher</td>
+              <td (click)="sortByCod_Card()">Card</td>
+              <td (click)="sortByDate('TAKEN')"class="hide-on-small-only">Taken</td>
+              <td (click)="sortByDate('last_update')" class="hide-on-small-only">last search</td>
+              <td (click)="sortByPublisher()">Current publisher</td>
           </tr>
       </thead>
       <tbody>

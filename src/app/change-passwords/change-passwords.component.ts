@@ -36,6 +36,14 @@ export class ChangePasswordsComponent implements OnInit {
         console.log(response);
         response.splice(0,1);
         this.users = response;
+        this.users.sort((a,b)=>{
+          if(a['name'].toLowerCase() > b['name'].toLowerCase())
+            return 1;
+          else if (a['name'].toLowerCase() < b['name'].toLowerCase())
+            return -1;
+          else
+            return 0;
+        });
         this.loading = false;
       },
       error => this.problem = true

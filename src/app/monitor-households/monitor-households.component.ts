@@ -212,6 +212,14 @@ export class MonitorHouseholdsComponent implements OnInit {
     this.userService.getAllUsers().subscribe(
       response=>{
         response.splice(0,1);
+        response.sort((a,b)=>{
+          if(a['name'].toLowerCase() > b['name'].toLowerCase())
+            return 1;
+          else if (a['name'].toLowerCase() < b['name'].toLowerCase())
+            return -1;
+          else
+            return 0;
+        });
         for(let user of response){
           this.usersHash[user.id] = user.name;
           this.users.push(user);
@@ -219,6 +227,64 @@ export class MonitorHouseholdsComponent implements OnInit {
       },
       error=>{
         this.problem = true;
+      }
+    )
+  }
+  sortByAddress(){
+    this.results.sort(
+      function naturalSorter(as, bs){
+                as = as['FULL_ADDRESS'];
+                bs = bs['FULL_ADDRESS'];
+                let a, b, a1, b1, i= 0, n, L,
+                rx=/(\.\d+)|(\d+(\.\d+)?)|([^\d.]+)|(\.\D+)|(\.$)/g;
+                if(as=== bs) return 0;
+                a= as.toLowerCase().match(rx);
+                b= bs.toLowerCase().match(rx);
+                L= a.length;
+                while(i<L){
+                    if(!b[i]) return 1;
+                    a1= a[i],
+                    b1= b[i++];
+                    if(a1!== b1){
+                        n= a1-b1;
+                        if(!isNaN(n)) return n;
+                        return a1>b1? 1:-1;
+                    }
+                }
+                return b[i]? -1:0;
+            })
+  }
+  sortBy(parameter){
+    this.results.sort(
+      (a,b)=>{
+        if(a[parameter].toLowerCase() > b[parameter].toLowerCase())
+          return 1;
+        else if(a[parameter].toLowerCase() < b[parameter].toLowerCase())
+          return -1;
+        else
+          return 0;
+      }
+    )
+  }
+  sortByUpdate(){
+    this.results.sort(
+      (a,b)=>{
+        let firstDate:any = new Date(a['last_update']);
+        let secondDate:any = new Date(b['last_update']);
+
+        return firstDate - secondDate;
+      });
+  }
+  sortByPublisher(){
+    this.results.sort(
+      (a,b)=>{
+        let first = a['ID'] !== 0 ? this.usersHash[a['ID']].toLowerCase() : '';
+        let second = b['ID'] !== 0 ? this.usersHash[b['ID']].toLowerCase() : '';
+        if(first > second)
+          return 1;
+        if (first < second)
+          return -1;
+        return 0;
       }
     )
   }

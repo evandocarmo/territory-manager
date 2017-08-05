@@ -57,6 +57,14 @@ export class TakeVisitsComponent implements OnInit {
         this.users = response;
         if(this.users[0]['name'] === 'UNKNOWN')
           this.users.shift();
+          this.users.sort((a,b)=>{
+            if(a['name'].toLowerCase() > b['name'].toLowerCase())
+              return 1;
+            else if (a['name'].toLowerCase() < b['name'].toLowerCase())
+              return -1;
+            else
+              return 0;
+          });
         this.loading = false;
         let myself = this.currentUser;
         myself.name = "Myself";
