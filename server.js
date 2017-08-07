@@ -6,11 +6,17 @@ const app = express();
 app.use(express.static(__dirname + '/dist'));
 // Start the app by listening on the default
 // Heroku port
-app.use('/*',function(req,res){
-  if(req.headers['x-forwarded-proto']!=="https"){
-    res.redirect(301,'https://' + req.get('Host') + req.url);
+const forceSSL = function() {
+  return function (req, res, next) {
+    if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(
+       ['https://', req.get('Host'), req.url].join('')
+      );
+    }
+    next();
   }
-})
+}
+app.use(forceSSL());
 app.get('*', function (req, res) {
   res.sendfile('./dist/index.html'); // load our index.html file
 });
