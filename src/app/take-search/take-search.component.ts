@@ -57,7 +57,7 @@ export class TakeSearchComponent implements OnInit {
         this.problem = true;
       }
     );
-  	this.territoryService.getAllAvailableCards().subscribe(
+  	this.territoryService.getAllCards().subscribe(
   		response=> {
         if(response["fatal"]){
           this.problem = true;

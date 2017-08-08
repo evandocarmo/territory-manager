@@ -18,7 +18,7 @@ export class TerritoryService {
 
   constructor(private router: Router, private http: Http) { }
 
-  public getAllCards(): Observable<Codcard[]>{
+  public getAllCards(): Observable<any>{
     let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
   	return this.http.get(API_URL + "cod_cards",options)
   		.map(this.extractData)

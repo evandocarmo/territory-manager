@@ -23,15 +23,16 @@
           </legend>
         </div>
       <ul class="card-collection collapsible-body">
-        <li *ngFor="let card of neighborhoods[name].codcards" class="card-option grey lighten-2">
+        <li *ngFor="let card of neighborhoods[name].codcards" class="card-option lighten-2" [ngClass]="{'grey':card.available ,'red':!card.available}">
           <input
                 type="checkbox"
                  name="cards"
+                 [disabled]="!card.available"
                  id="{{card.cod}}"
                  (change)="pushIntoSelected(card)"
                  value="{{card.cod}}"
                  class="filled-in"  />
-          <label for="{{card.cod}}"><span class="deep-purple-text text-darken-2">{{card.COD_CARD}}</span> Last search: {{card.LAST_UPDATE}}</label>
+          <label [ngClass]="{'white-text':!card.available}"for="{{card.cod}}"><span [ngClass]="{'white-text':!card.available,'deep-purple-text text-darken-2':card.available}">{{card.COD_CARD}}</span> Last search: {{card.LAST_UPDATE}}</label>
         </li>
       </ul>
   </li>
