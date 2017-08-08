@@ -51,60 +51,60 @@ export class TakeSearchComponent implements OnInit {
           this.neighborhoods[current.area_name].codcards = [];
           this.neighborhoodNames.push(current.area_name);
         }
+        this.territoryService.getAllCards().subscribe(
+          response=> {
+            if(response["fatal"]){
+              this.problem = true;
+              return;
+            }
+            console.log("got cards");
+            let array = response;
+            for(let index in array){
+              let card = array[index];
+              this.neighborhoods[card.AREA_NAME].codcards.push(card);
+            }
+            this.sortByNumber();
+            this.userService.getAllUsers().subscribe(
+              response => {
+                if(response["fatal"]){
+                  this.router.navigate['/take-search'];
+                  return;
+                }
+                console.log("got users");
+                this.users = response;
+                if(this.users[0]['name'] === 'UNKNOWN')
+                  this.users.shift();
+                  this.users.sort((a,b)=>{
+                    if(a['name'].toLowerCase() > b['name'].toLowerCase())
+                      return 1;
+                    else if (a['name'].toLowerCase() < b['name'].toLowerCase())
+                      return -1;
+                    else
+                      return 0;
+                  });
+                console.log(this.users);
+                this.loading = false;
+                let myself = this.currentUser;
+                myself.name = "Myself";
+                this.users.unshift(myself);
+              },
+              error => {
+                this.errorMessage = <any>error;
+                this.problem = true;
+              }
+            );
+          },
+          error => {
+                this.errorMessage = <any>error;
+                this.problem = true;
+              }
+        );
       },
       error => {
         this.errorMessage = <any>error;
         this.problem = true;
       }
     );
-  	this.territoryService.getAllCards().subscribe(
-  		response=> {
-        if(response["fatal"]){
-          this.problem = true;
-          return;
-        }
-        console.log("got cards");
-  			let array = response;
-        for(let index in array){
-          let card = array[index];
-          this.neighborhoods[card.AREA_NAME].codcards.push(card);
-  		  }
-        this.sortByNumber();
-        this.userService.getAllUsers().subscribe(
-          response => {
-            if(response["fatal"]){
-              this.router.navigate['/take-search'];
-              return;
-            }
-            console.log("got users");
-            this.users = response;
-            if(this.users[0]['name'] === 'UNKNOWN')
-              this.users.shift();
-              this.users.sort((a,b)=>{
-                if(a['name'].toLowerCase() > b['name'].toLowerCase())
-                  return 1;
-                else if (a['name'].toLowerCase() < b['name'].toLowerCase())
-                  return -1;
-                else
-                  return 0;
-              });
-            console.log(this.users);
-            this.loading = false;
-            let myself = this.currentUser;
-            myself.name = "Myself";
-            this.users.unshift(myself);
-          },
-          error => {
-            this.errorMessage = <any>error;
-            this.problem = true;
-          }
-        );
-      },
-  		error => {
-            this.errorMessage = <any>error;
-            this.problem = true;
-          }
-  	);
   }
 
   ngAfterViewInit(){
