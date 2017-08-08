@@ -34,13 +34,6 @@ export class TakeSearchComponent implements OnInit {
   constructor(private territoryService : TerritoryService, private userService : UserService,private router : Router) { }
 
   ngOnInit() {
-  	this.getData();
-  }
-
-  ngAfterViewInit(){
-  }
-
-  getData(){
     this.loading = true;
     this.territoryService.getNeighborhoods().subscribe(
       response => {
@@ -49,6 +42,7 @@ export class TakeSearchComponent implements OnInit {
           return;
         }
         let array :any= response;
+        console.log('Got response. All good so far');
         for(let index in array){
           let current = array[index];
           this.neighborhoods[current.area_name] = {};
@@ -69,6 +63,7 @@ export class TakeSearchComponent implements OnInit {
           this.problem = true;
           return;
         }
+        console.log("got cards");
   			let array = response;
         for(let index in array){
           let card = array[index];
@@ -81,6 +76,7 @@ export class TakeSearchComponent implements OnInit {
               this.router.navigate['/take-search'];
               return;
             }
+            console.log("got users");
             this.users = response;
             if(this.users[0]['name'] === 'UNKNOWN')
               this.users.shift();
@@ -109,6 +105,9 @@ export class TakeSearchComponent implements OnInit {
             this.problem = true;
           }
   	);
+  }
+
+  ngAfterViewInit(){
   }
   pushIntoSelected(card){
     if(!this.selectedCards.includes(card.cod))

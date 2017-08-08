@@ -1,3 +1,7 @@
+a:hover{
+  cursor:pointer;
+}
+
 .dropdown-button:hover{
   cursor:pointer;
 }
