@@ -11,7 +11,7 @@
   <a class="deep-purple-text text-darken-2" [routerLink]="['/update-visits']">Update</a>
 </div>
 
-<div class="col s12 z-depth-3 card horizontal" [hidden]="user.privilege === 'PUBLISHER'">
+<div class="col s12 z-depth-3 card horizontal" *ngIf="user.privilege !== 'PUBLISHER'">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header black-text">Checkout</h4>
@@ -39,13 +39,13 @@
       </div>
     </div>
 </div>
-<div class="col s12 z-depth-3 card horizontal" [hidden]="!(user.privilege === 'ELDER')">
+<div class="col s12 z-depth-3 card horizontal" *ngIf="user.privilege === 'ELDER'">
     <div class="card-stacked">
       <div class="card-content">
       <h4 class="header black-text">Admin</h4>
-        <a class="deep-purple btn flat-btn white-text s3 "[routerLink]="['/admin-users']"><i class="material-icons left medium">people</i> Users</a>
-        <a class="deep-purple btn s3 flat-btn white-text "[routerLink]="['/admin-search']"><i class="material-icons left medium">edit_location</i> Search Territory</a>
-        <a class="deep-purple btn s3 flat-btn white-text "[routerLink]="['/admin-visit']"><i class="material-icons left medium">work</i>Visit Territory</a>
+        <a class="deep-purple btn flat-btn white-text s3 darken-2"[routerLink]="['/admin-users']"><i class="material-icons left medium">people</i> Users</a>
+        <a class="deep-purple btn s3 flat-btn white-text darken-2"[routerLink]="['/admin-search']"><i class="material-icons left medium">edit_location</i> Search Territory</a>
+        <a class="deep-purple btn s3 flat-btn white-text darken-2"[routerLink]="['/admin-visit']"><i class="material-icons left medium">work</i>Visit Territory</a>
       </div>
     </div>
 </div>
