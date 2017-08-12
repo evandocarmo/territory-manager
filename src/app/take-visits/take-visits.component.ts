@@ -126,7 +126,7 @@ export class TakeVisitsComponent implements OnInit {
     );
   }
   onSubmit(){
-    if(!this.selectedUser || !this.quantity || !this.selectedNeighborhood){
+    if(!this.selectedUser || !this.quantity || !this.selectedNeighborhood || !this.housesLoaded){
       this.loading = false;
       return;
     }
