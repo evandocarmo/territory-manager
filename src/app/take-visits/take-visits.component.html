@@ -3,7 +3,7 @@
   There has been a problem. Please, <a routerLink="/"> try Again</a>
 </div>
 <p class="deep-purple-text center-align">Select households to be visited</p>
-<form class="form" (ngSubmit)="onSubmit()" #takeVisitsForm = "ngForm" class="card-panel">
+<form class="form" (ngSubmit)="onSubmit()" #takeVisitsForm = "ngForm" class="card-panel" (keydown.enter)="$event.preventDefault()">
   <div class="input-field" id="take-user-select">
     <legend>Select a Publisher</legend>
     <select class="browser-default" name="user" [(ngModel)]="selectedUser" required>
