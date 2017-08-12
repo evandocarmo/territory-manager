@@ -77,11 +77,21 @@ export class TakeVisitsComponent implements OnInit {
     );
     console.log(this);
   }
+  reset(){
+    this.housesLoaded = false;
+    this.households = Array();
+    if(this.selectedNeighborhood)
+      this.populate();
+  }
   populate(){
+    if(this.quantity > 30)
+      this.quantity = 30;
     this.housesLoaded = false;
     this.loading = true;
-    if(!this.selectedUser && !this.quantity && !this.selectedNeighborhood)
+    if(!this.selectedUser || !this.quantity || !this.selectedNeighborhood){
+      this.loading = false;
       return;
+    }
     this.householdService.getHouseholdsByQuantity(this.quantity,this.selectedNeighborhood).subscribe(
       response => {
         this.households = response;
@@ -116,6 +126,10 @@ export class TakeVisitsComponent implements OnInit {
     );
   }
   onSubmit(){
+    if(!this.selectedUser || !this.quantity || !this.selectedNeighborhood){
+      this.loading = false;
+      return;
+    }
     for(let house in this.households)
       this.cods.push(this.households[house].COD);
     this.householdService.checkoutHouseholds(this.cods,this.selectedUser).subscribe(

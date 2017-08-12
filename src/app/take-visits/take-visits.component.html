@@ -13,7 +13,7 @@
   </div>
   <div class="input-field" id="take-neighborhood-select">
     <legend>Select a Neighborhood</legend>
-    <select class="browser-default" name="neighborhood" [(ngModel)]="selectedNeighborhood" (change)="quantity = 0" required>
+    <select class="browser-default" name="neighborhood" [(ngModel)]="selectedNeighborhood" (change)="reset()" required>
       <option value='' disabled>Select a neighborhood</option>
       <option *ngFor="let neighborhood of neighborhoods" value="{{neighborhood.area_name}}">{{neighborhood.area_name}}</option>
     </select>
