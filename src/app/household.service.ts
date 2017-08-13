@@ -110,11 +110,15 @@ export class HouseholdService {
       .map(this.extractData)
       .catch(this.handleError)
   }
-  public deleteHousehold(cod,user):Observable<any>{
+  public deleteHousehold(house):Observable<any>{
+    let cod = house['COD'];
+    let user = house['ID'];
+    let cod_card_cod = house['COD_CARD_COD'];
     let deleteOptions = new RequestOptions( {method:'DELETE',headers:contentHeaders} );
     let params:URLSearchParams = new URLSearchParams();
     params.set("cod",cod);
     params.set("user",user);
+    params.set("cod_card_cod",cod_card_cod);
     console.log(params);
     deleteOptions.params = params;
     return this.http.delete(API_URL + "households",deleteOptions)

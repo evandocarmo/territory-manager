@@ -68,21 +68,12 @@ export class UpdateVisitsComponent implements OnInit {
     if(!confirm("Are you sure you want to DELETE this?"))
       return;
     this.loading = true;
-    this.householdService.deleteHousehold(house.COD,this.user.id).subscribe(
+    this.householdService.deleteHousehold(house).subscribe(
       response=>{
-        this.user.visiting -= 1;
-        this.userService.updateUser(this.user).subscribe(
-          response=>{
             let index = this.households.indexOf(house);
             this.households.splice(index,1);
             this.loading = false;
             Materialize.toast("Household deleted! Thanks for your help.",4000,"green white-text");
-          },
-          error=>{
-            this.errorMessage = error;
-            this.problem = true;
-          }
-        )
       },
       error=>{
         this.errorMessage = error;

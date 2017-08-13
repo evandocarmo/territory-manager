@@ -118,7 +118,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     if(confirm("Are you sure you want to delete this household?")){
       this.loading = true;
       Materialize.toast('Please,wait...',3000);
-      this.householdService.deleteHousehold(house.COD,this.currentUser.id).subscribe(
+      this.householdService.deleteHousehold(house).subscribe(
         response=>{
           Materialize.toast('Household successfully deleted!',5000,'green white-text');
           let index = this.households.indexOf(house);

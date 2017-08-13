@@ -56,7 +56,7 @@ export class UpdateSearchComponent implements OnInit {
   deleteHousehold(element,cod_card){
     if(confirm("Are you sure you want to delete this?")){
       this.loading = true;
-      this.householdService.deleteHousehold(element.COD,this.user.id).subscribe(
+      this.householdService.deleteHousehold(element).subscribe(
         response=>{
           let index = this.householdsByCard[cod_card].households.indexOf(element);
           this.householdsByCard[cod_card].households.splice(index,1);
