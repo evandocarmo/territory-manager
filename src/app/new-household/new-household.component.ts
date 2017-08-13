@@ -76,11 +76,13 @@ export class NewHouseholdComponent implements OnInit {
   onSubmit(){
     this.loading = true;
     let card = this.cardsHash[this.selectedCodCard];
+    this.addedHousehold['cod_card_cod'] = card['cod'];
     this.addedHousehold.cod_card = card.COD_CARD;
     this.addedHousehold.area = card.AREA;
     this.addedHousehold.area_number = card.AREA_NUMBER;
     this.addedHousehold.macroarea = card.MACROAREA;
     this.addedHousehold.full_address = this.addedHousehold.area + " " + this.addedHousehold.area_number + ', ' + this.addedHousehold.address + ', ' + this.addedHousehold.area_name + ", Brasília DF";
+
     console.log(this.addedHousehold);
     this.HouseholdService.addHousehold(this.addedHousehold).subscribe(
       response=>{
