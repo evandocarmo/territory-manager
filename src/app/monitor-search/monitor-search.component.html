@@ -58,6 +58,13 @@
                     <i class="material-icons large">delete</i>
                   </a>
                 </li>
+                <li *ngIf="!card['available']" class="waves-effect waves-light deep-purple darken-2">
+                  <a
+                    (click)="returnNoUpdate(card)"
+                    class="white-text">
+                    Return
+                  </a>
+                </li>
                 <li class="waves-effect waves-light btn deep-purple darken-2">
                   <a
                     class="white-text"

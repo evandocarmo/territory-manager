@@ -146,7 +146,7 @@ export class MonitorHouseholdsComponent implements OnInit {
     let cod = this.checkoutOptions.house['COD'];
     let user = parseInt(this.checkoutOptions.user);
     let oldUser = this.checkoutOptions.house['ID'];
-    this.householdService.returnedHouseholds(cod,oldUser).subscribe(
+    this.householdService.returnHouseholdsNoUpdate(cod,oldUser).subscribe(
       response=>{
       },
       error=>{
@@ -229,6 +229,24 @@ export class MonitorHouseholdsComponent implements OnInit {
         this.problem = true;
       }
     )
+  }
+  return(house){
+    if(!confirm(`Are you sure you want to take this from the publisher and make it available?`))
+      return;
+    console.log(house);
+    this.loading = true;
+    this.householdService.returnHouseholdsNoUpdate(house['COD'],house['ID']).subscribe(
+      response=>{
+        this.loading = false;
+        Materialize.toast("House returned, no updates made.",4000,"green white-text");
+        house['ID'] = 0;
+        house['AVAILABLE'] = 1;
+      },
+      error=>{
+        this.problem = true;
+      }
+    );
+
   }
   sortByAddress(){
     this.results.sort(

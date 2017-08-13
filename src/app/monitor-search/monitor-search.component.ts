@@ -50,11 +50,26 @@ export class MonitorSearchComponent implements OnInit {
     }
     );
   }
-
+  returnNoUpdate(card){
+    if(!confirm("Are you sure you want to return this card and make it available?"))
+      return;
+    this.loading = true;
+    this.territoryService.returnCardNoUpdate(card["cod"],card["ID"]).subscribe(
+      response=>{
+        this.loading = false;
+        card["ID"] = 0;
+        card["available"] = 1;
+      },
+      error=>{
+        this.loading = false;
+        this.problem = true;
+      }
+    )
+  }
   delete(card){
     if(confirm("Are you sure you want to delete this card? This action cannot be undone.")){
       this.loading = true;
-      this.territoryService.deleteCard(card.cod).subscribe(
+      this.territoryService.deleteCard(card.cod,card['ID']).subscribe(
         response=>{
           let index = this.result.indexOf(card);
           this.result.splice(index,1);

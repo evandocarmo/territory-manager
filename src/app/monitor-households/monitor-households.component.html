@@ -42,6 +42,9 @@
           <li class="waves-effect waves-light center-align white"(click)="openCheckout(house)">
             <a class="deep-purple-text darken-2 center-align">Checkout</a>
           </li>
+          <li *ngIf="!house['AVAILABLE']"class="waves-effect waves-light center-align white"(click)="return(house)">
+            <a class="deep-purple-text darken-2 center-align">Return</a>
+          </li>
           <li class="waves-effect waves-light center-align white"(click)="openEdit(house)">
             <a class="deep-purple-text darken-2 center-align">Edit</a>
           </li>

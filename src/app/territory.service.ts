@@ -145,10 +145,18 @@ export class TerritoryService {
       .map(this.extractData)
       .catch(this.handleError);
   }
-  public deleteCard(cod):Observable<any>{
+  public returnCardNoUpdate(cod,user):Observable<any>{
+    let options = new RequestOptions( {method: 'PUT', headers: contentHeaders });
+    return this.http.put(API_URL + "cod_cards/return-no-update",JSON.stringify({cod,user}),options)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+  public deleteCard(cod,user):Observable<any>{
     let options = new RequestOptions ({method:'DELETE',headers: contentHeaders});
     let params:URLSearchParams = new URLSearchParams();
     params.set('cod',cod);
+    if(user)
+      params.set('user',user);
     options.params = params;
     return this.http.delete(API_URL + "cod_cards",options)
       .map(this.extractData)
