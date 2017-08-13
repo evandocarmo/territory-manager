@@ -33,7 +33,8 @@ export class NewHouseholdComponent implements OnInit {
     comments:'',
     area_name:'',
     full_address:'',
-    macroarea:''
+    macroarea:'',
+    cod_card_cod:''
   }
   languages = Languages;
   constructor(private territoryService:TerritoryService,private HouseholdService:HouseholdService) { }
@@ -76,7 +77,7 @@ export class NewHouseholdComponent implements OnInit {
   onSubmit(){
     this.loading = true;
     let card = this.cardsHash[this.selectedCodCard];
-    this.addedHousehold['cod_card_cod'] = card['cod'];
+    this.addedHousehold.cod_card_cod = card.cod;
     this.addedHousehold.cod_card = card.COD_CARD;
     this.addedHousehold.area = card.AREA;
     this.addedHousehold.area_number = card.AREA_NUMBER;
