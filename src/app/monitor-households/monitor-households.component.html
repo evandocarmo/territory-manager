@@ -27,6 +27,7 @@
     <tr>
       <td (click)="sortByAddress()">Address</td>
       <td (click)="sortBy('LANGUAGE')">Language</td>
+<td (click)="sortByUpdate()" class="hide-on-small-only">Taken</td>
       <td (click)="sortByUpdate()" class="hide-on-small-only">Last Update</td>
       <td (click)="sortByPublisher()" class="hide-on-small-only">Publisher</td>
     </tr>
@@ -35,7 +36,16 @@
       <tr [ngClass]="{'red lighten-4':!house['AVAILABLE']}" *ngFor="let house of results | paginate: { itemsPerPage: 10, currentPage: p }">
         <td>{{house['FULL_ADDRESS']}}</td>
         <td>{{house['LANGUAGE']}}</td>
-        <td class="hide-on-small-only">{{house['fLAST_UPDATE']}}</td>
+        <td class="hide-on-small-only">
+          <span *ngIf="house['fTAKEN']">{{house['fTAKEN']}} days</span>
+          <span *ngIf="house['fTAKEN'] === 0">Taken today</span>
+          <span *ngIf="house['fTAKEN'] === null">Never taken</span>
+        </td>
+        <td class="hide-on-small-only">
+          <span *ngIf="house['fLAST_UPDATE']">{{house['fLAST_UPDATE']}} days</span>
+          <span *ngIf="house['fLAST_UPDATE'] === null">Never Updated</span>
+          <span *ngIf="house['fLAST_UPDATE'] === 0">Updated today</span>
+        </td>
         <td class="hide-on-small-only">{{usersHash[house['ID']]}}</td>
         <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+house.COD">more_vert</a>
         <ul [attr.id]="'options'+house.COD" materialize="dropdown"class='dropdown-content z-depth-4'>
@@ -67,7 +77,7 @@
         {{checkoutOptions.house['FULL_ADDRESS']}},
         {{checkoutOptions.house['LANGUAGE']}},
         last updated on:
-        {{checkoutOptions.house['fLAST_UPDATE']}}
+        {{checkoutOptions.house['fLAST_UPDATE']}} days ago.
       </p>
       <p>Select a user to receive this house:</p>
       <select required name="userCheckout" class="browser-default" [(ngModel)]="checkoutOptions.user">

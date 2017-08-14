@@ -9,6 +9,7 @@
               <td>Address</td>
               <td>Language</td>
               <td>Comments</td>
+              <td>Taken</td>
           </tr>
       </thead>
       <tbody>
@@ -16,6 +17,11 @@
               <td class="data address"><a target="_blank" href="https://www.google.com/maps/search/{{house.FULL_ADDRESS}}">{{house.FULL_ADDRESS}}</a></td>
               <td class="data">{{house.LANGUAGE}}</td>
               <td class="data">{{house.COMMENTS}}</td>
+              <td class="data">
+                <span *ngIf="house['fTAKEN']">{{house['fTAKEN']}} days</span>
+                <span *ngIf="house['fTAKEN'] === 0">Taken today</span>
+                <span *ngIf="house['fTAKEN'] === null">Never taken</span>
+              </td>
           </tr>
       </tbody>
     </table>

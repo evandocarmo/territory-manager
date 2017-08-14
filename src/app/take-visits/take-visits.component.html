@@ -34,7 +34,8 @@
           <tr class="row" *ngFor="let house of households">
               <td>{{house.FULL_ADDRESS}}</td>
               <td class="data address">{{house.LANGUAGE}}</td>
-              <td class="data">{{house.LAST_UPDATE}}</td>
+              <td *ngIf="house.fLAST_UPDATE" class="data">{{house.fLAST_UPDATE}} days</td>
+              <td *ngIf="!house.fLAST_UPDATE">Never Visited</td>
           </tr>
       </tbody>
   </table>
