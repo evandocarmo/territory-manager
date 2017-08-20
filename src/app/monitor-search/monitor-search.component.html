@@ -40,9 +40,9 @@
       <thead>
           <tr>
               <td (click)="sortByCod_Card()">Card</td>
-              <td (click)="sortByDate('TAKEN')"class="hide-on-small-only">Taken</td>
-              <td (click)="sortByDate('last_update')" class="hide-on-small-only">Last search</td>
-              <td class="hide-on-small-only">Houses</td>
+              <td (click)="sortByNumber('TAKEN')"class="hide-on-small-only">Taken</td>
+              <td (click)="sortByNumber('LAST_UPDATE')" class="hide-on-small-only">Last search</td>
+              <td (click)="sortByNumber('COUNT')" class="hide-on-small-only">Houses</td>
               <td (click)="sortByPublisher()">Current publisher</td>
           </tr>
       </thead>
@@ -53,7 +53,7 @@
               <td *ngIf="!card.TAKEN" class="hide-on-small-only">Never taken</td>
               <td *ngIf="card.LAST_UPDATE"class="hide-on-small-only">{{card.LAST_UPDATE}} days</td>
               <td *ngIf="!card.LAST_UPDATE"class="hide-on-small-only">Never worked</td>
-              <td>{{card.COUNT}}</td>
+              <td class="hide-on-small-only">{{card.COUNT}}</td>
               <td>{{usersHash[card.ID]}}</td>
               <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+card.cod">more_vert</a>
               <ul [attr.id]="'options'+card.cod" materialize="dropdown"class='dropdown-content z-depth-4'>

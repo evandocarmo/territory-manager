@@ -122,6 +122,7 @@ export class TakeSearchComponent implements OnInit {
     console.log(this.selectedCardNames);
   }
   onSubmit(){
+    this.loading = true;
     this.territoryService.checkOutCards(this.selectedCards,this.selectedUser).subscribe(
       response => {
           this.router.navigate(["/display-households-in-cards"],{queryParams:{
@@ -129,7 +130,7 @@ export class TakeSearchComponent implements OnInit {
           }});
       },
       error => {
-        this.onSubmit();
+        this.loading = false;
         this.errorMessage = <any>error;
         this.problem = true;
       }

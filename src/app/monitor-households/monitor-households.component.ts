@@ -284,13 +284,10 @@ export class MonitorHouseholdsComponent implements OnInit {
       }
     )
   }
-  sortByUpdate(){
+  sortByNumber(parameter){
     this.results.sort(
       (a,b)=>{
-        let firstDate:any = new Date(a['last_update']);
-        let secondDate:any = new Date(b['last_update']);
-
-        return firstDate - secondDate;
+        return b[parameter] - a[parameter];
       });
   }
   sortByPublisher(){

@@ -158,12 +158,10 @@ export class MonitorSearchComponent implements OnInit {
       }
     );
   }
-  sortByDate(parameter){
+  sortByNumber(parameter){
     this.result.sort(
       (a,b)=>{
-        let firstDate:any = new Date(a[parameter]);
-        let secondDate:any = new Date(b[parameter]);
-        return firstDate - secondDate;
+      return b[parameter] - a[parameter];
       });
   }
   sortByPublisher(){
