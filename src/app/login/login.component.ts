@@ -15,8 +15,8 @@ declare var Materialize:any;
 export class LoginComponent implements OnInit {
 
   constructor(private http :Http,private authService: AuthService,private router: Router) {  }
-  username:string;
-  password:string;
+  username = '';
+  password = '';
   loading = false;
   ngOnInit() {
      this.router.navigate(['/home']);
