@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   ngOnInit() {
      this.router.navigate(['/home']);
+     Materialize.updateTextFields();
   }
 
   login(event, username,password) {
