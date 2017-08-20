@@ -1,6 +1,6 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <form class="card-panel">
-        <input autofocus class="form-control input-field" name="username" placeholder="Username" type="text"[(ngModel)] = "username"/>
-        <input class="form-control input-field" name="password" placeholder="Password" type="password" [(ngModel)] = "password"/>
+        <input autofocus class="form-control input-field" name="username" placeholder="Username" type="text"[(ngModel)] = "username">
+        <input class="form-control input-field" name="password" placeholder="Password" type="password" [(ngModel)] = "password">
         <button (click)="login($event, username, password)" class="waves-effect waves-light btn deep-purple darken-2">Log In</button>
 </form>
