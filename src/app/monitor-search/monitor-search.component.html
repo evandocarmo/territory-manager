@@ -50,9 +50,11 @@
           <tr class="row" [ngClass]="{'red lighten-4':!card.available}" *ngFor="let card of result | paginate: { itemsPerPage: 10, currentPage: p }">
               <td>{{card.COD_CARD}}, {{card.AREA_NAME}}</td>
               <td *ngIf="card.TAKEN" class="hide-on-small-only">{{card.TAKEN}} days</td>
-              <td *ngIf="!card.TAKEN" class="hide-on-small-only">Never taken</td>
+              <td *ngIf="card.TAKEN === null" class="hide-on-small-only">Never taken</td>
+              <td *ngIf="card.TAKEN === 0" class="hide-on-small-only">Taken Today</td>
               <td *ngIf="card.LAST_UPDATE"class="hide-on-small-only">{{card.LAST_UPDATE}} days</td>
-              <td *ngIf="!card.LAST_UPDATE"class="hide-on-small-only">Never worked</td>
+              <td *ngIf="card.LAST_UPDATE === null"class="hide-on-small-only">Never worked</td>
+              <td *ngIf="card.LAST_UPDATE === 0"class="hide-on-small-only">Updated Today</td>
               <td class="hide-on-small-only">{{card.COUNT}}</td>
               <td>{{usersHash[card.ID]}}</td>
               <a class="material-icons tiny dropdown-button grey-text" materialize="dropdown" [attr.data-activates]="'options'+card.cod">more_vert</a>

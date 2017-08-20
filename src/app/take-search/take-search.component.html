@@ -33,7 +33,7 @@
                  value="{{card.cod}}"
                  class="filled-in"  />
           <label [ngClass]="{'white-text':!card.available}"for="{{card.cod}}"><span [ngClass]="{'white-text':!card.available,'deep-purple-text text-darken-2':card.available}">{{card.COD_CARD}}</span>
-            <span *ngIf="card.LAST_UPDATE">{{card.LAST_UPDATE}} days ago</span><span *ngIf="!card.LAST_UPDATE">Never worked</span> | {{card.COUNT}} house(s)</label>
+            <span *ngIf="card.LAST_UPDATE">{{card.LAST_UPDATE}} days ago</span><span *ngIf="card.LAST_UPDATE === null">Never worked</span><span *ngIf="card.LAST_UPDATE === 0">Updated Today</span> | {{card.COUNT}} house(s)</label>
         </li>
       </ul>
   </li>
