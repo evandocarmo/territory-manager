@@ -1,6 +1,11 @@
 <app-spinner *ngIf="loading"></app-spinner>
 <form class="card-panel col s12">
-        <input autofocus class="form-control input-field" name="username" placeholder="Username" type="text"[(ngModel)] = "username">
+       <div class="row">
+          <div class="input-field col s12">
+            <input id="username" type="text" class="validate" name="username" [(ngModel)] = "username">
+            <label for="username">Name</label>
+          </div>
+        </div>
         <div class="row">
           <div class="input-field col s12">
             <input id="password" type="password" class="validate" name="password" [(ngModel)] = "password">
