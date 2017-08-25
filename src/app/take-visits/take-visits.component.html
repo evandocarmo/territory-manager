@@ -27,15 +27,16 @@
           <tr>
               <td>Address</td>
               <td>Language</td>
-              <td>Last Visit</td>
+              <td>Last Taken</td>
           </tr>
       </thead>
       <tbody>
           <tr class="row" *ngFor="let house of households">
               <td>{{house.FULL_ADDRESS}}</td>
               <td class="data address">{{house.LANGUAGE}}</td>
-              <td *ngIf="house.fLAST_UPDATE" class="data">{{house.fLAST_UPDATE}} days</td>
-              <td *ngIf="!house.fLAST_UPDATE">Never Visited</td>
+              <td *ngIf="house.fTAKEN" class="data">{{house.fTAKEN}} days</td>
+              <td *ngIf="house.fTAKEN === null">Never Taken</td>
+              <td *ngIf="house.fTAKEN === 0">Taken Today</td>
           </tr>
       </tbody>
   </table>
