@@ -1,3 +1,5 @@
+//Injectable service for creating, editing and deleting individual households
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Headers, Http, Response, RequestOptions, URLSearchParams } from '@angular/http';
@@ -11,7 +13,7 @@ const contentHeaders = new Headers();
 
 contentHeaders.append('Accept', 'application/json');
 contentHeaders.append('Content-Type', 'application/json');
-contentHeaders.append('x-access-token',localStorage.getItem('token'));
+contentHeaders.append('x-access-token', localStorage.getItem('token'));
 const API_URL: string = environment.API_URL + '/api/';
 
 @Injectable()
@@ -19,109 +21,109 @@ export class HouseholdService {
 
   constructor(private router: Router, private http: Http) { }
 
-  public getAllHouseholds(){
-    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
-    return this.http.get(API_URL + 'households',options)
+  public getAllHouseholds() {
+    let options = new RequestOptions({ method: 'GET', headers: contentHeaders });
+    return this.http.get(API_URL + 'households', options)
       .map(this.extractData)
       .catch(this.handleError)
   }
-  public getHouseholdsByUser(user){
-    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
-    let params:URLSearchParams = new URLSearchParams();
-    params.set('user',user);
+  public getHouseholdsByUser(user) {
+    let options = new RequestOptions({ method: 'GET', headers: contentHeaders });
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('user', user);
     options.params = params;
-    return this.http.get(API_URL + "households",options)
+    return this.http.get(API_URL + "households", options)
       .map(this.extractData)
       .catch(this.handleError);
   }
-  public getHouseholdsBycardCod(cardCod){
-    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
-    let params:URLSearchParams = new URLSearchParams();
-        for(var cod in cardCod){
-          console.log(cardCod[cod]);
-          params.append('cod_card_cod',cardCod[cod]);
-        }
+  public getHouseholdsBycardCod(cardCod) {
+    let options = new RequestOptions({ method: 'GET', headers: contentHeaders });
+    let params: URLSearchParams = new URLSearchParams();
+    for (var cod in cardCod) {
+      console.log(cardCod[cod]);
+      params.append('cod_card_cod', cardCod[cod]);
+    }
     options.params = params;
     console.log(params);
-    return this.http.get(API_URL + "households",options)
+    return this.http.get(API_URL + "households", options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public getHouseholdsByQuantity(quantity,neighborhood){
-    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
-    let params:URLSearchParams = new URLSearchParams();
-    params.set("quantity",quantity);
-    params.set("area_name",neighborhood);
+  public getHouseholdsByQuantity(quantity, neighborhood) {
+    let options = new RequestOptions({ method: 'GET', headers: contentHeaders });
+    let params: URLSearchParams = new URLSearchParams();
+    params.set("quantity", quantity);
+    params.set("area_name", neighborhood);
     options.params = params;
-    return this.http.get(API_URL + "households",options)
+    return this.http.get(API_URL + "households", options)
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public getHouseholdsByCods(cods){
+  public getHouseholdsByCods(cods) {
     console.log(cods);
     console.log(cods.constructor);
-    let options = new RequestOptions( {method: 'GET', headers: contentHeaders });
-    if(cods.constructor !== Array()){
+    let options = new RequestOptions({ method: 'GET', headers: contentHeaders });
+    if (cods.constructor !== Array()) {
       let temp = Array();
       temp.push(cods);
       cods = temp;
     }
-    let params:URLSearchParams = new URLSearchParams();
-        for(var cod in cods){
-          console.log(cods[cod]);
-          params.append('cod',cods[cod]);
-        }
+    let params: URLSearchParams = new URLSearchParams();
+    for (var cod in cods) {
+      console.log(cods[cod]);
+      params.append('cod', cods[cod]);
+    }
     console.log(params);
     options.params = params;
-    return this.http.get(API_URL + "households",options)
+    return this.http.get(API_URL + "households", options)
       .map(this.extractData)
       .catch(this.handleError)
   }
 
-  public checkoutHouseholds(cod,user):Observable<any>{
-    let putOptions = new RequestOptions( {method: 'PUT', headers: contentHeaders });
-    return this.http.put(API_URL + "households/checkout",JSON.stringify({cod,user}),putOptions)
+  public checkoutHouseholds(cod, user): Observable<any> {
+    let putOptions = new RequestOptions({ method: 'PUT', headers: contentHeaders });
+    return this.http.put(API_URL + "households/checkout", JSON.stringify({ cod, user }), putOptions)
       .map(this.extractData)
       .catch(this.handleError);
   }
-  public addHousehold(household):Observable<any>{
-    let Options = new RequestOptions( {method: 'POST', headers: contentHeaders });
-    return this.http.post(API_URL + "households",JSON.stringify({household}),Options)
+  public addHousehold(household): Observable<any> {
+    let Options = new RequestOptions({ method: 'POST', headers: contentHeaders });
+    return this.http.post(API_URL + "households", JSON.stringify({ household }), Options)
       .map(this.extractData)
       .catch(this.handleError);
   }
-  public returnedHouseholds(cod,user):Observable<any>{
-    let putOptions = new RequestOptions( {method: 'PUT', headers: contentHeaders });
-    return this.http.put(API_URL + "households/return",JSON.stringify({cod,user}),putOptions)
+  public returnedHouseholds(cod, user): Observable<any> {
+    let putOptions = new RequestOptions({ method: 'PUT', headers: contentHeaders });
+    return this.http.put(API_URL + "households/return", JSON.stringify({ cod, user }), putOptions)
       .map(this.extractData)
       .catch(this.handleError);
   }
-  public returnHouseholdsNoUpdate(cod,user):Observable<any>{
-    let putOptions = new RequestOptions( {method: 'PUT', headers: contentHeaders });
-    return this.http.put(API_URL + "households/return-no-update",JSON.stringify({cod,user}),putOptions)
+  public returnHouseholdsNoUpdate(cod, user): Observable<any> {
+    let putOptions = new RequestOptions({ method: 'PUT', headers: contentHeaders });
+    return this.http.put(API_URL + "households/return-no-update", JSON.stringify({ cod, user }), putOptions)
       .map(this.extractData)
       .catch(this.handleError);
   }
-  public updateHousehold(household):Observable<any>{
-    let putOptions = new RequestOptions( {method:'PUT', headers:contentHeaders});
-    return this.http.put(API_URL+"households",JSON.stringify(household),putOptions)
+  public updateHousehold(household): Observable<any> {
+    let putOptions = new RequestOptions({ method: 'PUT', headers: contentHeaders });
+    return this.http.put(API_URL + "households", JSON.stringify(household), putOptions)
       .map(this.extractData)
       .catch(this.handleError)
   }
-  public deleteHousehold(house):Observable<any>{
+  public deleteHousehold(house): Observable<any> {
     let cod = house['COD'];
     let user = house['ID'];
     let cod_card_cod = house['COD_CARD_COD'];
-    let deleteOptions = new RequestOptions( {method:'DELETE',headers:contentHeaders} );
-    let params:URLSearchParams = new URLSearchParams();
-    params.set("cod",cod);
-    params.set("user",user);
-    params.set("cod_card_cod",cod_card_cod);
+    let deleteOptions = new RequestOptions({ method: 'DELETE', headers: contentHeaders });
+    let params: URLSearchParams = new URLSearchParams();
+    params.set("cod", cod);
+    params.set("user", user);
+    params.set("cod_card_cod", cod_card_cod);
     console.log(params);
     deleteOptions.params = params;
-    return this.http.delete(API_URL + "households",deleteOptions)
+    return this.http.delete(API_URL + "households", deleteOptions)
       .map(this.extractData)
       .catch(this.handleError)
   }
@@ -130,9 +132,9 @@ export class HouseholdService {
     let body = res.json();
     console.log(body);
     (JSON.stringify(body));
-    return body || { };
+    return body || {};
   }
-  private handleError (error: Response | any) {
+  private handleError(error: Response | any) {
     // In a real world app, we might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
