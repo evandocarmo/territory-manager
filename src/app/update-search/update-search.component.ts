@@ -42,6 +42,7 @@ export class UpdateSearchComponent implements OnInit {
     private territoryService: TerritoryService,
     private userService: UserService
   ) { }
+
   saveChanges(element) {
     element['FULL_ADDRESS'] = element['AREA'] + " " + element['AREA_NUMBER'] + " " + element['ADDRESS'] + " " + element['AREA_NAME'] + " " + "Brasilia DF";
     this.loading = true;
@@ -122,9 +123,10 @@ export class UpdateSearchComponent implements OnInit {
               return b[i] ? -1 : 0;
             });
             for (let house of response) {
-
               if (this.householdsByCard[house.COD_CARD])
                 this.householdsByCard[house.COD_CARD].households.push(house);
+              else
+                console.log(house);
             }
             this.loading = false;
           },

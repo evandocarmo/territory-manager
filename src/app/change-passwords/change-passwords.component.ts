@@ -1,11 +1,13 @@
-import { Component, OnInit,EventEmitter } from '@angular/core';
-import { UserService } from '../user.service';
-import {MaterializeModule} from "angular2-materialize";
-import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
-import { Router,ActivatedRoute } from '@angular/router';
+//Allows admin to change any user's password
 
-declare var $ : any;
-declare var Materialize :any;
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { UserService } from '../user.service';
+import { MaterializeModule } from "angular2-materialize";
+import { MaterializeDirective, MaterializeAction } from "angular2-materialize";
+import { Router, ActivatedRoute } from '@angular/router';
+
+declare var $: any;
+declare var Materialize: any;
 
 @Component({
   selector: 'app-change-passwords',
@@ -14,16 +16,16 @@ declare var Materialize :any;
 })
 export class ChangePasswordsComponent implements OnInit {
 
-  problem :boolean = false;
-  changePasswordUser = {id:0,password:''};
+  problem: boolean = false;
+  changePasswordUser = { id: 0, password: '' };
   loading = false;
   users = Array();
   match = false;
   confirmPassword = '';
 
-  constructor(private userService:UserService) { }
-  checkMatch(){
-    if(this.confirmPassword === this.changePasswordUser.password){
+  constructor(private userService: UserService) { }
+  checkMatch() {
+    if (this.confirmPassword === this.changePasswordUser.password) {
       this.match = true;
     } else {
       this.match = false;
@@ -32,12 +34,11 @@ export class ChangePasswordsComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.userService.getAllUsers().subscribe(
-      response=>{
-        console.log(response);
-        response.splice(0,1);
+      response => {
+        response.splice(0, 1);//removes "unknown" placeholder user
         this.users = response;
-        this.users.sort((a,b)=>{
-          if(a['name'].toLowerCase() > b['name'].toLowerCase())
+        this.users.sort((a, b) => {
+          if (a['name'].toLowerCase() > b['name'].toLowerCase())
             return 1;
           else if (a['name'].toLowerCase() < b['name'].toLowerCase())
             return -1;
@@ -49,14 +50,14 @@ export class ChangePasswordsComponent implements OnInit {
       error => this.problem = true
     )
   }
-  changePassword(user){
+  changePassword(user) {
     this.loading = true;
     this.userService.changePassword(user).subscribe(
-      response=>{
+      response => {
         this.loading = false;
-        Materialize.toast("Password successfully changed!",4000,"green white-text");
+        Materialize.toast("Password successfully changed!", 4000, "green white-text");
       },
-      error=>{
+      error => {
         this.problem = true;
       }
     )

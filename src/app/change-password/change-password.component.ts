@@ -1,11 +1,13 @@
+//Page that allows user to change their own passowrd.
+
 import { UserService } from '../user.service';
-import {MaterializeModule} from "angular2-materialize";
-import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
-import { Router,ActivatedRoute } from '@angular/router';
+import { MaterializeModule } from "angular2-materialize";
+import { MaterializeDirective, MaterializeAction } from "angular2-materialize";
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
-declare var $ : any;
-declare var Materialize :any;
+declare var $: any;
+declare var Materialize: any;
 
 
 @Component({
@@ -19,22 +21,22 @@ export class ChangePasswordComponent implements OnInit {
   match = false;
   confirmPassword = '';
   loading = false;
-  constructor(private userService:UserService) { }
-  checkMatch(){
-    if(this.confirmPassword === this.user.password){
+  constructor(private userService: UserService) { }
+  checkMatch() {
+    if (this.confirmPassword === this.user.password) {
       this.match = true;
     } else {
       this.match = false;
     }
   }
-  changePassword(){
+  changePassword() {
     this.loading = true;
     this.userService.changePassword(this.user).subscribe(
-      response=>{
+      response => {
         this.loading = false;
-        Materialize.toast("Password successfully changed!",4000,"green white-text");
+        Materialize.toast("Password successfully changed!", 4000, "green white-text");
       },
-      error=>{
+      error => {
         this.problem = true;
       }
     )
