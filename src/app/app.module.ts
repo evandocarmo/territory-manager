@@ -7,7 +7,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { GuardService } from './guard.service';
 import { AuthService } from './auth.service';
 import { TerritoryService } from './territory.service';
@@ -22,12 +22,11 @@ import { MyVisitsComponent } from './my-visits/my-visits.component';
 import { MonitorUsersComponent } from './monitor-users/monitor-users.component';
 import { NewUserComponent } from './new-user/new-user.component';
 import { NewHouseholdComponent } from './new-household/new-household.component';
-import { NewCardComponent } from './new-card/new-card.component';
 import { UpdateVisitsComponent } from './update-visits/update-visits.component';
 import { UpdateSearchComponent } from './update-search/update-search.component';
 import { MaterializeModule } from "angular2-materialize";
 import { NavbarComponent } from './navbar/navbar.component';
-import {Ng2PageScrollModule} from 'ng2-page-scroll';
+import { Ng2PageScrollModule } from 'ng2-page-scroll';
 import { DisplayHouseholdsInCardsComponent } from './display-households-in-cards/display-households-in-cards.component';
 import { DisplayHouseholdsComponent } from './display-households/display-households.component';
 import { KeysPipe } from './keys.pipe';
@@ -57,7 +56,6 @@ import { ChangePasswordsComponent } from './change-passwords/change-passwords.co
     MonitorUsersComponent,
     NewUserComponent,
     NewHouseholdComponent,
-    NewCardComponent,
     UpdateVisitsComponent,
     UpdateSearchComponent,
     NavbarComponent,
@@ -83,123 +81,123 @@ import { ChangePasswordsComponent } from './change-passwords/change-passwords.co
     MaterializeModule,
     Ng2PageScrollModule.forRoot(),
     RouterModule.forRoot([
-        {
-          path: 'login',
-          component:LoginComponent
-        },
-        {
-          path: 'home',
-          component:HomeComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path: '',
-          component:HomeComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path: 'take-search',
-          component:TakeSearchComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path: 'my-search',
-          component:MySearchComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'display-households-in-cards',
-          component:DisplayHouseholdsInCardsComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'take-visits',
-          component:TakeVisitsComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'display-households',
-          component:DisplayHouseholdsComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'update-search',
-          component:UpdateSearchComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'update-visits',
-          component:UpdateVisitsComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'my-visits',
-          component:MyVisitsComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'admin-users',
-          component:AdminUsersComponent,
-          canActivate:[GuardService],
-          children:[
-            {path:'',redirectTo:'monitor-users',pathMatch:'full'},
-            {path:'monitor-users',component:MonitorUsersComponent,canActivate:[GuardService]},
-            {path:'change-passwords',component:ChangePasswordsComponent,canActivate:[GuardService]},
-            {path:'new-user',component:NewUserComponent,canActivate:[GuardService]}
-          ]
-        },
-        {
-          path:'new-household',
-          component:NewHouseholdComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'change-password',
-          component:ChangePasswordComponent,
-          canActivate:[GuardService]
-        },
-        {
-          path:'admin-visit',component:AdminVisitComponent,canActivate:[GuardService],
-          children:[
-            {
-              path:'',redirectTo:'monitor-households',pathMatch:'full'
-            },
-            {
-              path:'new-household',component:NewHouseholdComponent,canActivate:[GuardService]
-            },
-            {
-              path:'monitor-households',component:MonitorHouseholdsComponent,canActivate:[GuardService]
-            }
-          ]
-        },
-        {
-          path:'admin-search',
-          component:AdminSearchComponent,
-          canActivate:[GuardService],
-          children:[
-            {
-              path:'',redirectTo:'monitor-search',pathMatch:'full'
-            },
-            {
-              path:'monitor-search',
-              component:MonitorSearchComponent,
-              canActivate:[GuardService]
-            },
-            {
-              path:'edit-search',
-              component:EditSearchComponent,
-              canActivate:[GuardService]
-            },
-            {
-              path:'new-search',
-              component:NewSearchComponent,
-              canActivate:[GuardService]
-            }
-          ]
-        }
-      ])
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: '',
+        component: HomeComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'take-search',
+        component: TakeSearchComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'my-search',
+        component: MySearchComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'display-households-in-cards',
+        component: DisplayHouseholdsInCardsComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'take-visits',
+        component: TakeVisitsComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'display-households',
+        component: DisplayHouseholdsComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'update-search',
+        component: UpdateSearchComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'update-visits',
+        component: UpdateVisitsComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'my-visits',
+        component: MyVisitsComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'admin-users',
+        component: AdminUsersComponent,
+        canActivate: [GuardService],
+        children: [
+          { path: '', redirectTo: 'monitor-users', pathMatch: 'full' },
+          { path: 'monitor-users', component: MonitorUsersComponent, canActivate: [GuardService] },
+          { path: 'change-passwords', component: ChangePasswordsComponent, canActivate: [GuardService] },
+          { path: 'new-user', component: NewUserComponent, canActivate: [GuardService] }
+        ]
+      },
+      {
+        path: 'new-household',
+        component: NewHouseholdComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordComponent,
+        canActivate: [GuardService]
+      },
+      {
+        path: 'admin-visit', component: AdminVisitComponent, canActivate: [GuardService],
+        children: [
+          {
+            path: '', redirectTo: 'monitor-households', pathMatch: 'full'
+          },
+          {
+            path: 'new-household', component: NewHouseholdComponent, canActivate: [GuardService]
+          },
+          {
+            path: 'monitor-households', component: MonitorHouseholdsComponent, canActivate: [GuardService]
+          }
+        ]
+      },
+      {
+        path: 'admin-search',
+        component: AdminSearchComponent,
+        canActivate: [GuardService],
+        children: [
+          {
+            path: '', redirectTo: 'monitor-search', pathMatch: 'full'
+          },
+          {
+            path: 'monitor-search',
+            component: MonitorSearchComponent,
+            canActivate: [GuardService]
+          },
+          {
+            path: 'edit-search',
+            component: EditSearchComponent,
+            canActivate: [GuardService]
+          },
+          {
+            path: 'new-search',
+            component: NewSearchComponent,
+            canActivate: [GuardService]
+          }
+        ]
+      }
+    ])
   ],
-  providers: [GuardService,AuthService,TerritoryService,UserService,HouseholdService,CsvService],
+  providers: [GuardService, AuthService, TerritoryService, UserService, HouseholdService, CsvService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
