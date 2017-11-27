@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  API_URL:'https://apiterritory.herokuapp.com'
+  API_URL: 'https://demo-territory-api.herokuapp.com'
 };

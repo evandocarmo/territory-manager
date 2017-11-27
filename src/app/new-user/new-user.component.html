@@ -6,29 +6,30 @@
   </div>
   <div>
     <p class="deep-purple-text darken-2">New User's Name</p>
-    <input
-      class="form-control input-field"
-      name="newName"
-      type="text"
-      placeholder="name"
-      [(ngModel)]="newUser.name"
-    />
+    <input class="form-control input-field"
+           name="newName"
+           type="text"
+           placeholder="name"
+           [(ngModel)]="newUser.name" />
     <p class="deep-purple-text darken-2">New User's Password</p>
-    <input
-      class="form-control input-field"
-      name="newPassword"
-      type="password"
-      placeholder="password"
-      [(ngModel)]="newUser.password"
-    />
+    <input class="form-control input-field"
+           name="newPassword"
+           type="password"
+           placeholder="password"
+           [(ngModel)]="newUser.password" />
     <p class="deep-purple-text darken-2">New User's Privilege</p>
-    <select required class="browser-default" name="newPrivilege" [(ngModel)]="newUser.privilege">
+    <select required
+            class="browser-default"
+            name="newPrivilege"
+            [(ngModel)]="newUser.privilege">
       <option value='' disabled>Select a privilege</option>
       <option value="ELDER">ELDER</option>
       <option value="SERVANT">SERVANT</option>
       <option value="PUBLISHER">PUBLISHER</option>
     </select>
     <br>
-    <button [disabled]="!newUser.name || !newUser.password || !newUser.privilege" class="btn deep-purple darken-2 white-text" (click)="AddNewUser(newUser)">Add</button>
+    <button [disabled]="!newUser.name || !newUser.password || !newUser.privilege"
+            class="btn deep-purple darken-2 white-text"
+            (click)="AddNewUser(newUser)">Add</button>
   </div>
 </div>

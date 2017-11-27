@@ -1,27 +1,51 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<div *ngIf="problem"
+     class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
 <p class="deep-purple-text darken-2 center-align">Add a new foreigner to the database</p>
-<form (ngSubmit)="onSubmit()" #newHouseholdForm = "ngForm" class="card-panel center-align">
-  <select class="browser-default" name="area_name" [(ngModel)]="addedHousehold.area_name" (change)="populateCodCards()" required>
+<form (ngSubmit)="onSubmit()"
+      #newHouseholdForm="ngForm"
+      class="card-panel center-align">
+  <select class="browser-default"
+          name="area_name"
+          [(ngModel)]="addedHousehold.area_name"
+          (change)="populateCodCards()"
+          required>
     <option disabled value='' selected>Select a neighborhood</option>
     <option *ngFor="let neighborhood of neighborhoods" value="{{neighborhood.area_name}}">
       {{neighborhood.area_name}}
     </option>
   </select>
-  <select *ngIf="neighborhoodSelected" class="browser-default" name="cod_card" [(ngModel)]="selectedCodCard" (change)="openAddress()" required>
+  <select *ngIf="neighborhoodSelected"
+          class="browser-default"
+          name="cod_card"
+          [(ngModel)]="selectedCodCard"
+          (change)="openAddress()"
+          required>
     <option disabled value="" selected>Select an Area(Quadra)</option>
     <option *ngFor="let cod_card of cod_cards">{{cod_card.COD_CARD}}</option>
   </select>
   <div *ngIf="codCardSelected">
     <p>What is the address? Bloco, conjunto, apartment, house...</p>
-    <input type="text" name="address" [(ngModel)]="addedHousehold.address" placeholder="Address" required>
+    <input type="text"
+           name="address"
+           [(ngModel)]="addedHousehold.address"
+           placeholder="Address"
+           required>
     <p>What language do they speak?</p>
-    <select class="browser-default" name="language" [(ngModel)]="addedHousehold.language" required>
+    <select class="browser-default"
+            name="language"
+            [(ngModel)]="addedHousehold.language"
+            required>
         <option *ngFor="let language of languages" value="{{language}}">{{language}}</option>
     </select>
     <p>Did you talk? What publications did you leave? What country are they from?</p>
-    <input type="text" name="comment" [(ngModel)]="addedHousehold.comments" placeholder="comments" required>
+    <input type="text"
+           name="comment"
+           [(ngModel)]="addedHousehold.comments"
+           placeholder="comments"
+           required>
   </div>
   <br>
-  <button class="btn-floating green white-text" [disabled]="!newHouseholdForm.form.valid"><i class="material-icons large">save</i></button>
+  <button class="btn-floating green white-text"
+          [disabled]="!newHouseholdForm.form.valid"><i class="material-icons large">save</i></button>
 </form>

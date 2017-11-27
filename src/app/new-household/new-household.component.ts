@@ -1,14 +1,14 @@
-import { Component, OnInit,EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { TerritoryService } from '../territory.service';
 import { HouseholdService } from '../household.service';
-import {MaterializeModule} from "angular2-materialize";
-import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
-import { Router,ActivatedRoute } from '@angular/router';
+import { MaterializeModule } from "angular2-materialize";
+import { MaterializeDirective, MaterializeAction } from "angular2-materialize";
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from '../user.service';
 import { Languages } from '../../../languages';
 
-declare var $ : any;
-declare var Materialize :any;
+declare var $: any;
+declare var Materialize: any;
 
 @Component({
   selector: 'app-new-household',
@@ -25,56 +25,56 @@ export class NewHouseholdComponent implements OnInit {
   codCardSelected = false;
   neighborhoodSelected = false;
   addedHousehold = {
-    cod_card:'',
-    area:'',
-    area_number:'',
-    address:'',
-    language:'',
-    comments:'',
-    area_name:'',
-    full_address:'',
-    macroarea:'',
-    cod_card_cod:''
+    cod_card: '',
+    area: '',
+    area_number: '',
+    address: '',
+    language: '',
+    comments: '',
+    area_name: '',
+    full_address: '',
+    macroarea: '',
+    cod_card_cod: ''
   }
   languages = Languages;
-  constructor(private territoryService:TerritoryService,private HouseholdService:HouseholdService) { }
+  constructor(private territoryService: TerritoryService, private HouseholdService: HouseholdService) { }
 
   ngOnInit() {
     this.loading = true;
     this.territoryService.getNeighborhoods().subscribe(
-      response=>{
+      response => {
         this.neighborhoods = response;
         this.loading = false;
       },
-      error=>{
+      error => {
         this.problem = true;
       }
     )
   }
-  populateCodCards(){
+  populateCodCards() {
     this.neighborhoodSelected = true;
     this.loading = true;
     this.territoryService.getCardsByNeighborhood(this.addedHousehold.area_name).subscribe(
-      response=>{
-        response.sort(function(a,b){
+      response => {
+        response.sort(function(a, b) {
           return a['AREA_NUMBER'] - b['AREA_NUMBER'];
         })
-        for(let card of response){
+        for (let card of response) {
           this.cardsHash[card['COD_CARD']] = card;
         }
         this.cod_cards = response;
         this.loading = false;
       },
-      error=>{
+      error => {
         this.problem = true;
       }
     )
   }
-  openAddress(){
+  openAddress() {
     this.codCardSelected = true;
   }
 
-  onSubmit(){
+  onSubmit() {
     this.loading = true;
     let card = this.cardsHash[this.selectedCodCard];
     this.addedHousehold.cod_card_cod = card.cod;
@@ -86,11 +86,11 @@ export class NewHouseholdComponent implements OnInit {
 
     console.log(this.addedHousehold);
     this.HouseholdService.addHousehold(this.addedHousehold).subscribe(
-      response=>{
+      response => {
         this.loading = false;
-        Materialize.toast('Household successfully added!',4000,'green white-text');
+        Materialize.toast('Household successfully added!', 4000, 'green white-text');
       },
-      error=>{
+      error => {
         this.problem = true;
       }
     )

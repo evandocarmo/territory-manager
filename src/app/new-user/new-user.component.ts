@@ -1,11 +1,11 @@
-import { Component, OnInit,EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { UserService } from '../user.service';
-import {MaterializeModule} from "angular2-materialize";
-import {MaterializeDirective, MaterializeAction} from "angular2-materialize";
-import { Router,ActivatedRoute } from '@angular/router';
+import { MaterializeModule } from "angular2-materialize";
+import { MaterializeDirective, MaterializeAction } from "angular2-materialize";
+import { Router, ActivatedRoute } from '@angular/router';
 
-declare var $ : any;
-declare var Materialize :any;
+declare var $: any;
+declare var Materialize: any;
 
 @Component({
   selector: 'app-new-user',
@@ -15,38 +15,38 @@ declare var Materialize :any;
 export class NewUserComponent implements OnInit {
 
   users = Array();
-  problem :boolean = false;
-  newUser = {name:'',password:'',privilege:''};
+  problem: boolean = false;
+  newUser = { name: '', password: '', privilege: '' };
   loading = false;
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.loading = true;
     this.userService.getAllUsers().subscribe(
-      response=>{
+      response => {
         console.log(response);
-        response.splice(0,1);
+        response.splice(0, 1);
         this.users = response;
         this.loading = false;
       },
       error => this.problem = true
     )
   }
-  AddNewUser(user){
+  AddNewUser(user) {
     this.loading = true;
     this.userService.addUser(user).subscribe(
-      response=>{
-        if(response.message){
+      response => {
+        if (response.message) {
           this.loading = false;
-          Materialize.toast(response.message,4000,"red white-text");
+          Materialize.toast(response.message, 4000, "red white-text");
         }
-        else{
+        else {
           this.loading = false;
-          Materialize.toast("User succesfully added!",4000,"green white-text");
+          Materialize.toast("User succesfully added!", 4000, "green white-text");
         }
       },
-      error=>this.problem = true
+      error => this.problem = true
     )
   }
 }

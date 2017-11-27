@@ -1,3 +1,6 @@
+//User can visualize and download of picture of search territory assigned
+// to them
+
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import { HouseholdService } from '../household.service';
 import { Codcard } from '../codcard';
@@ -50,7 +53,6 @@ export class MySearchComponent implements OnInit {
           this.codCardNames.push(card['COD_CARD']);
           this.householdsByCard[card['COD_CARD']] = { households: [] };
         }
-        console.log(this.householdsByCard);
         this.householdService.getHouseholdsBycardCod(this.cardCods).subscribe(
           response => {
             this.households = response;
@@ -110,7 +112,7 @@ export class MySearchComponent implements OnInit {
         }
       };
 
-      var img = canvas.toDataURL("image/jpg"),
+      let img = canvas.toDataURL("image/jpg"),
         uri = img.replace(/^data:image\/[^;]/, 'data:application/octet-stream');
       if ((is_safari))
         window.open(img);

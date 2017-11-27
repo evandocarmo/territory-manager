@@ -1,9 +1,16 @@
 <app-spinner *ngIf="loading"></app-spinner>
-<div *ngIf="problem" class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
-<form class="form" (ngSubmit)="onSubmit()" #takeSearchForm = "ngForm">
+<div *ngIf="problem"
+     class="problem center-align red darken-4 white-text">There has been a problem. Please, <a routerLink="/"> try Again</a></div>
+<form class="form"
+      (ngSubmit)="onSubmit()"
+      #takeSearchForm="ngForm">
   <p class="deep-purple-text center-align">Select a user</p>
   <div id="take-user-select">
-    <select required class="browser-default" name="user" [(ngModel)]="selectedUser" id="userSelect">
+    <select required
+            class="browser-default"
+            name="user"
+            [(ngModel)]="selectedUser"
+            id="userSelect">
       <option disabled value=''>Select a Publisher</option>
       <option
         *ngFor="let user of users"
@@ -14,53 +21,57 @@
     </select>
   </div>
   <p class="deep-purple-text center-align">Select what areas you want to do search in</p>
-  <ul class="collapsible popout neighborhoods" data-collapsible="accordion" materialize="collapsible">
-    <li *ngFor="let name of neighborhoodNames" id="{{name}}">
-        <div  class="collapsible-header">
-          <legend class="sublegend">{{name}}
-            <span class="macroarea grey-text"> - {{neighborhoods[name].macroarea}}</span>
-            <i class="material-icons tiny">keyboard_arrow_down</i>
-          </legend>
-        </div>
+  <ul class="collapsible popout neighborhoods"
+      data-collapsible="accordion"
+      materialize="collapsible">
+    <li *ngFor="let name of neighborhoodNames"
+        id="{{name}}">
+      <div class="collapsible-header">
+        <legend class="sublegend">{{name}}
+          <span class="macroarea grey-text"> - {{neighborhoods[name].macroarea}}</span>
+          <i class="material-icons tiny">keyboard_arrow_down</i>
+        </legend>
+      </div>
       <ul class="card-collection collapsible-body">
-        <li *ngFor="let card of neighborhoods[name].codcards" class="card-option lighten-2" [ngClass]="{'grey':card.available ,'red':!card.available}">
-          <input
-                type="checkbox"
+        <li *ngFor="let card of neighborhoods[name].codcards"
+            class="card-option lighten-2"
+            [ngClass]="{'grey':card.available ,'red':!card.available}">
+          <input type="checkbox"
                  name="cards"
                  [disabled]="!card.available"
                  id="{{card.cod}}"
                  (change)="pushIntoSelected(card)"
                  value="{{card.cod}}"
-                 class="filled-in"  />
-          <label [ngClass]="{'white-text':!card.available}"for="{{card.cod}}"><span [ngClass]="{'white-text':!card.available,'deep-purple-text text-darken-2':card.available}">{{card.COD_CARD}}</span>
+                 class="filled-in" />
+          <label [ngClass]="{'white-text':!card.available}"
+                 for="{{card.cod}}"><span [ngClass]="{'white-text':!card.available,'deep-purple-text text-darken-2':card.available}">{{card.COD_CARD}}</span>
             <span *ngIf="card.LAST_UPDATE">{{card.LAST_UPDATE}} days ago</span><span *ngIf="card.LAST_UPDATE === null">Never worked</span><span *ngIf="card.LAST_UPDATE === 0">Updated Today</span> | {{card.COUNT}} house(s)</label>
         </li>
       </ul>
-  </li>
+    </li>
   </ul>
-  <nav id="take-toolbar" class=" deep-purple darken-2">
+  <nav id="take-toolbar"
+       class=" deep-purple darken-2">
     <ul class="nav-mobile">
       <li class="left">
-        <a
-          class="waves-effect waves-light btn flat-btn deep-purple darken-2 white-text"
-          (click)="sortByDate()"
-          *ngIf="sortedByNumber"
-          >
+        <a class="waves-effect waves-light btn flat-btn deep-purple darken-2 white-text"
+           (click)="sortByDate()"
+           *ngIf="sortedByNumber">
           Sort By Date
         </a>
-        <a
-          class="waves-effect waves-light btn flat-btn deep-purple darken-2 white-text"
-          (click)="sortByNumber()"
-          *ngIf="sortedByDate"
-          >
+        <a class="waves-effect waves-light btn flat-btn deep-purple darken-2 white-text"
+           (click)="sortByNumber()"
+           *ngIf="sortedByDate">
           Sort By Number
         </a>
       </li>
     </ul>
   </nav>
   <div class="fixed-action-btn">
-    <button style="margin-right:10px"[disabled]="!takeSearchForm.form.valid || selectedCards.length == 0" type="submit"
-      class="waves-effect waves-light z-depth-4 btn-floating btn-large green darken-1 white-text">
+    <button style="margin-right:10px"
+            [disabled]="!takeSearchForm.form.valid || selectedCards.length == 0"
+            type="submit"
+            class="waves-effect waves-light z-depth-4 btn-floating btn-large green darken-1 white-text">
       <i class="material-icons">assignment_returned</i>
     </button>
   </div>
